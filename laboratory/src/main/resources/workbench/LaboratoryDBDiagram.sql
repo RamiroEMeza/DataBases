@@ -15,7 +15,7 @@ DROP SCHEMA IF EXISTS `LaboratoryDB` ;
 -- -----------------------------------------------------
 -- Schema LaboratoryDB
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `LaboratoryDB` DEFAULT CHARACTER SET utf8 COLLATE utf8_czech_ci ;
+CREATE SCHEMA IF NOT EXISTS `LaboratoryDB` DEFAULT CHARACTER SET utf8mb4;
 USE `LaboratoryDB` ;
 
 -- -----------------------------------------------------
