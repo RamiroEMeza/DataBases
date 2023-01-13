@@ -40,7 +40,6 @@ CREATE TABLE IF NOT EXISTS `LaboratoryDB`.`Researchs` (
   `complete` TINYINT NULL,
   `Labs_id` INT NOT NULL,
   PRIMARY KEY (`id`, `Labs_id`),
-  INDEX `fk_Researchs_Labs1_idx` (`Labs_id` ASC) VISIBLE,
   CONSTRAINT `fk_Researchs_Labs1`
     FOREIGN KEY (`Labs_id`)
     REFERENCES `LaboratoryDB`.`Labs` (`id`)
@@ -60,7 +59,6 @@ CREATE TABLE IF NOT EXISTS `LaboratoryDB`.`Scientists` (
   `age` INT NOT NULL,
   `Researchs_id` INT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Scientists_Researchs1_idx` (`Researchs_id` ASC) VISIBLE,
   CONSTRAINT `fk_Scientists_Researchs1`
     FOREIGN KEY (`Researchs_id`)
     REFERENCES `LaboratoryDB`.`Researchs` (`id`)
@@ -80,7 +78,6 @@ CREATE TABLE IF NOT EXISTS `LaboratoryDB`.`Assistants` (
   `age` INT NOT NULL,
   `Scientists_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Assistants_Scientists1_idx` (`Scientists_id` ASC) VISIBLE,
   CONSTRAINT `fk_Assistants_Scientists1`
     FOREIGN KEY (`Scientists_id`)
     REFERENCES `LaboratoryDB`.`Scientists` (`id`)
@@ -98,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `LaboratoryDB`.`Resources_Stock` (
   `unit` VARCHAR(45) NOT NULL,
   `quantity` DOUBLE NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC) )
 ENGINE = InnoDB;
 
 
@@ -112,8 +109,6 @@ CREATE TABLE IF NOT EXISTS `LaboratoryDB`.`Resource_Petition` (
   `unit` VARCHAR(45) NOT NULL,
   `quantity` DOUBLE NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_ResourceOrder_Scientists1_idx` (`Scientists_id` ASC) VISIBLE,
-  INDEX `fk_ResourceOrder_Resources1_idx` (`Resources_id` ASC) VISIBLE,
   CONSTRAINT `fk_ResourceOrder_Scientists1`
     FOREIGN KEY (`Scientists_id`)
     REFERENCES `LaboratoryDB`.`Scientists` (`id`)
@@ -147,8 +142,6 @@ CREATE TABLE IF NOT EXISTS `LaboratoryDB`.`Equipment_Asigned` (
   `Equipment_id` INT NOT NULL,
   `expires` DATE NOT NULL,
   PRIMARY KEY (`id`, `Equipment_id`),
-  INDEX `fk_EquipmentAsigned_Scientists1_idx` (`Scientists_id` ASC) VISIBLE,
-  INDEX `fk_EquipmentAsigned_Equipment1_idx` (`Equipment_id` ASC) VISIBLE,
   CONSTRAINT `fk_EquipmentAsigned_Scientists1`
     FOREIGN KEY (`Scientists_id`)
     REFERENCES `LaboratoryDB`.`Scientists` (`id`)
@@ -171,7 +164,6 @@ CREATE TABLE IF NOT EXISTS `LaboratoryDB`.`Administratives` (
   `lastname` VARCHAR(45) NOT NULL,
   `Resources_Stock_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Administratives_Resources_Stock1_idx` (`Resources_Stock_id` ASC) VISIBLE,
   CONSTRAINT `fk_Administratives_Resources_Stock1`
     FOREIGN KEY (`Resources_Stock_id`)
     REFERENCES `LaboratoryDB`.`Resources_Stock` (`id`)
@@ -201,8 +193,6 @@ CREATE TABLE IF NOT EXISTS `LaboratoryDB`.`Equipment_Suport_History` (
   `status` VARCHAR(45) NOT NULL,
   `start` DATE NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_EquipmentSuport_Equipment1_idx` (`Equipment_id` ASC) VISIBLE,
-  INDEX `fk_EquipmentSuport_TechnicalSupport1_idx` (`TechnicalSupport_id` ASC) VISIBLE,
   CONSTRAINT `fk_EquipmentSuport_Equipment1`
     FOREIGN KEY (`Equipment_id`)
     REFERENCES `LaboratoryDB`.`Equipment` (`id`)
@@ -227,7 +217,6 @@ CREATE TABLE IF NOT EXISTS `LaboratoryDB`.`Test_Subjects` (
   `weight` DOUBLE NOT NULL,
   `Researchs_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Test_Subjects_Researchs1_idx` (`Researchs_id` ASC) VISIBLE,
   CONSTRAINT `fk_Test_Subjects_Researchs1`
     FOREIGN KEY (`Researchs_id`)
     REFERENCES `LaboratoryDB`.`Researchs` (`id`)
