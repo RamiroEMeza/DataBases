@@ -1,30 +1,48 @@
 package solvd.laba.dao.mysql;
 
-import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource;
-//import solvd.laba.connections.ConnectionPool;
-import solvd.laba.connections.ConnectionPool;
+import org.apache.commons.dbcp2.BasicDataSource;
 import solvd.laba.dao.IEquipmentDAO;
 import solvd.laba.dao.mysql.MySQLDAO;
 import solvd.laba.equipment.Equipment;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
+    private static BasicDataSource dataSource = null;
+    static {
+        dataSource = new BasicDataSource();
+        dataSource.setUrl("jdbc:mysql://localhost:3306/?user=root");
+        dataSource.setUsername("Ramiro");
+        dataSource.setPassword("xqnncpcplpm337");
+
+        dataSource.setMinIdle(5);
+        dataSource.setMaxIdle(10);
+        dataSource.setMaxTotal(25);
+
+    }
     private final static String GETEQUIPMENT = "SELECT * FROM Equipment WHERE id=?";
 
     @Override
-    public Equipment getEntityById(int id) throws InterruptedException {
-        Connection c = (Connection) ConnectionPool.getInstance().connect();
-        try (PreparedStatement ps = c.prepareStatement(GETEQUIPMENT)){
-            ps.setInt(0, id);
+    public Equipment getEntityById(int id) throws InterruptedException, SQLException {
+
+        Connection c = dataSource.getConnection();
+        Statement statement = null;
+        ResultSet resultSet = null;
+        //ResultSet rs = null;
+        try (PreparedStatement ps = c.prepareStatement(GETEQUIPMENT)) {
+            ps.setInt(1, id);
+            //rs = ps.executeQuery();
+            statement = c.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM equipment WHERE id=1");
+            return new Equipment(resultSet.getString("name"), resultSet.getBoolean("working"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            //rs.close();
+            //resultSet.close();
+            c.close();
         }
-
-        return null;
     }
 
     @Override
@@ -50,6 +68,11 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
     @Override
     public void removeEntity(int id) {
 
+    }
+
+    public static void main(String[] args) throws SQLException, InterruptedException {
+        EquipmentDAO eDAO = new EquipmentDAO();
+        System.out.println(eDAO.getEntityById(1));
     }
 
 

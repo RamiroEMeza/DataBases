@@ -33,4 +33,13 @@ public class Equipment {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Equipment{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", working=" + working +
+                '}';
+    }
 }
