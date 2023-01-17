@@ -42,7 +42,7 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
                 LOGGER.info("id:" + resultSet.getInt("id"));
                 LOGGER.info("name:" + resultSet.getString("name"));
                 LOGGER.info("working:" + resultSet.getBoolean("working"));
-                return new Equipment(resultSet.getString("name"),
+                return new Equipment(resultSet.getInt("id"), resultSet.getString("name"),
                         resultSet.getBoolean("working"));
             };
 

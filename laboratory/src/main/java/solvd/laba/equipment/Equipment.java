@@ -5,6 +5,12 @@ public class Equipment {
     private String name;
     private boolean working;
 
+    public Equipment(int id, String name, boolean working) {
+        this.id = id;
+        this.name = name;
+        this.working = working;
+    }
+
     public Equipment(String name, boolean working) {
         this.name = name;
         this.working = working;
