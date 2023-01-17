@@ -1,6 +1,6 @@
-package solvd.laba.equipment.dao;
+package solvd.laba.dao;
 
-import solvd.laba.data.base.IBaseDAO;
+import solvd.laba.dao.IBaseDAO;
 import solvd.laba.equipment.Equipment;
 
 import java.util.ArrayList;

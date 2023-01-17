@@ -1,11 +1,12 @@
-package solvd.laba.equipment.dao;
+package solvd.laba.dao.mysql;
 
-import solvd.laba.data.base.MySQLDAO;
+import solvd.laba.dao.IEquipmentDAO;
+import solvd.laba.dao.mysql.MySQLDAO;
 import solvd.laba.equipment.Equipment;
 
 import java.util.ArrayList;
 
-public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO{
+public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
     @Override
     public Equipment getEntity(int id) {
         return null;

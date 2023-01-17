@@ -1,4 +1,4 @@
-package solvd.laba.data.base;
+package solvd.laba.dao;
 
 import java.util.ArrayList;
 
