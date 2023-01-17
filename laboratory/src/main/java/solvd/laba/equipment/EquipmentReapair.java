@@ -5,6 +5,8 @@ import solvd.laba.members.TechnicalSupport;
 import java.time.LocalDate;
 
 public class EquipmentReapair {
+    //private Equipment equipment;
+    //private TechnicalSupport tSupport;
     private int equipment;
     private int tSupport;
     private String status;
