@@ -27,30 +27,33 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
     private final static String GETEQUIPMENT = "SELECT * FROM Equipment WHERE id=?";
 
     @Override
-    public Equipment getEntityById(int id) throws InterruptedException, SQLException {
-//        Connection c = dataSource.getConnection();
-//        Statement statement = null;
-//        ResultSet resultSet = null;
-//        //ResultSet rs = null;
-//        try (PreparedStatement ps = c.prepareStatement(GETEQUIPMENT)) {
-//            ps.setInt(1, id);
-//            //rs = ps.executeQuery();
-//            statement = c.createStatement();
-//            resultSet = statement.executeQuery("select * from equipment where id=?");
-//
-//            LOGGER.info("id:" + resultSet.getInt("id"));
-//            LOGGER.info("name:" + resultSet.getString("name"));
-//            LOGGER.info("working:" + resultSet.getBoolean("working"));
-//
-//            return null;
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        } finally {
-//            //rs.close();
-//            //resultSet.close();
-//            c.close();
-//        }
-        return null;
+    public Equipment getEntityById(int idS) throws InterruptedException, SQLException {
+        Connection c = dataSource.getConnection();
+        Statement statement = null;
+        ResultSet resultSet = null;
+        //ResultSet rs = null;
+        try (PreparedStatement ps = c.prepareStatement(GETEQUIPMENT)) {
+            ps.setInt(1, idS);
+            //rs = ps.executeQuery();
+            statement = c.createStatement();
+            resultSet = statement.executeQuery("select * from equipment where id=2");
+
+            while (resultSet.next()) {
+                LOGGER.info("id:" + resultSet.getInt("id"));
+                LOGGER.info("name:" + resultSet.getString("name"));
+                LOGGER.info("working:" + resultSet.getBoolean("working"));
+                return new Equipment(resultSet.getString("name"),
+                        resultSet.getBoolean("working"));
+            };
+
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            //rs.close();
+            //resultSet.close();
+            c.close();
+        }
     }
 
     @Override
@@ -101,7 +104,8 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
 
     public static void main(String[] args) throws SQLException, InterruptedException {
         EquipmentDAO eDAO = new EquipmentDAO();
-        //eDAO.getEntityById(2);
+        Equipment equipment = eDAO.getEntityById(2);
+        LOGGER.info(equipment);
         eDAO.getAllEntities();
     }
 
