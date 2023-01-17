@@ -28,28 +28,29 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
 
     @Override
     public Equipment getEntityById(int id) throws InterruptedException, SQLException {
-        Connection c = dataSource.getConnection();
-        Statement statement = null;
-        ResultSet resultSet = null;
-        //ResultSet rs = null;
-        try (PreparedStatement ps = c.prepareStatement(GETEQUIPMENT)) {
-            ps.setInt(1, id);
-            //rs = ps.executeQuery();
-            statement = c.createStatement();
-            resultSet = statement.executeQuery("select * from equipment where id=?");
-
-            LOGGER.info("id:" + resultSet.getInt("id"));
-            LOGGER.info("name:" + resultSet.getString("name"));
-            LOGGER.info("working:" + resultSet.getBoolean("working"));
-
-            return null;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            //rs.close();
-            //resultSet.close();
-            c.close();
-        }
+//        Connection c = dataSource.getConnection();
+//        Statement statement = null;
+//        ResultSet resultSet = null;
+//        //ResultSet rs = null;
+//        try (PreparedStatement ps = c.prepareStatement(GETEQUIPMENT)) {
+//            ps.setInt(1, id);
+//            //rs = ps.executeQuery();
+//            statement = c.createStatement();
+//            resultSet = statement.executeQuery("select * from equipment where id=?");
+//
+//            LOGGER.info("id:" + resultSet.getInt("id"));
+//            LOGGER.info("name:" + resultSet.getString("name"));
+//            LOGGER.info("working:" + resultSet.getBoolean("working"));
+//
+//            return null;
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        } finally {
+//            //rs.close();
+//            //resultSet.close();
+//            c.close();
+//        }
+        return null;
     }
 
     @Override
@@ -100,7 +101,7 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
 
     public static void main(String[] args) throws SQLException, InterruptedException {
         EquipmentDAO eDAO = new EquipmentDAO();
-        eDAO.getEntityById(2);
+        //eDAO.getEntityById(2);
         eDAO.getAllEntities();
     }
 
