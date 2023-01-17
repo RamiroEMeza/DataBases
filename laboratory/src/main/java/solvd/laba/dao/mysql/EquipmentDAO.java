@@ -12,13 +12,13 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
     private static BasicDataSource dataSource = null;
     static {
         dataSource = new BasicDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/?user=root");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/laboratorydb?useSSL=false");
         dataSource.setUsername("Ramiro");
         dataSource.setPassword("xqnncpcplpm337");
 
         dataSource.setMinIdle(5);
         dataSource.setMaxIdle(10);
-        dataSource.setMaxTotal(25);
+        dataSource.setMaxTotal(12);
 
     }
     private final static String GETEQUIPMENT = "SELECT * FROM Equipment WHERE id=?";
@@ -34,7 +34,7 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
             ps.setInt(1, id);
             //rs = ps.executeQuery();
             statement = c.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM equipment WHERE id=1");
+            resultSet = statement.executeQuery("select * from equipment where id=1");
             return new Equipment(resultSet.getString("name"), resultSet.getBoolean("working"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
