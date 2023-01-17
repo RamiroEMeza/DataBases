@@ -1,6 +1,7 @@
 package solvd.laba.facilities;
 
 public class Lab {
+    private int id;
     private int capacity;
     private int complexity;
 
@@ -29,5 +30,13 @@ public class Lab {
             capacity = 1;
         }
         this.complexity = complexity;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

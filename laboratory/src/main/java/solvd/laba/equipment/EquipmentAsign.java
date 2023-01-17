@@ -5,6 +5,7 @@ import solvd.laba.members.Scientist;
 import java.time.LocalDate;
 
 public class EquipmentAsign {
+    private int id;
     private Scientist scientist;
     private Equipment equipment;
     private LocalDate expires;
@@ -37,5 +38,13 @@ public class EquipmentAsign {
 
     public void setExpires(LocalDate expires) {
         this.expires = expires;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

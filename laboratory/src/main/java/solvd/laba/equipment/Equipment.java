@@ -1,6 +1,7 @@
 package solvd.laba.equipment;
 
 public class Equipment {
+    private int id;
     private String name;
     private boolean working;
 
@@ -23,5 +24,13 @@ public class Equipment {
 
     public void setWorking(boolean working) {
         this.working = working;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

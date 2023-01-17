@@ -3,6 +3,7 @@ package solvd.laba.resource;
 import solvd.laba.members.Scientist;
 
 public class ResourcePetition {
+    private int id;
     private Scientist scientist;
     private Resource resource;
     private String unit;
@@ -48,5 +49,13 @@ public class ResourcePetition {
             quantity = 0;
         }
         this.quantity = quantity;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

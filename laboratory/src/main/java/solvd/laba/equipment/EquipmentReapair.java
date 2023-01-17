@@ -7,6 +7,7 @@ import java.time.LocalDate;
 public class EquipmentReapair {
     //private Equipment equipment;
     //private TechnicalSupport tSupport;
+    private int id;
     private int equipment;
     private int tSupport;
     private String status;
@@ -55,5 +56,13 @@ public class EquipmentReapair {
 
     public void setStart(LocalDate start) {
         this.start = start;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

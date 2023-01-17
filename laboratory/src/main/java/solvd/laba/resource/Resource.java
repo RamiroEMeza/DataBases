@@ -1,6 +1,7 @@
 package solvd.laba.resource;
 
 public class Resource {
+    private int id;
     private String name;
     private String unit;
     private double quantity;
@@ -36,5 +37,13 @@ public class Resource {
             quantity = 0;
         }
         this.quantity = quantity;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

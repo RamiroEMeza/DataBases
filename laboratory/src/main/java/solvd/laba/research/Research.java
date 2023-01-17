@@ -5,6 +5,7 @@ import solvd.laba.facilities.Lab;
 import java.time.LocalDate;
 
 public class Research {
+    private int id;
     private String name;
     private LocalDate start;
     private int budget;
@@ -61,5 +62,13 @@ public class Research {
         if(lab != null){
             this.lab = lab;
         }
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
