@@ -25,17 +25,47 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
 
     @Override
     public Equipment getEntityById(int id) throws InterruptedException, SQLException {
+//        Connection c = dataSource.getConnection();
+//        Statement statement = null;
+//        ResultSet resultSet = null;
+//        //ResultSet rs = null;
+//        try (PreparedStatement ps = c.prepareStatement(GETEQUIPMENT)) {
+//            ps.setInt(1, id);
+//            //rs = ps.executeQuery();
+//            statement = c.createStatement();
+//            resultSet = statement.executeQuery("select * from equipment");
+//            while (resultSet.next()) {
+//                System.out.println("name:" + resultSet.getInt("name"));
+//                System.out.println("working:" + resultSet.getBoolean("working"));
+//            };
+//            return null;
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        } finally {
+//            //rs.close();
+//            //resultSet.close();
+//            c.close();
+//        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<Equipment> getAllEntities() throws SQLException {
 
         Connection c = dataSource.getConnection();
         Statement statement = null;
         ResultSet resultSet = null;
         //ResultSet rs = null;
         try (PreparedStatement ps = c.prepareStatement(GETEQUIPMENT)) {
-            ps.setInt(1, id);
             //rs = ps.executeQuery();
             statement = c.createStatement();
-            resultSet = statement.executeQuery("select * from equipment where id=1");
-            return new Equipment(resultSet.getString("name"), resultSet.getBoolean("working"));
+            resultSet = statement.executeQuery("select * from equipment");
+            while (resultSet.next()) {
+                System.out.println("id:" + resultSet.getInt("id"));
+                System.out.println("name:" + resultSet.getString("name"));
+                System.out.println("working:" + resultSet.getBoolean("working"));
+            };
+            return null;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -43,11 +73,6 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
             //resultSet.close();
             c.close();
         }
-    }
-
-    @Override
-    public ArrayList<Equipment> getAllEntities() {
-        return null;
     }
 
     @Override
@@ -72,7 +97,7 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
 
     public static void main(String[] args) throws SQLException, InterruptedException {
         EquipmentDAO eDAO = new EquipmentDAO();
-        System.out.println(eDAO.getEntityById(1));
+        System.out.println(eDAO.getAllEntities());
     }
 
 
