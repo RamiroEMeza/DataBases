@@ -1,6 +1,8 @@
 package solvd.laba.dao.mysql;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import solvd.laba.dao.IEquipmentDAO;
 import solvd.laba.dao.mysql.MySQLDAO;
 import solvd.laba.equipment.Equipment;
@@ -9,6 +11,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
+    private final static Logger LOGGER = LogManager.getLogger(EquipmentDAO.class);
     private static BasicDataSource dataSource = null;
     static {
         dataSource = new BasicDataSource();
@@ -33,11 +36,12 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
 //            ps.setInt(1, id);
 //            //rs = ps.executeQuery();
 //            statement = c.createStatement();
-//            resultSet = statement.executeQuery("select * from equipment");
-//            while (resultSet.next()) {
-//                System.out.println("name:" + resultSet.getInt("name"));
-//                System.out.println("working:" + resultSet.getBoolean("working"));
-//            };
+//            resultSet = statement.executeQuery("select * from equipment where id=2");
+//
+//            System.out.println("id:" + resultSet.getInt("id"));
+//            System.out.println("name:" + resultSet.getString("name"));
+//            System.out.println("working:" + resultSet.getBoolean("working"));
+//
 //            return null;
 //        } catch (SQLException e) {
 //            throw new RuntimeException(e);
@@ -46,7 +50,6 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
 //            //resultSet.close();
 //            c.close();
 //        }
-        return null;
     }
 
     @Override
@@ -61,9 +64,9 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
             statement = c.createStatement();
             resultSet = statement.executeQuery("select * from equipment");
             while (resultSet.next()) {
-                System.out.println("id:" + resultSet.getInt("id"));
-                System.out.println("name:" + resultSet.getString("name"));
-                System.out.println("working:" + resultSet.getBoolean("working"));
+                LOGGER.info("id:" + resultSet.getInt("id"));
+                LOGGER.info("name:" + resultSet.getString("name"));
+                LOGGER.info("working:" + resultSet.getBoolean("working"));
             };
             return null;
         } catch (SQLException e) {
@@ -97,34 +100,8 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
 
     public static void main(String[] args) throws SQLException, InterruptedException {
         EquipmentDAO eDAO = new EquipmentDAO();
-        System.out.println(eDAO.getAllEntities());
+        //LOGGER.info(eDAO.getEntityById(2));
+        LOGGER.info(eDAO.getAllEntities());
     }
 
-
-
-
-//    @Override
-//    public ArrayList<Equipment> getAllEquipment() {
-//        return null;
-//    }
-//
-//    @Override
-//    public Equipment getEquipment(int id) {
-//        return null;
-//    }
-//
-//    @Override
-//    public void updateEquipment(Equipment equipment) {
-//
-//    }
-//
-//    @Override
-//    public void deleteEquipment(Equipment equipment) {
-//
-//    }
-//
-//    @Override
-//    public void createEquipment(Equipment equipment) {
-//
-//    }
 }
