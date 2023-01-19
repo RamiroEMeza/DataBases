@@ -12,101 +12,97 @@ import java.util.ArrayList;
 
 public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
     private final static Logger LOGGER = LogManager.getLogger(EquipmentDAO.class);
-    private static BasicDataSource dataSource = null;
-    static {
-        dataSource = new BasicDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/laboratorydb?useSSL=false");
-        dataSource.setUsername("Ramiro");
-        dataSource.setPassword("xqnncpcplpm337");
 
-        dataSource.setMinIdle(5);
-        dataSource.setMaxIdle(10);
-        dataSource.setMaxTotal(12);
-
-    }
-    private final static String GETEQUIPMENT = "SELECT * FROM Equipment WHERE id=?";
+    private final static String GET_EQUIPMENT = "SELECT * FROM Equipment WHERE id=?";
+    private final static String GET_ALL_EQUIPMENT = "SELECT * FROM Equipment";
+    private final static String CREATE_EQUIPMENT = "INSERT INTO equipment (name, working) VALUES (?, ?)";
+    private final static String UPDATE_EQUIPMENT = "UPDATE equipment SET (name=?, working=?) WHERE id=?";
+    private final static String DELETE_EQUIPMENT = "DELETE FROM equipment WHERE id=?";
 
     @Override
-    public Equipment getEntityById(int idS) throws InterruptedException, SQLException {
-        Connection c = dataSource.getConnection();
-        Statement statement = null;
-        ResultSet resultSet = null;
-        //ResultSet rs = null;
-        try (PreparedStatement ps = c.prepareStatement(GETEQUIPMENT)) {
+    public Equipment getEntityById(int idS) {
+        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_EQUIPMENT)) {
+            ResultSet resultSet = null;
             ps.setInt(1, idS);
-            //rs = ps.executeQuery();
-            statement = c.createStatement();
-            resultSet = statement.executeQuery("select * from equipment where id=2");
+            resultSet = ps.executeQuery();
 
-            while (resultSet.next()) {
-                LOGGER.info("id:" + resultSet.getInt("id"));
-                LOGGER.info("name:" + resultSet.getString("name"));
-                LOGGER.info("working:" + resultSet.getBoolean("working"));
+            if (resultSet.next()) {
                 return new Equipment(resultSet.getInt("id"), resultSet.getString("name"),
                         resultSet.getBoolean("working"));
-            };
-
+            }
             return null;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } finally {
-            //rs.close();
-            //resultSet.close();
-            c.close();
         }
     }
 
     @Override
-    public ArrayList<Equipment> getAllEntities() throws SQLException {
-
-        Connection c = dataSource.getConnection();
-        Statement statement = null;
-        ResultSet resultSet = null;
-        //ResultSet rs = null;
-        try (PreparedStatement ps = c.prepareStatement(GETEQUIPMENT)) {
-            //rs = ps.executeQuery();
-            statement = c.createStatement();
-            resultSet = statement.executeQuery("select * from equipment");
+    public ArrayList<Equipment> getAllEntities() {
+        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_ALL_EQUIPMENT)) {
+            ResultSet resultSet = null;
+            resultSet = ps.executeQuery();
+            ArrayList<Equipment> result = new ArrayList<Equipment>();
             while (resultSet.next()) {
-                LOGGER.info("id:" + resultSet.getInt("id"));
-                LOGGER.info("name:" + resultSet.getString("name"));
-                LOGGER.info("working:" + resultSet.getBoolean("working"));
-            };
-            return null;
+                result.add(new Equipment(resultSet.getInt("id"), resultSet.getString("name"),
+                        resultSet.getBoolean("working")));
+            }
+            return result;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } finally {
-            //rs.close();
-            //resultSet.close();
-            c.close();
         }
-    }
-
-    @Override
-    public ArrayList<Equipment> getAllByScientistId(int scientistId) {
-        return null;
     }
 
     @Override
     public void updateEntity(Equipment entity) {
+        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_EQUIPMENT)) {
+            ps.setString(1, entity.getName());
+            ps.setInt(2, entity.getIsWorking());
+            ps.setInt(3, entity.getId());
+            ps.executeUpdate();
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public Equipment createEntity(Equipment entity) {
-        return null;
+    public void createEntity(Equipment entity) {
+        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_EQUIPMENT)) {
+            ps.setString(1, entity.getName());
+            ps.setInt(2, entity.getIsWorking());
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void removeEntity(int id) {
-
+        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(DELETE_EQUIPMENT)) {
+            ps.setInt(1, 4);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void main(String[] args) throws SQLException, InterruptedException {
         EquipmentDAO eDAO = new EquipmentDAO();
         Equipment equipment = eDAO.getEntityById(2);
         LOGGER.info(equipment);
-        eDAO.getAllEntities();
+        eDAO.getAllEntities().forEach(LOGGER::info);
+
+        //eDAO.updateEntity(new Equipment(2, "Scale", false)); //WORKS
+        //eDAO.getAllEntities().forEach(LOGGER::info);
+
+        //eDAO.createEntity(new Equipment("Caliper", true));
+        //eDAO.getAllEntities().forEach(LOGGER::info);
+
+        //eDAO.removeEntity(4);
+        //eDAO.getAllEntities().forEach(LOGGER::info);
     }
 
 }

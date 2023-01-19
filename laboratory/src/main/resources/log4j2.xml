@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
     <Properties>
-        <Property name="filename">./laboratory/src/logs</Property>
+        <Property name="filename">./src/logs</Property>
         <!--        <Property name="filename">./logs</Property>-->
     </Properties>
 

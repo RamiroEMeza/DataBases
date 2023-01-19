@@ -28,6 +28,10 @@ public class Equipment {
         return working;
     }
 
+    public int getIsWorking() {
+        return working ? 1 : 0;
+    }
+
     public void setWorking(boolean working) {
         this.working = working;
     }
