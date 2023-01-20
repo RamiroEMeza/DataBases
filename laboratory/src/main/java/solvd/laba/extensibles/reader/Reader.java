@@ -18,6 +18,7 @@ import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Reader {
     private final static Logger LOGGER = LogManager.getLogger(Reader.class);
@@ -27,11 +28,28 @@ public class Reader {
     public static final String LABS_PATH = "../laboratory/src/main/resources/eXtensibles/lab/labs.xml";
     public static final String RESEARCHES_PATH = "../laboratory/src/main/resources/eXtensibles/research/researches.xml";
 
-    public static void main(String[] args) throws IOException, XMLStreamException {
-        XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
-        XMLEventReader r = xmlInputFactory.createXMLEventReader(
-                new FileInputStream(EQUIPMENTS_PATH));
+    public static void printAllLabs(XMLEventReader r) throws XMLStreamException {
+        while (r.hasNext()) {
+            XMLEvent e = r.nextEvent();
+            if (e.isStartElement()) {
+                StartElement element = e.asStartElement();
+                if (e.asStartElement().getName().toString().equals("lab")) {
+                    Lab lab = new Lab();
+                    Attribute id = element.getAttributeByName(new QName("id"));
+                    Attribute capacity = element.getAttributeByName(new QName("capacity"));
+                    Attribute complexity = element.getAttributeByName(new QName("complexity"));
+                    lab.setId(Integer.parseInt(id.getValue()));
+                    lab.setCapacity(Integer.parseInt(capacity.getValue()));
+                    lab.setComplexity(Integer.parseInt(complexity.getValue()));
+                    LOGGER.info(lab);
+                } else {
+                    LOGGER.warn("\nElement isn't a Lab");
+                }
+            }
+        }
+    }
 
+    public static void printAllEquipments(XMLEventReader r) throws XMLStreamException {
         while (r.hasNext()) {
             XMLEvent e = r.nextEvent();
             if (e.isStartElement()) {
@@ -52,9 +70,9 @@ public class Reader {
                 }
             }
         }
-        r = xmlInputFactory.createXMLEventReader(
-                new FileInputStream(SCIENTISTS_PATH));
+    }
 
+    public static void printAllScientists(XMLEventReader r) throws XMLStreamException {
         while (r.hasNext()) {
             XMLEvent e = r.nextEvent();
             if (e.isStartElement()) {
@@ -77,33 +95,9 @@ public class Reader {
                 }
             }
         }
+    }
 
-        r = xmlInputFactory.createXMLEventReader(
-                new FileInputStream(LABS_PATH));
-
-
-        while (r.hasNext()) {
-            XMLEvent e = r.nextEvent();
-            if (e.isStartElement()) {
-                StartElement element = e.asStartElement();
-                if (e.asStartElement().getName().toString().equals("lab")) {
-                    Lab lab = new Lab();
-                    Attribute id = element.getAttributeByName(new QName("id"));
-                    Attribute capacity = element.getAttributeByName(new QName("capacity"));
-                    Attribute complexity = element.getAttributeByName(new QName("complexity"));
-                    lab.setId(Integer.parseInt(id.getValue()));
-                    lab.setCapacity(Integer.parseInt(capacity.getValue()));
-                    lab.setComplexity(Integer.parseInt(complexity.getValue()));
-                    LOGGER.info(lab);
-                } else {
-                    LOGGER.warn("\nElement isn't a Lab");
-                }
-            }
-        }
-
-        r = xmlInputFactory.createXMLEventReader(
-                new FileInputStream(RESEARCHES_PATH));
-
+    public static void printAllResearches(XMLEventReader r) throws XMLStreamException {
         Research research = new Research();
         while (r.hasNext()) {
             XMLEvent e = r.nextEvent();
@@ -148,10 +142,9 @@ public class Reader {
                 }
             }
         }
+    }
 
-        r = xmlInputFactory.createXMLEventReader(
-                new FileInputStream(ASSISTANTS_PATH));
-
+    public static void printAllAssistants(XMLEventReader r) throws XMLStreamException {
         Assistant assistant = new Assistant();
         while (r.hasNext()) {
             XMLEvent e = r.nextEvent();
@@ -187,5 +180,32 @@ public class Reader {
                 }
             }
         }
+    }
+
+
+    public static void main(String[] args) throws IOException, XMLStreamException {
+        XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
+        XMLEventReader r = xmlInputFactory.createXMLEventReader(
+                new FileInputStream(EQUIPMENTS_PATH));
+        printAllEquipments(r);
+
+        r = xmlInputFactory.createXMLEventReader(
+                new FileInputStream(SCIENTISTS_PATH));
+        printAllScientists(r);
+
+
+        r = xmlInputFactory.createXMLEventReader(
+                new FileInputStream(LABS_PATH));
+        printAllLabs(r);
+
+
+        r = xmlInputFactory.createXMLEventReader(
+                new FileInputStream(RESEARCHES_PATH));
+        printAllResearches(r);
+
+
+        r = xmlInputFactory.createXMLEventReader(
+                new FileInputStream(ASSISTANTS_PATH));
+        printAllAssistants(r);
     }
 }
