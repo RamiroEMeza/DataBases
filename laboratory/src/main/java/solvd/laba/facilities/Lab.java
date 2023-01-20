@@ -5,6 +5,12 @@ public class Lab {
     private int capacity;
     private int complexity;
 
+    public Lab() {
+        this.id = 0;
+        this.capacity = 0;
+        this.complexity = 0;
+    }
+
     public Lab(int capacity, int complexity) {
         this.capacity = capacity;
         this.complexity = complexity;
@@ -38,5 +44,14 @@ public class Lab {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Lab{" +
+                "id=" + id +
+                ", capacity=" + capacity +
+                ", complexity=" + complexity +
+                '}';
     }
 }

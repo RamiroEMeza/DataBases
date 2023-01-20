@@ -1,11 +1,11 @@
 package solvd.laba.members;
 
 public class Person {
-    private int id;
-    private String name;
-    private String lastName;
+    protected int id;
+    protected String name;
+    protected String lastName;
 
-    Person(String name, String lastName){
+    Person(String name, String lastName) {
         this.name = name;
         this.lastName = lastName;
     }

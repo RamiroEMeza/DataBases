@@ -1,6 +1,7 @@
 package solvd.laba.research;
 
 import solvd.laba.facilities.Lab;
+import solvd.laba.members.Scientist;
 
 import java.time.LocalDate;
 
@@ -11,12 +12,22 @@ public class Research {
     private int budget;
     private boolean complete;
     private Lab lab;
+    private Scientist scientist;
 
     public Research(String name, LocalDate start, int budget, boolean complete) {
         this.name = name;
         this.start = start;
         this.budget = budget;
         this.complete = complete;
+    }
+
+    public Research() {
+        this.id = 0;
+        this.name = null;
+        this.start = null;
+        this.budget = 0;
+        this.complete = false;
+        this.lab = null;
     }
 
     public String getName() {
@@ -59,7 +70,7 @@ public class Research {
     }
 
     public void setLab(Lab lab) {
-        if(lab != null){
+        if (lab != null) {
             this.lab = lab;
         }
     }
@@ -70,5 +81,26 @@ public class Research {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Scientist getScientist() {
+        return scientist;
+    }
+
+    public void setScientist(Scientist scientist) {
+        this.scientist = scientist;
+    }
+
+    @Override
+    public String toString() {
+        return "Research{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", start=" + start +
+                ", budget=" + budget +
+                ", complete=" + complete +
+                ", lab=" + lab +
+                ", scientist=" + scientist +
+                '}';
     }
 }

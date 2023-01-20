@@ -2,16 +2,21 @@ package solvd.laba.members;
 
 import solvd.laba.research.Research;
 
-public class Scientist extends Person{
+public class Scientist extends Person {
     private String nationality;
     private int age;
-    private Research research;
 
 
-    Scientist(String name, String lastName, String nationality, int age) {
+    public Scientist(String name, String lastName, String nationality, int age) {
         super(name, lastName);
         this.nationality = nationality;
         this.age = age;
+    }
+
+    public Scientist() {
+        super(null, null);
+        this.nationality = null;
+        this.age = 0;
     }
 
     public String getNationality() {
@@ -33,13 +38,14 @@ public class Scientist extends Person{
         this.age = age;
     }
 
-    public Research getResearch() {
-        return research;
-    }
-
-    public void setResearch(Research research) {
-        if (research != null) {
-            this.research = research;
-        }
+    @Override
+    public String toString() {
+        return "Scientist{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
