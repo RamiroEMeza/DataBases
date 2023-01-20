@@ -1,14 +1,20 @@
 package solvd.laba.members;
 
-public class Assistant extends Person{
+public class Assistant extends Person {
     private String nationality;
     private int age;
     private Scientist scientist;
 
-    Assistant(String name, String lastName, String nationality, int age) {
+    public Assistant(String name, String lastName, String nationality, int age) {
         super(name, lastName);
         this.nationality = nationality;
         this.age = age;
+    }
+
+    public Assistant() {
+        super(null, null);
+        this.scientist = null;
+        this.age = 0;
     }
 
     public String getNationality() {
@@ -33,5 +39,17 @@ public class Assistant extends Person{
 
     public void setScientist(Scientist scientist) {
         this.scientist = scientist;
+    }
+
+    @Override
+    public String toString() {
+        return "Assistant{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", age=" + age +
+                ", scientist=" + scientist +
+                '}';
     }
 }

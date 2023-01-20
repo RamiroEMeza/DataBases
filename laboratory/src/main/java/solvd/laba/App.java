@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import solvd.laba.dao.mysql.EquipmentDAO;
 import solvd.laba.equipment.Equipment;
 import solvd.laba.facilities.Lab;
+import solvd.laba.members.Assistant;
 import solvd.laba.members.Scientist;
 import solvd.laba.research.Research;
 
@@ -21,9 +22,6 @@ import javax.xml.stream.events.XMLEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-/**
- * Hello world!
- */
 public class App {
     private final static Logger LOGGER = LogManager.getLogger(App.class);
 
@@ -32,6 +30,7 @@ public class App {
         File scientists = new File("../laboratory/src/main/resources/eXtensibles/scientist/scientists.xml");
         File labs = new File("../laboratory/src/main/resources/eXtensibles/lab/labs.xml");
         File researches = new File("../laboratory/src/main/resources/eXtensibles/research/researches.xml");
+        File assistant = new File("../laboratory/src/main/resources/eXtensibles/assistant/assistants.xml");
 
         XMLEventReader r = XMLInputFactory.newFactory()
                 .createXMLEventReader(new FileInputStream(equipments.toString()));
@@ -129,6 +128,33 @@ public class App {
                     LOGGER.info(research);
                 } else {
                     LOGGER.warn("Element isn't a Research");
+                }
+            }
+        }
+
+        r = XMLInputFactory.newFactory()
+                .createXMLEventReader(new FileInputStream(assistant.toString()));
+        Assistant a = new Assistant();
+        while (r.hasNext()) {
+            XMLEvent e = r.nextEvent();
+            if (e.isStartElement()) {
+                if (e.asStartElement().getName().toString().equals("assistant")) {
+                    a.setId(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("id")).getValue()));
+                    a.setName(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("name")).getValue()));
+                    a.setLastName(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("lastname")).getValue()));
+                    a.setNationality(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("nationality")).getValue()));
+                    a.setAge(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("age")).getValue()));
+                } else if (e.asStartElement().getName().toString().equals("scientist")) {
+                    Scientist scientist = new Scientist();
+                    scientist.setId(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("id")).getValue()));
+                    scientist.setName(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("name")).getValue()));
+                    scientist.setLastName(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("lastname")).getValue()));
+                    scientist.setNationality(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("nationality")).getValue()));
+                    scientist.setAge(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("age")).getValue()));
+                    a.setScientist(scientist);
+                    LOGGER.info(a);
+                } else {
+                    LOGGER.warn("Element isn't a Lab");
                 }
             }
         }
