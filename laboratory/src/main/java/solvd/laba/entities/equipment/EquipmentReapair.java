@@ -1,6 +1,4 @@
-package solvd.laba.equipment;
-
-import solvd.laba.members.TechnicalSupport;
+package solvd.laba.entities.equipment;
 
 import java.time.LocalDate;
 

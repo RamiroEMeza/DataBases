@@ -1,4 +1,4 @@
-package solvd.laba.facilities;
+package solvd.laba.entities.facilities;
 
 public class Lab {
     private int id;

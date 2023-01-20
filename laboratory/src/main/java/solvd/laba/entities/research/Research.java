@@ -1,7 +1,7 @@
-package solvd.laba.research;
+package solvd.laba.entities.research;
 
-import solvd.laba.facilities.Lab;
-import solvd.laba.members.Scientist;
+import solvd.laba.entities.members.Scientist;
+import solvd.laba.entities.facilities.Lab;
 
 import java.time.LocalDate;
 

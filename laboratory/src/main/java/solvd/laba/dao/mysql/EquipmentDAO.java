@@ -1,11 +1,9 @@
 package solvd.laba.dao.mysql;
 
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import solvd.laba.dao.IEquipmentDAO;
-import solvd.laba.dao.mysql.MySQLDAO;
-import solvd.laba.equipment.Equipment;
+import solvd.laba.entities.equipment.Equipment;
 
 import java.sql.*;
 import java.util.ArrayList;

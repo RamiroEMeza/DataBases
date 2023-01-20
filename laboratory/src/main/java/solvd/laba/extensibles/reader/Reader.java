@@ -1,16 +1,13 @@
-package solvd.laba;
+package solvd.laba.extensibles.reader;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import solvd.laba.dao.mysql.EquipmentDAO;
-import solvd.laba.equipment.Equipment;
-import solvd.laba.facilities.Lab;
-import solvd.laba.members.Assistant;
-import solvd.laba.members.Scientist;
-import solvd.laba.research.Research;
+import solvd.laba.entities.equipment.Equipment;
+import solvd.laba.entities.facilities.Lab;
+import solvd.laba.entities.members.Assistant;
+import solvd.laba.entities.members.Scientist;
+import solvd.laba.entities.research.Research;
 
-import java.io.File;
 import java.io.FileInputStream;
 
 import javax.xml.namespace.QName;
@@ -20,11 +17,10 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class App {
-    private final static Logger LOGGER = LogManager.getLogger(App.class);
+public class Reader {
+    private final static Logger LOGGER = LogManager.getLogger(Reader.class);
     public static final String EQUIPMENTS_PATH = "../laboratory/src/main/resources/eXtensibles/equipment/equipments.xml";
     public static final String SCIENTISTS_PATH = "../laboratory/src/main/resources/eXtensibles/scientist/scientists.xml";
     public static final String ASSISTANTS_PATH = "../laboratory/src/main/resources/eXtensibles/assistant/assistants.xml";

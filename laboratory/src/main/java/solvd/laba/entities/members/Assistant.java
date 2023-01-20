@@ -1,4 +1,4 @@
-package solvd.laba.members;
+package solvd.laba.entities.members;
 
 public class Assistant extends Person {
     private String nationality;

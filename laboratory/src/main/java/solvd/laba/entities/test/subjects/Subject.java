@@ -1,6 +1,6 @@
-package solvd.laba.test.subjects;
+package solvd.laba.entities.test.subjects;
 
-import solvd.laba.research.Research;
+import solvd.laba.entities.research.Research;
 
 public class Subject {
     private String species;

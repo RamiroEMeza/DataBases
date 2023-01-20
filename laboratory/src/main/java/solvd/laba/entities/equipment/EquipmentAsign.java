@@ -1,6 +1,6 @@
-package solvd.laba.equipment;
+package solvd.laba.entities.equipment;
 
-import solvd.laba.members.Scientist;
+import solvd.laba.entities.members.Scientist;
 
 import java.time.LocalDate;
 

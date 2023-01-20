@@ -1,6 +1,4 @@
-package solvd.laba.members;
-
-import solvd.laba.research.Research;
+package solvd.laba.entities.members;
 
 public class Scientist extends Person {
     private String nationality;

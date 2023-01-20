@@ -110,7 +110,7 @@
                         <execution>
                             <id>default-cli</id>
                             <configuration>
-                                <mainClass>com.solvd.laba.App</mainClass>
+                                <mainClass>com.solvd.laba.Main</mainClass>
                             </configuration>
                         </execution>
                     </executions>

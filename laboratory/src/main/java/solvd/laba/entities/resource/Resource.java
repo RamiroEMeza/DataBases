@@ -1,4 +1,4 @@
-package solvd.laba.resource;
+package solvd.laba.entities.resource;
 
 public class Resource {
     private int id;

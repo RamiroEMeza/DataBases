@@ -1,4 +1,4 @@
-package solvd.laba.equipment;
+package solvd.laba.entities.equipment;
 
 public class Equipment {
     private int id;

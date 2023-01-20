@@ -1,6 +1,6 @@
-package solvd.laba.resource;
+package solvd.laba.entities.resource;
 
-import solvd.laba.members.Scientist;
+import solvd.laba.entities.members.Scientist;
 
 public class ResourcePetition {
     private int id;
