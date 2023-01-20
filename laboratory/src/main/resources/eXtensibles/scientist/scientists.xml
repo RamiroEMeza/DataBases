@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<scientists>
+    <scientist id="100" name="Saaaa" lastname="AAAA" nationality="aAaA" age="40"/>
+    <scientist id="101" name="Sbbbb" lastname="BBBB" nationality="bBbB" age="41"/>
+    <scientist id="102" name="Scccc" lastname="CCCC" nationality="cCcC" age="42"/>
+</scientists>

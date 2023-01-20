@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<labs>
+    <lab id="100" capacity="10" complexity="1"/>
+    <lab id="101" capacity="10" complexity="2"/>
+    <lab id="102" capacity="10" complexity="2"/>
+</labs>

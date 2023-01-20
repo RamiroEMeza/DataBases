@@ -16,6 +16,12 @@ public class Equipment {
         this.working = working;
     }
 
+    public Equipment() {
+        this.id = 0;
+        this.name = null;
+        this.working = false;
+    }
+
     public String getName() {
         return name;
     }

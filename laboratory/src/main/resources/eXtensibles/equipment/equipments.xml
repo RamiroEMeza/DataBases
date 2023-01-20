@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<equipments>
+    <equipment id="100" name="Pipette" working="1"/>
+    <equipment id="101" name="Pipette" working="1"/>
+    <equipment id="102" name="Pipette" working="1"/>
+</equipments>
