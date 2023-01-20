@@ -17,6 +17,7 @@ import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 import java.io.FileNotFoundException;
@@ -26,31 +27,22 @@ public class App {
     private final static Logger LOGGER = LogManager.getLogger(App.class);
 
     public static void main(String[] args) throws IOException, XMLStreamException {
-        File equipments = new File("../laboratory/src/main/resources/eXtensibles/equipment/equipments.xml");
-        File scientists = new File("../laboratory/src/main/resources/eXtensibles/scientist/scientists.xml");
-        File labs = new File("../laboratory/src/main/resources/eXtensibles/lab/labs.xml");
-        File researches = new File("../laboratory/src/main/resources/eXtensibles/research/researches.xml");
-        File assistant = new File("../laboratory/src/main/resources/eXtensibles/assistant/assistants.xml");
-
-        XMLEventReader r = XMLInputFactory.newFactory()
-                .createXMLEventReader(new FileInputStream(equipments.toString()));
+        XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
+        XMLEventReader r = xmlInputFactory.createXMLEventReader(
+                new FileInputStream("../laboratory/src/main/resources/eXtensibles/equipment/equipments.xml"));
 
         while (r.hasNext()) {
             XMLEvent e = r.nextEvent();
-//            if (e.isStartElement()) {
-//                //e.asStartElement().getAttributes().forEachRemaining(System.out::println);
-//                e.asStartElement().getAttributes().forEachRemaining(a -> System.out.println(a.getName() + " - " + a.getValue()));
-//            }
             if (e.isStartElement()) {
-////                System.out.println("Event:");
-////                System.out.println("toString: " + e);
-////                System.out.println("Name: " + e.asStartElement().getName());
-                if (e.asStartElement().getName().toString().equals("equipment")) {
+                StartElement element = e.asStartElement();
+                if (element.getName().getLocalPart().equals("equipment")) {
                     Equipment equipment = new Equipment();
-                    equipment.setId(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("id")).getValue()));
-                    equipment.setName(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("name")).getValue()));
-
-                    if (e.asStartElement().getAttributeByName(QName.valueOf("working")).getValue().equals("1")) {
+                    Attribute id = element.getAttributeByName(new QName("id"));
+                    Attribute name = element.getAttributeByName(new QName("name"));
+                    Attribute working = element.getAttributeByName(new QName("working"));
+                    equipment.setId(Integer.parseInt(id.getValue()));
+                    equipment.setName(name.getValue());
+                    if (working.getValue().equals("1")) {
                         equipment.setWorking(true);
                     }
                     LOGGER.info(equipment);
@@ -59,20 +51,25 @@ public class App {
                 }
             }
         }
-
-        r = XMLInputFactory.newFactory()
-                .createXMLEventReader(new FileInputStream(scientists.toString()));
+        r = xmlInputFactory.createXMLEventReader(
+                new FileInputStream("../laboratory/src/main/resources/eXtensibles/scientist/scientists.xml"));
 
         while (r.hasNext()) {
             XMLEvent e = r.nextEvent();
             if (e.isStartElement()) {
-                if (e.asStartElement().getName().toString().equals("scientist")) {
+                StartElement element = e.asStartElement();
+                if (element.getName().getLocalPart().equals("scientist")) {
                     Scientist scientist = new Scientist();
-                    scientist.setId(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("id")).getValue()));
-                    scientist.setName(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("name")).getValue()));
-                    scientist.setLastName(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("lastname")).getValue()));
-                    scientist.setNationality(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("nationality")).getValue()));
-                    scientist.setAge(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("age")).getValue()));
+                    Attribute id = element.getAttributeByName(new QName("id"));
+                    Attribute name = element.getAttributeByName(new QName("name"));
+                    Attribute lastName = element.getAttributeByName(new QName("lastname"));
+                    Attribute nationality = element.getAttributeByName(new QName("nationality"));
+                    Attribute age = element.getAttributeByName(new QName("age"));
+                    scientist.setId(Integer.parseInt(id.getValue()));
+                    scientist.setName(name.getValue());
+                    scientist.setLastName(lastName.getValue());
+                    scientist.setNationality(nationality.getValue());
+                    scientist.setAge(Integer.parseInt(age.getValue()));
                     LOGGER.info(scientist);
                 } else {
                     LOGGER.warn("Element isn't a Scientist");
@@ -80,17 +77,22 @@ public class App {
             }
         }
 
-        r = XMLInputFactory.newFactory()
-                .createXMLEventReader(new FileInputStream(labs.toString()));
+        r = xmlInputFactory.createXMLEventReader(
+                new FileInputStream("../laboratory/src/main/resources/eXtensibles/lab/labs.xml"));
+
 
         while (r.hasNext()) {
             XMLEvent e = r.nextEvent();
             if (e.isStartElement()) {
+                StartElement element = e.asStartElement();
                 if (e.asStartElement().getName().toString().equals("lab")) {
                     Lab lab = new Lab();
-                    lab.setId(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("id")).getValue()));
-                    lab.setCapacity(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("capacity")).getValue()));
-                    lab.setComplexity(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("complexity")).getValue()));
+                    Attribute id = element.getAttributeByName(new QName("id"));
+                    Attribute capacity = element.getAttributeByName(new QName("capacity"));
+                    Attribute complexity = element.getAttributeByName(new QName("complexity"));
+                    lab.setId(Integer.parseInt(id.getValue()));
+                    lab.setCapacity(Integer.parseInt(capacity.getValue()));
+                    lab.setComplexity(Integer.parseInt(complexity.getValue()));
                     LOGGER.info(lab);
                 } else {
                     LOGGER.warn("Element isn't a Lab");
@@ -98,32 +100,46 @@ public class App {
             }
         }
 
-        r = XMLInputFactory.newFactory()
-                .createXMLEventReader(new FileInputStream(researches.toString()));
+        r = xmlInputFactory.createXMLEventReader(
+                new FileInputStream("../laboratory/src/main/resources/eXtensibles/research/researches.xml"));
+
         Research research = new Research();
         while (r.hasNext()) {
             XMLEvent e = r.nextEvent();
             if (e.isStartElement()) {
+                StartElement element = e.asStartElement();
                 if (e.asStartElement().getName().toString().equals("research")) {
-                    research.setId(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("id")).getValue()));
-                    research.setName(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("name")).getValue()));
-                    research.setBudget(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("budget")).getValue()));
-                    if (e.asStartElement().getAttributeByName(QName.valueOf("complete")).getValue().equals("1")) {
+                    Attribute id = element.getAttributeByName(new QName("id"));
+                    Attribute name = element.getAttributeByName(new QName("name"));
+                    Attribute budget = element.getAttributeByName(new QName("budget"));
+                    Attribute complete = element.getAttributeByName(new QName("complete"));
+                    research.setId(Integer.parseInt(id.getValue()));
+                    research.setName(name.getValue());
+                    research.setBudget(Integer.parseInt(budget.getValue()));
+                    if (complete.getValue().equals("1")) {
                         research.setComplete(true);
                     }
                 } else if (e.asStartElement().getName().toString().equals("lab")) {
                     Lab lab = new Lab();
-                    lab.setId(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("id")).getValue()));
-                    lab.setCapacity(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("capacity")).getValue()));
-                    lab.setComplexity(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("complexity")).getValue()));
+                    Attribute id = element.getAttributeByName(new QName("id"));
+                    Attribute capacity = element.getAttributeByName(new QName("capacity"));
+                    Attribute complexity = element.getAttributeByName(new QName("complexity"));
+                    lab.setId(Integer.parseInt(id.getValue()));
+                    lab.setCapacity(Integer.parseInt(capacity.getValue()));
+                    lab.setComplexity(Integer.parseInt(complexity.getValue()));
                     research.setLab(lab);
                 } else if (e.asStartElement().getName().toString().equals("scientist")) {
                     Scientist scientist = new Scientist();
-                    scientist.setId(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("id")).getValue()));
-                    scientist.setName(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("name")).getValue()));
-                    scientist.setLastName(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("lastname")).getValue()));
-                    scientist.setNationality(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("nationality")).getValue()));
-                    scientist.setAge(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("age")).getValue()));
+                    Attribute id = element.getAttributeByName(new QName("id"));
+                    Attribute name = element.getAttributeByName(new QName("name"));
+                    Attribute lastName = element.getAttributeByName(new QName("lastname"));
+                    Attribute nationality = element.getAttributeByName(new QName("nationality"));
+                    Attribute age = element.getAttributeByName(new QName("age"));
+                    scientist.setId(Integer.parseInt(id.getValue()));
+                    scientist.setName(name.getValue());
+                    scientist.setLastName(lastName.getValue());
+                    scientist.setNationality(nationality.getValue());
+                    scientist.setAge(Integer.parseInt(age.getValue()));
                     research.setScientist(scientist);
                     LOGGER.info(research);
                 } else {
@@ -132,29 +148,41 @@ public class App {
             }
         }
 
-        r = XMLInputFactory.newFactory()
-                .createXMLEventReader(new FileInputStream(assistant.toString()));
-        Assistant a = new Assistant();
+        r = xmlInputFactory.createXMLEventReader(
+                new FileInputStream("../laboratory/src/main/resources/eXtensibles/assistant/assistants.xml"));
+
+        Assistant assistant = new Assistant();
         while (r.hasNext()) {
             XMLEvent e = r.nextEvent();
             if (e.isStartElement()) {
+                StartElement element = e.asStartElement();
                 if (e.asStartElement().getName().toString().equals("assistant")) {
-                    a.setId(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("id")).getValue()));
-                    a.setName(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("name")).getValue()));
-                    a.setLastName(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("lastname")).getValue()));
-                    a.setNationality(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("nationality")).getValue()));
-                    a.setAge(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("age")).getValue()));
+                    Attribute id = element.getAttributeByName(new QName("id"));
+                    Attribute name = element.getAttributeByName(new QName("name"));
+                    Attribute lastName = element.getAttributeByName(new QName("lastname"));
+                    Attribute nationality = element.getAttributeByName(new QName("nationality"));
+                    Attribute age = element.getAttributeByName(new QName("age"));
+                    assistant.setId(Integer.parseInt(id.getValue()));
+                    assistant.setName(name.getValue());
+                    assistant.setLastName(lastName.getValue());
+                    assistant.setNationality(nationality.getValue());
+                    assistant.setAge(Integer.parseInt(age.getValue()));
                 } else if (e.asStartElement().getName().toString().equals("scientist")) {
                     Scientist scientist = new Scientist();
-                    scientist.setId(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("id")).getValue()));
-                    scientist.setName(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("name")).getValue()));
-                    scientist.setLastName(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("lastname")).getValue()));
-                    scientist.setNationality(String.valueOf(e.asStartElement().getAttributeByName(QName.valueOf("nationality")).getValue()));
-                    scientist.setAge(Integer.parseInt(e.asStartElement().getAttributeByName(QName.valueOf("age")).getValue()));
-                    a.setScientist(scientist);
-                    LOGGER.info(a);
+                    Attribute id = element.getAttributeByName(new QName("id"));
+                    Attribute name = element.getAttributeByName(new QName("name"));
+                    Attribute lastName = element.getAttributeByName(new QName("lastname"));
+                    Attribute nationality = element.getAttributeByName(new QName("nationality"));
+                    Attribute age = element.getAttributeByName(new QName("age"));
+                    scientist.setId(Integer.parseInt(id.getValue()));
+                    scientist.setName(name.getValue());
+                    scientist.setLastName(lastName.getValue());
+                    scientist.setNationality(nationality.getValue());
+                    scientist.setAge(Integer.parseInt(age.getValue()));
+                    assistant.setScientist(scientist);
+                    LOGGER.info(assistant);
                 } else {
-                    LOGGER.warn("Element isn't a Lab");
+                    LOGGER.warn("Element isn't a Assistant");
                 }
             }
         }
