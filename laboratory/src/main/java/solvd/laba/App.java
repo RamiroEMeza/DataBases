@@ -25,11 +25,16 @@ import java.io.IOException;
 
 public class App {
     private final static Logger LOGGER = LogManager.getLogger(App.class);
+    public static final String EQUIPMENTS_PATH = "../laboratory/src/main/resources/eXtensibles/equipment/equipments.xml";
+    public static final String SCIENTISTS_PATH = "../laboratory/src/main/resources/eXtensibles/scientist/scientists.xml";
+    public static final String ASSISTANTS_PATH = "../laboratory/src/main/resources/eXtensibles/assistant/assistants.xml";
+    public static final String LABS_PATH = "../laboratory/src/main/resources/eXtensibles/lab/labs.xml";
+    public static final String RESEARCHES_PATH = "../laboratory/src/main/resources/eXtensibles/research/researches.xml";
 
     public static void main(String[] args) throws IOException, XMLStreamException {
         XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
         XMLEventReader r = xmlInputFactory.createXMLEventReader(
-                new FileInputStream("../laboratory/src/main/resources/eXtensibles/equipment/equipments.xml"));
+                new FileInputStream(EQUIPMENTS_PATH));
 
         while (r.hasNext()) {
             XMLEvent e = r.nextEvent();
@@ -47,12 +52,12 @@ public class App {
                     }
                     LOGGER.info(equipment);
                 } else {
-                    LOGGER.warn("Element isn't an Equipment");
+                    LOGGER.warn("\nElement isn't an Equipment");
                 }
             }
         }
         r = xmlInputFactory.createXMLEventReader(
-                new FileInputStream("../laboratory/src/main/resources/eXtensibles/scientist/scientists.xml"));
+                new FileInputStream(SCIENTISTS_PATH));
 
         while (r.hasNext()) {
             XMLEvent e = r.nextEvent();
@@ -72,13 +77,13 @@ public class App {
                     scientist.setAge(Integer.parseInt(age.getValue()));
                     LOGGER.info(scientist);
                 } else {
-                    LOGGER.warn("Element isn't a Scientist");
+                    LOGGER.warn("\nElement isn't a Scientist");
                 }
             }
         }
 
         r = xmlInputFactory.createXMLEventReader(
-                new FileInputStream("../laboratory/src/main/resources/eXtensibles/lab/labs.xml"));
+                new FileInputStream(LABS_PATH));
 
 
         while (r.hasNext()) {
@@ -95,13 +100,13 @@ public class App {
                     lab.setComplexity(Integer.parseInt(complexity.getValue()));
                     LOGGER.info(lab);
                 } else {
-                    LOGGER.warn("Element isn't a Lab");
+                    LOGGER.warn("\nElement isn't a Lab");
                 }
             }
         }
 
         r = xmlInputFactory.createXMLEventReader(
-                new FileInputStream("../laboratory/src/main/resources/eXtensibles/research/researches.xml"));
+                new FileInputStream(RESEARCHES_PATH));
 
         Research research = new Research();
         while (r.hasNext()) {
@@ -143,13 +148,13 @@ public class App {
                     research.setScientist(scientist);
                     LOGGER.info(research);
                 } else {
-                    LOGGER.warn("Element isn't a Research");
+                    LOGGER.warn("\nElement isn't a Research");
                 }
             }
         }
 
         r = xmlInputFactory.createXMLEventReader(
-                new FileInputStream("../laboratory/src/main/resources/eXtensibles/assistant/assistants.xml"));
+                new FileInputStream(ASSISTANTS_PATH));
 
         Assistant assistant = new Assistant();
         while (r.hasNext()) {
@@ -182,7 +187,7 @@ public class App {
                     assistant.setScientist(scientist);
                     LOGGER.info(assistant);
                 } else {
-                    LOGGER.warn("Element isn't a Assistant");
+                    LOGGER.warn("\nElement isn't a Assistant");
                 }
             }
         }
