@@ -91,6 +91,7 @@ public class Research {
         this.scientist = scientist;
     }
 
+
     @Override
     public String toString() {
         return "Research{" +

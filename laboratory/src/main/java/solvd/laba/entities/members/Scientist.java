@@ -17,6 +17,11 @@ public class Scientist extends Person {
         this.age = 0;
     }
 
+    public Scientist(int scientistsId) {
+        super(null, null);
+        this.id = scientistsId;
+    }
+
     public String getNationality() {
         return nationality;
     }

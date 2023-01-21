@@ -11,6 +11,10 @@ public class Lab {
         this.complexity = 0;
     }
 
+    public Lab(int id) {
+        this.id = id;
+    }
+
     public Lab(int capacity, int complexity) {
         this.capacity = capacity;
         this.complexity = complexity;
