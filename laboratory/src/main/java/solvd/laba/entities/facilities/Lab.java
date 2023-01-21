@@ -16,6 +16,12 @@ public class Lab {
         this.complexity = complexity;
     }
 
+    public Lab(int id, int capacity, int complexity) {
+        this.id = id;
+        this.capacity = capacity;
+        this.complexity = complexity;
+    }
+
     public int getCapacity() {
         return capacity;
     }

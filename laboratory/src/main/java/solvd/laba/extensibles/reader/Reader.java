@@ -184,6 +184,7 @@ public class Reader {
 
 
     public static void main(String[] args) throws IOException, XMLStreamException {
+        LOGGER.info("--------START--------");
         XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
         XMLEventReader r = xmlInputFactory.createXMLEventReader(
                 new FileInputStream(EQUIPMENTS_PATH));
@@ -207,5 +208,7 @@ public class Reader {
         r = xmlInputFactory.createXMLEventReader(
                 new FileInputStream(ASSISTANTS_PATH));
         printAllAssistants(r);
+
+        LOGGER.info("--------END MAIN--------");
     }
 }
