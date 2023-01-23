@@ -28,7 +28,7 @@ public class ResearchDAO extends MySQLDAO implements IResearchDAO {
     private final static String DELETE_RESEARCH = "DELETE FROM researchs WHERE id=?";
 
     @Override
-    public Research getEntityById(int id) throws InterruptedException, SQLException {
+    public Research getEntityById(int id) {
         try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_RESEARCH)) {
             ResultSet resultSet = null;
             ps.setInt(1, id);
@@ -83,7 +83,7 @@ public class ResearchDAO extends MySQLDAO implements IResearchDAO {
                 ps.setInt(4, entity.isComplete() ? 1 : 0);
                 ps.setInt(5, Math.max(entity.getLab().getId(), 0));
                 ps.setInt(6, Math.max(entity.getScientist().getId(), 0));
-                ps.setInt(3, entity.getId());
+                ps.setInt(7, entity.getId());
                 ps.executeUpdate();
             } catch (SQLException e) {
                 throw new RuntimeException(e);

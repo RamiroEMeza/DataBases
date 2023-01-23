@@ -6,6 +6,7 @@ import solvd.laba.dao.mysql.EquipmentDAO;
 import solvd.laba.dao.mysql.LabDAO;
 import solvd.laba.dao.mysql.ResearchDAO;
 import solvd.laba.dao.mysql.ScientistDAO;
+import solvd.laba.dao.services.AssistantServiceDAO;
 import solvd.laba.dao.services.ResearchServiceDAO;
 
 import java.sql.SQLException;
@@ -18,16 +19,16 @@ public class Main {
         EquipmentDAO eDAO = new EquipmentDAO();
         LabDAO labDAO = new LabDAO();
         ScientistDAO scientistDAO = new ScientistDAO();
-        ResearchDAO researchDAO = new ResearchDAO();
         ResearchServiceDAO researchServiceDAO = new ResearchServiceDAO();
-
+        AssistantServiceDAO assistantService = new AssistantServiceDAO();
         //LOGGER.info(researchServiceDAO.getEntityById(1));
-        researchServiceDAO.getAllEntities().forEach(System.out::println);
+        //researchServiceDAO.getAllEntities().forEach(LOGGER::info);
 
-        //labDAO.getAllEntities().forEach(System.out::println);
+        //labDAO.getAllEntities().forEach(LOGGER::info);
 
-        //scientistDAO.getAllEntities().forEach(System.out::println);
+        //scientistDAO.getAllEntities().forEach(LOGGER::info);
 
+        assistantService.getAllEntities().forEach(LOGGER::info);
 
         //eDAO.getAllEntities().forEach(LOGGER::info);
 
