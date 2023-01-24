@@ -1,5 +1,6 @@
 package solvd.laba.entities.facilities;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -58,6 +59,7 @@ public class Lab {
         return id;
     }
 
+    @XmlAttribute(name = "id")
     public void setId(int id) {
         this.id = id;
     }

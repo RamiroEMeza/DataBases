@@ -1,5 +1,6 @@
 package solvd.laba.entities.members;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
 public class Person {
@@ -34,6 +35,7 @@ public class Person {
         return id;
     }
 
+    @XmlAttribute(name = "id")
     public void setId(int id) {
         this.id = id;
     }

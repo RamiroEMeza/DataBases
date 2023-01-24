@@ -5,6 +5,7 @@ import solvd.laba.entities.facilities.Lab;
 import solvd.laba.entities.test.subjects.Subject;
 import solvd.laba.extensibles.reader.DateAdapter;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -106,6 +107,7 @@ public class Research {
         return id;
     }
 
+    @XmlAttribute(name = "id")
     public void setId(int id) {
         this.id = id;
     }
