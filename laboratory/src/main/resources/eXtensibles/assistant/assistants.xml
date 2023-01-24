@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--<assistants>-->
 <assistant id="100">
-    <name>Atttt</name>
-    <lastname>TTTT</lastname>
-    <nationality>aAaA</nationality>
+    <name>Broki</name>
+    <lastname>Lee</lastname>
+    <nationality>korean</nationality>
     <age>20</age>
     <scientist id="100">
-        <name>Saaaa</name>
-        <lastname>AAAA</lastname>
-        <nationality>aAaA</nationality>
+        <name>Steve</name>
+        <lastname>Johnson</lastname>
+        <nationality>canadian</nationality>
         <age>40</age>
     </scientist>
 </assistant>

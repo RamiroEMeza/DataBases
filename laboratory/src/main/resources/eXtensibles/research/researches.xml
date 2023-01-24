@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--<researches>-->
 <research id="100">
-    <name>Raaa</name>
+    <name>Earthquake</name>
     <start>2022-12-01</start>
     <budget>9000</budget>
     <complete>0</complete>
@@ -10,9 +10,9 @@
         <complexity>1</complexity>
     </lab>
     <scientist id="101">
-        <name>Sbbbb</name>
-        <lastname>BBBB</lastname>
-        <nationality>bBbB</nationality>
+        <name>Rick</name>
+        <lastname>Moore</lastname>
+        <nationality>canadian</nationality>
         <age>41</age>
     </scientist>
     <subjects>
