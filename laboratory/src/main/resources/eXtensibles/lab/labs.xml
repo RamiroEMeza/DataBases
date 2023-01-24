@@ -1,6 +1,15 @@
 <?xml version="1.0"?>
 <labs>
-    <lab id="100" capacity="10" complexity="1"/>
-    <lab id="101" capacity="10" complexity="2"/>
-    <lab id="102" capacity="10" complexity="2"/>
+    <lab id="100">
+        <capacity>10</capacity>
+        <complexity>1</complexity>
+    </lab>
+    <lab id="101">
+        <capacity>10</capacity>
+        <complexity>2</complexity>
+    </lab>
+    <lab id="102">
+        <capacity>10</capacity>
+        <complexity>2</complexity>
+    </lab>
 </labs>

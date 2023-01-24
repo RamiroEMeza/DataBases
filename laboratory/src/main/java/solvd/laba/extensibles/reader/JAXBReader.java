@@ -41,6 +41,7 @@ public class JAXBReader {
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             Equipment e = (Equipment) jaxbUnmarshaller.unmarshal(file);
+            LOGGER.info("\n");
             LOGGER.info(e);
 
             e = (Equipment) jaxbUnmarshaller.unmarshal(file2);
@@ -57,6 +58,7 @@ public class JAXBReader {
 
             Unmarshaller jaxbUnmarshaller = jaxbContextAssistant.createUnmarshaller();
             Assistant a = (Assistant) jaxbUnmarshaller.unmarshal(fileAssistant);
+            LOGGER.info("\n");
             LOGGER.info(a);
 
         } catch (JAXBException e) {
@@ -70,6 +72,7 @@ public class JAXBReader {
 
             Unmarshaller jaxbUnmarshaller = jaxbContextAssistant.createUnmarshaller();
             Research r = (Research) jaxbUnmarshaller.unmarshal(fileResearch);
+            LOGGER.info("\n");
             LOGGER.info(r);
 
         } catch (JAXBException e) {
