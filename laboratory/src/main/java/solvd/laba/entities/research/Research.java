@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
 
 @XmlRootElement(name = "research")
 public class Research {
@@ -23,6 +24,7 @@ public class Research {
     private Scientist scientist;
 
     @XmlElementWrapper(name = "subjects")
+    @XmlElement(name = "subject")
     private ArrayList<Subject> testSubjects = new ArrayList<Subject>();
 
     public Research(String name, LocalDate start, int budget, boolean complete) {
@@ -128,7 +130,7 @@ public class Research {
 
     @Override
     public String toString() {
-        return "Research{" +
+        StringBuilder result = new StringBuilder("Research{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", start=" + start +
@@ -136,6 +138,13 @@ public class Research {
                 ", complete=" + complete +
                 ", lab=" + lab +
                 ", scientist=" + scientist +
-                '}';
+                ", testSubjects=[");
+        for (Subject s : this.testSubjects) {
+            result.append(s.toString()).append(", ");
+        }
+
+        result.append("]}");
+
+        return result.toString();
     }
 }

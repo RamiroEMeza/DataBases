@@ -77,4 +77,14 @@ public class Subject {
     public void setResearch(Research research) {
         this.research = research;
     }
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "species='" + species + '\'' +
+                ", age=" + age +
+                ", sex=" + sex +
+                ", weight=" + weight +
+                '}';
+    }
 }
