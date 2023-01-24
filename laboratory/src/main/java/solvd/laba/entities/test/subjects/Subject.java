@@ -2,6 +2,10 @@ package solvd.laba.entities.test.subjects;
 
 import solvd.laba.entities.research.Research;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "subject")
 public class Subject {
     private String species;
     private int age;
@@ -16,10 +20,19 @@ public class Subject {
         this.weight = weight;
     }
 
+    public Subject() {
+        this.species = null;
+        this.age = 0;
+        this.sex = false;
+        this.weight = 0;
+        this.research = null;
+    }
+
     public String getSpecies() {
         return species;
     }
 
+    @XmlElement(name = "species")
     public void setSpecies(String species) {
         this.species = species;
     }
@@ -28,6 +41,7 @@ public class Subject {
         return age;
     }
 
+    @XmlElement(name = "age")
     public void setAge(int age) {
         if (age < 0) {
             age = 0;
@@ -39,6 +53,7 @@ public class Subject {
         return sex;
     }
 
+    @XmlElement(name = "sex")
     public void setSex(boolean sex) {
         this.sex = sex;
     }
@@ -47,6 +62,7 @@ public class Subject {
         return weight;
     }
 
+    @XmlElement(name = "weight")
     public void setWeight(double weight) {
         if (weight < 1) {
             weight = 1;

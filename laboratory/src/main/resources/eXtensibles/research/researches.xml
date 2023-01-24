@@ -1,11 +1,43 @@
 <?xml version="1.0"?>
-<researches>
-    <research id="100" name="Raaa" start="2022-12-01" budget="9000" complete="0">
-        <lab id="100" capacity="10" complexity="1"/>
-        <scientist id="101" name="Sbbbb" lastname="BBBB" nationality="bBbB" age="41"/>
-    </research>
-    <research id="101" name="Rbbb" start="2022-12-01" budget="9000" complete="0">
-        <lab id="101" capacity="10" complexity="2"/>
-        <scientist id="102" name="Scccc" lastname="CCCC" nationality="cCcC" age="42"/>
-    </research>
-</researches>
+<!--<researches>-->
+<research id="100">
+    <name>Raaa</name>
+    <start>2022-12-01</start>
+    <budget>9000</budget>
+    <complete>0</complete>
+    <lab id="100">
+        <capacity>10</capacity>
+        <complexity>1</complexity>
+    </lab>
+    <scientist id="101">
+        <name>Sbbbb</name>
+        <lastname>BBBB</lastname>
+        <nationality>bBbB</nationality>
+        <age>41</age>
+    </scientist>
+    <subjects>
+        <subject>
+            <species>Monkey</species>
+            <age>3</age>
+            <sex>1</sex>
+            <weight>28</weight>
+        </subject>
+        <subject>
+            <species>Monkey</species>
+            <age>4</age>
+            <sex>0</sex>
+            <weight>32</weight>
+        </subject>
+        <subject>
+            <species>Monkey</species>
+            <age>3</age>
+            <sex>1</sex>
+            <weight>27</weight>
+        </subject>
+    </subjects>
+</research>
+        <!--    <research id="101" name="Rbbb" start="2022-12-01" budget="9000" complete="0">-->
+        <!--        <lab id="101" capacity="10" complexity="2"/>-->
+        <!--        <scientist id="102" name="Scccc" lastname="CCCC" nationality="cCcC" age="42"/>-->
+        <!--    </research>-->
+        <!--</researches>-->

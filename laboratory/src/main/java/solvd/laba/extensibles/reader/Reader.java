@@ -18,7 +18,6 @@ import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Reader {
     private final static Logger LOGGER = LogManager.getLogger(Reader.class);

@@ -1,5 +1,9 @@
 package solvd.laba.entities.members;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "assistant")
 public class Assistant extends Person {
     private String nationality;
     private int age;
@@ -21,6 +25,7 @@ public class Assistant extends Person {
         return nationality;
     }
 
+    @XmlElement(name = "nationality")
     public void setNationality(String nationality) {
         this.nationality = nationality;
     }
@@ -29,14 +34,17 @@ public class Assistant extends Person {
         return age;
     }
 
+    @XmlElement(name = "age")
     public void setAge(int age) {
         this.age = age;
     }
+
 
     public Scientist getScientist() {
         return scientist;
     }
 
+    @XmlElement(name = "scientist")
     public void setScientist(Scientist scientist) {
         this.scientist = scientist;
     }

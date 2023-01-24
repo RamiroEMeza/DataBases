@@ -1,5 +1,9 @@
 package solvd.laba.entities.facilities;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "lab")
 public class Lab {
     private int id;
     private int capacity;
@@ -30,6 +34,7 @@ public class Lab {
         return capacity;
     }
 
+    @XmlElement(name = "capacity")
     public void setCapacity(int capacity) {
         if (capacity < 0) {
             capacity = 0;
@@ -41,6 +46,7 @@ public class Lab {
         return complexity;
     }
 
+    @XmlElement(name = "complexity")
     public void setComplexity(int complexity) {
         if (capacity <= 0) {
             capacity = 1;

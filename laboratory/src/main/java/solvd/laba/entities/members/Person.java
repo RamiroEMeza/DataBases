@@ -1,5 +1,7 @@
 package solvd.laba.entities.members;
 
+import javax.xml.bind.annotation.XmlElement;
+
 public class Person {
     protected int id;
     protected String name;
@@ -14,6 +16,7 @@ public class Person {
         return name;
     }
 
+    @XmlElement(name = "name")
     public void setName(String name) {
         this.name = name;
     }
@@ -22,6 +25,7 @@ public class Person {
         return lastName;
     }
 
+    @XmlElement(name = "lastname")
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }

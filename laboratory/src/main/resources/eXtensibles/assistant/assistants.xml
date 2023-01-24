@@ -1,12 +1,21 @@
 <?xml version="1.0"?>
-<assistants>
-    <assistant id="100" name="Atttt" lastname="TTTT" nationality="aAaA" age="20">
-        <scientist id="100" name="Saaaa" lastname="AAAA" nationality="aAaA" age="40"/>
-    </assistant>
-    <assistant id="101" name="Auuuu" lastname="UUUU" nationality="aAaA" age="20">
-        <scientist id="100" name="Saaaa" lastname="AAAA" nationality="aAaA" age="40"/>
-    </assistant>
-    <assistant id="102" name="Avvv" lastname="VVVV" nationality="aAaA" age="20">
-        <scientist id="101" name="Sbbbb" lastname="BBBB" nationality="bBbB" age="41"/>
-    </assistant>
-</assistants>
+<!--<assistants>-->
+<assistant id="100">
+    <name>Atttt</name>
+    <lastname>TTTT</lastname>
+    <nationality>aAaA</nationality>
+    <age>20</age>
+    <scientist id="100">
+        <name>Saaaa</name>
+        <lastname>AAAA</lastname>
+        <nationality>aAaA</nationality>
+        <age>40</age>
+    </scientist>
+</assistant>
+        <!--    <assistant id="101" name="Auuuu" lastname="UUUU" nationality="aAaA" age="20">-->
+        <!--        <scientist id="100" name="Saaaa" lastname="AAAA" nationality="aAaA" age="40"/>-->
+        <!--    </assistant>-->
+        <!--    <assistant id="102" name="Avvv" lastname="VVVV" nationality="aAaA" age="20">-->
+        <!--        <scientist id="101" name="Sbbbb" lastname="BBBB" nationality="bBbB" age="41"/>-->
+        <!--    </assistant>-->
+        <!--</assistants>-->
