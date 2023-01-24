@@ -28,11 +28,11 @@ public class Reader {
     public static final String RESEARCHES_PATH = "../laboratory/src/main/resources/eXtensibles/research/researches.xml";
 
     public static void printAllLabs(XMLEventReader r) throws XMLStreamException {
+        Lab lab2 = new Lab();
         while (r.hasNext()) {
             XMLEvent e = r.nextEvent();
             if (e.isStartElement()) {
                 StartElement element = e.asStartElement();
-                Lab lab2 = new Lab();
 //                if (e.asStartElement().getName().toString().equals("lab")) {
 //                    Lab lab = new Lab();
 //                    Attribute id = element.getAttributeByName(new QName("id"));
@@ -49,21 +49,23 @@ public class Reader {
 
                 switch (element.getName().getLocalPart()) {
                     case "lab":
-
                         Attribute id = element.getAttributeByName(new QName("id"));
                         lab2.setId(Integer.parseInt(id.getValue()));
+                        //LOGGER.info(id.getValue());
                         break;
                     case "capacity":
                         e = r.nextEvent();
                         if (e.isCharacters()) {
                             lab2.setCapacity(Integer.parseInt(e.asCharacters().getData()));
                         }
+                        //LOGGER.info(Integer.parseInt(e.asCharacters().getData()));
                         break;
                     case "complexity":
                         e = r.nextEvent();
                         if (e.isCharacters()) {
                             lab2.setComplexity(Integer.parseInt(e.asCharacters().getData()));
                         }
+                        // LOGGER.info(Integer.parseInt(e.asCharacters().getData()));
                         LOGGER.info(lab2);
                         break;
                     default:
