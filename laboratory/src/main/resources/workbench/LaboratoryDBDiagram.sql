@@ -260,7 +260,6 @@ INSERT INTO administratives (name, lastname, Resources_Stock_id) VALUES ("Adam",
 INSERT INTO administratives (name, lastname, Resources_Stock_id) VALUES ("Alexander", "Romanov", 3);
 INSERT INTO administratives (name, lastname, Resources_Stock_id) VALUES ("Augustus", "Maximus", 4);
 INSERT INTO administratives (name, lastname, Resources_Stock_id) VALUES ("Anne", "Sheeran", 5);
-INSERT INTO administratives (name, lastname, Resources_Stock_id) VALUES ("Annie", "Sherman", 5);
 
 INSERT INTO Scientists (name, lastname, nationality, age) VALUES ("Steve", "Moore", "canadian", 31);
 INSERT INTO Scientists (name, lastname, nationality, age) VALUES ("Andres", "Rivas", "spainish", 30);

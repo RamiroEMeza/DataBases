@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "equipment")
 @XmlType(propOrder = {"id", "name", "working"})
 public class Equipment {
-
+    
     private int id;
 
     private String name;
