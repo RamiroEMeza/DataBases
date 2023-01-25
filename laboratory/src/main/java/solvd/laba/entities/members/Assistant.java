@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Assistant extends Person {
     private String nationality;
     private int age;
-    private Scientist scientist;
+    private int scientistId;
 
     public Assistant(String name, String lastName, String nationality, int age) {
         super(name, lastName);
@@ -17,8 +17,8 @@ public class Assistant extends Person {
 
     public Assistant() {
         super(null, null);
-        this.scientist = null;
         this.age = 0;
+        this.nationality = null;
     }
 
     public String getNationality() {
@@ -39,14 +39,12 @@ public class Assistant extends Person {
         this.age = age;
     }
 
-
-    public Scientist getScientist() {
-        return scientist;
+    public int getScientistId() {
+        return scientistId;
     }
 
-    @XmlElement(name = "scientist")
-    public void setScientist(Scientist scientist) {
-        this.scientist = scientist;
+    public void setScientistId(int scientistId) {
+        this.scientistId = scientistId;
     }
 
     @Override
@@ -57,7 +55,6 @@ public class Assistant extends Person {
                 ", lastName='" + lastName + '\'' +
                 ", nationality='" + nationality + '\'' +
                 ", age=" + age +
-                ", scientist=" + scientist +
                 '}';
     }
 }

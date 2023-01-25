@@ -17,6 +17,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
 
     private final static String GET_ASSISTANT = "SELECT * FROM assistants WHERE id=?";
     private final static String GET_ALL_ASSISTANT = "SELECT * FROM assistants";
+    private final static String GET_ALL_ASSISTANT_BY_SCIENTIST_ID = "SELECT * FROM assistants WHERE Scientists_id=?";
     private final static String CREATE_ASSISTANT = "INSERT INTO assistants " +
             "(name, lastname, nationality, age, Scientists_id) " + "VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -37,7 +38,6 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
                 response.setLastName(resultSet.getString("lastname"));
                 response.setNationality(resultSet.getString("nationality"));
                 response.setAge(resultSet.getInt("age"));
-                response.setScientist(new Scientist(resultSet.getInt("Scientists_id")));
                 return response;
             }
             return null;
@@ -59,7 +59,6 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
                 entity.setLastName(resultSet.getString("lastname"));
                 entity.setNationality(resultSet.getString("nationality"));
                 entity.setAge(resultSet.getInt("age"));
-                entity.setScientist(new Scientist(resultSet.getInt("Scientists_id")));
                 result.add(entity);
             }
             return result;
@@ -77,7 +76,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
                 ps.setString(2, entity.getLastName());
                 ps.setString(3, entity.getNationality());
                 ps.setInt(4, entity.getAge());
-                ps.setInt(5, Math.max(entity.getScientist().getId(), 0));
+                ps.setInt(5, entity.getScientistId());
                 ps.setInt(6, entity.getId());
                 ps.executeUpdate();
             } catch (SQLException e) {
@@ -93,7 +92,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
             ps.setString(2, entity.getLastName());
             ps.setString(3, entity.getNationality());
             ps.setInt(4, entity.getAge());
-            ps.setInt(5, Math.max(entity.getScientist().getId(), 0));
+            ps.setInt(5, entity.getScientistId());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -105,6 +104,27 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
         try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(DELETE_ASSISTANT)) {
             ps.setInt(1, id);
             ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ArrayList<Assistant> getEntityByIdScientistId(int id) {
+        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_ALL_ASSISTANT_BY_SCIENTIST_ID)) {
+            ResultSet resultSet = null;
+            ps.setInt(1, id);
+            resultSet = ps.executeQuery();
+            ArrayList<Assistant> result = new ArrayList<Assistant>();
+            while (resultSet.next()) {
+                Assistant entity = new Assistant();
+                entity.setName(resultSet.getString("name"));
+                entity.setLastName(resultSet.getString("lastname"));
+                entity.setNationality(resultSet.getString("nationality"));
+                entity.setAge(resultSet.getInt("age"));
+                result.add(entity);
+            }
+            return result;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

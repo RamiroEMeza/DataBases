@@ -3,7 +3,6 @@ package solvd.laba.dao.mysql;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import solvd.laba.dao.IScientistDAO;
-import solvd.laba.entities.facilities.Lab;
 import solvd.laba.entities.members.Scientist;
 
 import java.sql.Connection;
@@ -41,12 +40,19 @@ public class ScientistDAO extends MySQLDAO implements IScientistDAO {
     @Override
     public ArrayList<Scientist> getAllEntities() {
         try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_ALL_SCIENTIST)) {
+            //LOGGER.info("GET ALL SCIENTISTS");
             ResultSet resultSet = null;
             resultSet = ps.executeQuery();
             ArrayList<Scientist> result = new ArrayList<Scientist>();
+            //LOGGER.info(resultSet);
+            //LOGGER.info(resultSet.next());
             while (resultSet.next()) {
-                result.add(new Scientist(resultSet.getString("name"), resultSet.getString("lastname")
-                        , resultSet.getString("nationality"), resultSet.getInt("age")));
+                // LOGGER.info("add SCIENTIST one by one");
+                result.add(new Scientist(resultSet.getString("name")
+                        , resultSet.getString("lastname")
+                        , resultSet.getString("nationality")
+                        , resultSet.getInt("age")
+                        , resultSet.getInt("id")));
             }
             return result;
 
