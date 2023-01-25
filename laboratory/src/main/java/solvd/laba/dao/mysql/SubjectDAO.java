@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SubjectDAO extends MySQLDAO implements ISubjectDAO {
-    private final static String GET_SUBJECT_BY_RESEARCH_ID = "SELECT * FROM  test_subjects ts LEFT JOIN researchs r " +
+    private final static String GET_SUBJECT_BY_RESEARCH_ID = "SELECT * FROM  Test_Subjects ts LEFT JOIN Researchs r " +
             "ON r.id=ts.Researchs_id " +
             "WHERE r.id=?";
 

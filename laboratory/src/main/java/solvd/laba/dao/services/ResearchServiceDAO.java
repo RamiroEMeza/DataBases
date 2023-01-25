@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import solvd.laba.dao.IResearchDAO;
 import solvd.laba.dao.mysql.LabDAO;
 import solvd.laba.dao.mysql.ResearchDAO;
-import solvd.laba.dao.mysql.ScientistDAO;
 import solvd.laba.dao.mysql.SubjectDAO;
 import solvd.laba.entities.research.Research;
 

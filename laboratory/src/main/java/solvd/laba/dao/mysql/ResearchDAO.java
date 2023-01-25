@@ -17,19 +17,17 @@ import java.util.ArrayList;
 public class ResearchDAO extends MySQLDAO implements IResearchDAO {
     private final static Logger LOGGER = LogManager.getLogger(ResearchDAO.class);
 
-    private final static String GET_RESEARCH = "SELECT * FROM researchs WHERE id=?";
-    private final static String GET_RESEARCH_COMPLETE = "SELECT * FROM researchs r LEFT JOIN scientists s " +
-            "ON r.Scientists_id=s.id " +
-            "LEFT JOIN labs l" +
-            "ON r.Labs_id=l.id";
-    private final static String GET_ALL_RESEARCH = "SELECT * FROM researchs";
-    private final static String CREATE_RESEARCH = "INSERT INTO researchs " +
-            "(name, start, budget, complete, lab, scientist) " + "VALUES (?, ?, ?, ?, ?, ?)";
+    private final static String GET_RESEARCH = "SELECT * FROM Researchs WHERE id=?";
+    private final static String GET_ALL_RESEARCH = "SELECT * FROM Researchs";
+    private final static String CREATE_RESEARCH = "INSERT INTO Researchs "
+            + "(name, start, budget, complete, lab, scientist) "
+            + "VALUES (?, ?, ?, ?, ?, ?)";
 
-    private final static String UPDATE_RESEARCH = "UPDATE researchs SET " +
-            "(name=?, start=?, budget=?, complete=?, lab=?, scientist=?) " + "WHERE id=?";
+    private final static String UPDATE_RESEARCH = "UPDATE Researchs SET "
+            + "(name=?, start=?, budget=?, complete=?, lab=?, scientist=?) "
+            + "WHERE id=?";
 
-    private final static String DELETE_RESEARCH = "DELETE FROM researchs WHERE id=?";
+    private final static String DELETE_RESEARCH = "DELETE FROM Researchs WHERE id=?";
 
     @Override
     public Research getEntityById(int id) {
@@ -61,6 +59,7 @@ public class ResearchDAO extends MySQLDAO implements IResearchDAO {
             ArrayList<Research> result = new ArrayList<Research>();
             while (resultSet.next()) {
                 Research entity = new Research();
+                entity.setId(resultSet.getInt("id"));
                 entity.setName(resultSet.getString("name"));
                 entity.setStart(LocalDate.parse(resultSet.getString("start")));
                 entity.setBudget(resultSet.getInt("budget"));

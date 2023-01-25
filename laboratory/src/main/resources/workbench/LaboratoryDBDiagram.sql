@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `LaboratoryDB`.`Resources_Stock` (
   `unit` VARCHAR(45) NOT NULL,
   `quantity` DOUBLE NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC) )
 ENGINE = InnoDB;
 
 
@@ -120,8 +120,8 @@ CREATE TABLE IF NOT EXISTS `LaboratoryDB`.`Researchs` (
   `Labs_id` INT NOT NULL,
   `Scientists_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `Labs_id_UNIQUE` (`Labs_id` ASC) VISIBLE,
-  UNIQUE INDEX `Scientists_id_UNIQUE` (`Scientists_id` ASC) VISIBLE,
+  UNIQUE INDEX `Labs_id_UNIQUE` (`Labs_id` ASC) ,
+  UNIQUE INDEX `Scientists_id_UNIQUE` (`Scientists_id` ASC) ,
   CONSTRAINT `fk_Researchs_Labs1`
     FOREIGN KEY (`Labs_id`)
     REFERENCES `LaboratoryDB`.`Labs` (`id`)
@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `LaboratoryDB`.`Equipment_Asigned` (
   `expires` DATE NOT NULL,
   `Researchs_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `Equipment_id_UNIQUE` (`Equipment_id` ASC) VISIBLE,
+  UNIQUE INDEX `Equipment_id_UNIQUE` (`Equipment_id` ASC) ,
   CONSTRAINT `fk_EquipmentAsigned_Equipment1`
     FOREIGN KEY (`Equipment_id`)
     REFERENCES `LaboratoryDB`.`Equipment` (`id`)
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `LaboratoryDB`.`Administratives` (
   `lastname` VARCHAR(45) NOT NULL,
   `Resources_Stock_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `Resources_Stock_id_UNIQUE` (`Resources_Stock_id` ASC) VISIBLE,
+  UNIQUE INDEX `Resources_Stock_id_UNIQUE` (`Resources_Stock_id` ASC) ,
   CONSTRAINT `fk_Administratives_Resources_Stock1`
     FOREIGN KEY (`Resources_Stock_id`)
     REFERENCES `LaboratoryDB`.`Resources_Stock` (`id`)
@@ -239,45 +239,45 @@ INSERT INTO Labs (capacity, complexity) VALUES (6, 2);
 INSERT INTO Labs (capacity, complexity) VALUES (6, 2);
 INSERT INTO Labs (capacity, complexity) VALUES (6, 2);
 
-INSERT INTO technical_support (name, lastname) VALUES ("Many", "King");
-INSERT INTO technical_support (name, lastname) VALUES ("Manuel", "Herrera");
-INSERT INTO technical_support (name, lastname) VALUES ("Miguel", "Hernandez");
+INSERT INTO Technical_Support (name, lastname) VALUES ("Many", "King");
+INSERT INTO Technical_Support (name, lastname) VALUES ("Manuel", "Herrera");
+INSERT INTO Technical_Support (name, lastname) VALUES ("Miguel", "Hernandez");
 
-INSERT INTO equipment (name, working) VALUES ("Laser", 1);
-INSERT INTO equipment (name, working) VALUES ("Laser", 1);
-INSERT INTO equipment (name, working) VALUES ("Laser", 1);
+INSERT INTO Equipment (name, working) VALUES ("Laser", 1);
+INSERT INTO Equipment (name, working) VALUES ("Laser", 1);
+INSERT INTO Equipment (name, working) VALUES ("Laser", 1);
 
-INSERT INTO equipment_suport_history (Equipment_id, TechnicalSupport_id, status, start) VALUES (2, 2, "inProgress", "2023-01-12");
+INSERT INTO Equipment_Suport_History (Equipment_id, TechnicalSupport_id, status, start) VALUES (2, 2, "inProgress", "2023-01-12");
 
-INSERT INTO resources_stock (name, unit, quantity) VALUES ("Distilled Water", "liters", 400);
-INSERT INTO resources_stock (name, unit, quantity) VALUES ("Gold", "grams", 300);
-INSERT INTO resources_stock (name, unit, quantity) VALUES ("Copper", "grams", 900);
-INSERT INTO resources_stock (name, unit, quantity) VALUES ("Alcohol", "liters", 400);
-INSERT INTO resources_stock (name, unit, quantity) VALUES ("Benzene", "liters", 400);
+INSERT INTO Resources_Stock (name, unit, quantity) VALUES ("Distilled Water", "liters", 400);
+INSERT INTO Resources_Stock (name, unit, quantity) VALUES ("Gold", "grams", 300);
+INSERT INTO Resources_Stock (name, unit, quantity) VALUES ("Copper", "grams", 900);
+INSERT INTO Resources_Stock (name, unit, quantity) VALUES ("Alcohol", "liters", 400);
+INSERT INTO Resources_Stock (name, unit, quantity) VALUES ("Benzene", "liters", 400);
 
-INSERT INTO administratives (name, lastname, Resources_Stock_id) VALUES ("Adam", "King", 1);
-INSERT INTO administratives (name, lastname, Resources_Stock_id) VALUES ("Adam", "Philips", 2);
-INSERT INTO administratives (name, lastname, Resources_Stock_id) VALUES ("Alexander", "Romanov", 3);
-INSERT INTO administratives (name, lastname, Resources_Stock_id) VALUES ("Augustus", "Maximus", 4);
-INSERT INTO administratives (name, lastname, Resources_Stock_id) VALUES ("Anne", "Sheeran", 5);
+INSERT INTO Administratives (name, lastname, Resources_Stock_id) VALUES ("Adam", "King", 1);
+INSERT INTO Administratives (name, lastname, Resources_Stock_id) VALUES ("Adam", "Philips", 2);
+INSERT INTO Administratives (name, lastname, Resources_Stock_id) VALUES ("Alexander", "Romanov", 3);
+INSERT INTO Administratives (name, lastname, Resources_Stock_id) VALUES ("Augustus", "Maximus", 4);
+INSERT INTO Administratives (name, lastname, Resources_Stock_id) VALUES ("Anne", "Sheeran", 5);
 
 INSERT INTO Scientists (name, lastname, nationality, age) VALUES ("Steve", "Moore", "canadian", 31);
 INSERT INTO Scientists (name, lastname, nationality, age) VALUES ("Andres", "Rivas", "spainish", 30);
 INSERT INTO Scientists (name, lastname, nationality, age) VALUES ("Mario", "Ferrari", "italian", 42);
 INSERT INTO Scientists (name, lastname, nationality, age) VALUES ("Steve", "Moore", "canadian", 31);
 
-INSERT INTO researchs (name, start, budget, complete, Labs_id, Scientists_id) VALUES ("Heavy Water", "2022-12-01", 7000, 0, 4, 1);
-INSERT INTO researchs (name, start, budget, complete, Labs_id, Scientists_id) VALUES ("Radioactivity", "2022-11-01", 7000, 0, 2, 2);
-INSERT INTO researchs (name, start, budget, complete, Labs_id, Scientists_id) VALUES ("Ultra Violet", "2022-6-01", 7000, 0, 3, 4);
-INSERT INTO researchs (name, start, budget, complete, Labs_id, Scientists_id) VALUES ("Infra Red", "2022-6-01", 7000, 0, 5, 3);
+INSERT INTO Researchs (name, start, budget, complete, Labs_id, Scientists_id) VALUES ("Heavy Water", "2022-12-01", 7000, 0, 4, 1);
+INSERT INTO Researchs (name, start, budget, complete, Labs_id, Scientists_id) VALUES ("Radioactivity", "2022-11-01", 7000, 0, 2, 2);
+INSERT INTO Researchs (name, start, budget, complete, Labs_id, Scientists_id) VALUES ("Ultra Violet", "2022-6-01", 7000, 0, 3, 4);
+INSERT INTO Researchs (name, start, budget, complete, Labs_id, Scientists_id) VALUES ("Infra Red", "2022-6-01", 7000, 0, 5, 3);
 
 INSERT INTO Assistants (name, lastname, nationality, age, Scientists_id) VALUES ("Brok", "Lee", "canadian", 24, 1);
 INSERT INTO Assistants (name, lastname, nationality, age, Scientists_id) VALUES ("Chi", "Lee", "korean", 24, 1);
 INSERT INTO Assistants (name, lastname, nationality, age, Scientists_id) VALUES ("Kim", "Lee", "korean", 24, 3);
 
-INSERT INTO test_subjects (species, age, sex, weight, Researchs_id) VALUES ("Monkey", 3, 1, 28, 1);
-INSERT INTO test_subjects (species, age, sex, weight, Researchs_id) VALUES ("Monkey", 2, 0, 24, 1);
-INSERT INTO test_subjects (species, age, sex, weight, Researchs_id) VALUES ("Monkey", 2, 0, 22, 1);
-INSERT INTO test_subjects (species, age, sex, weight, Researchs_id) VALUES ("Monkey", 4, 0, 26, 1);
-INSERT INTO test_subjects (species, age, sex, weight, Researchs_id) VALUES ("Monkey", 4, 1, 34, 2);
-INSERT INTO test_subjects (species, age, sex, weight, Researchs_id) VALUES ("Monkey", 3, 1, 35, 3);
+INSERT INTO Test_Subjects (species, age, sex, weight, Researchs_id) VALUES ("Monkey", 3, 1, 28, 1);
+INSERT INTO Test_Subjects (species, age, sex, weight, Researchs_id) VALUES ("Monkey", 2, 0, 24, 1);
+INSERT INTO Test_Subjects (species, age, sex, weight, Researchs_id) VALUES ("Monkey", 2, 0, 22, 1);
+INSERT INTO Test_Subjects (species, age, sex, weight, Researchs_id) VALUES ("Monkey", 4, 0, 26, 1);
+INSERT INTO Test_Subjects (species, age, sex, weight, Researchs_id) VALUES ("Monkey", 4, 1, 34, 2);
+INSERT INTO Test_Subjects (species, age, sex, weight, Researchs_id) VALUES ("Monkey", 3, 1, 35, 3);

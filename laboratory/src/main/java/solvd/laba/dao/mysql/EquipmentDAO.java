@@ -11,11 +11,11 @@ import java.util.ArrayList;
 public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
     private final static Logger LOGGER = LogManager.getLogger(EquipmentDAO.class);
 
-    private final static String GET_EQUIPMENT = "SELECT * FROM equipment WHERE id=?";
-    private final static String GET_ALL_EQUIPMENT = "SELECT * FROM equipment";
-    private final static String CREATE_EQUIPMENT = "INSERT INTO equipment (name, working) VALUES (?, ?)";
-    private final static String UPDATE_EQUIPMENT = "UPDATE equipment SET (name=?, working=?) WHERE id=?";
-    private final static String DELETE_EQUIPMENT = "DELETE FROM equipment WHERE id=?";
+    private final static String GET_EQUIPMENT = "SELECT * FROM Equipment WHERE id=?";
+    private final static String GET_ALL_EQUIPMENT = "SELECT * FROM Equipment";
+    private final static String CREATE_EQUIPMENT = "INSERT INTO Equipment (name, working) VALUES (?, ?)";
+    private final static String UPDATE_EQUIPMENT = "UPDATE Equipment SET (name=?, working=?) WHERE id=?";
+    private final static String DELETE_EQUIPMENT = "DELETE FROM Equipment WHERE id=?";
 
     @Override
     public Equipment getEntityById(int idS) {

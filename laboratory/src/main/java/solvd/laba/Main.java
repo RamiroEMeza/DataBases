@@ -22,13 +22,12 @@ public class Main {
         AssistantDAO assistantDAO = new AssistantDAO();
         ResearchServiceDAO researchServiceDAO = new ResearchServiceDAO();
         ScientistServiceDAO scientistServiceDAO = new ScientistServiceDAO();
-        //assistantDAO.getAllEntities().forEach(LOGGER::info);
+        researchServiceDAO.getAllEntities().forEach(LOGGER::info);
+//        LOGGER.info(researchServiceDAO.getEntityById(1));
 //        scientistServiceDAO.getAllEntities().forEach(s -> {
 //            LOGGER.info("\n");
 //            LOGGER.info(s);
 //        });
-        LOGGER.info(researchServiceDAO.getEntityById(1));
 
-        //researchServiceDAO.getAllEntities().forEach(LOGGER::info);
     }
 }

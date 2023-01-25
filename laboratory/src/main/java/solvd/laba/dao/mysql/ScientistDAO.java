@@ -14,16 +14,18 @@ import java.util.ArrayList;
 public class ScientistDAO extends MySQLDAO implements IScientistDAO {
     private final static Logger LOGGER = LogManager.getLogger(ScientistDAO.class);
 
-    private final static String GET_SCIENTIST = "SELECT * FROM scientists WHERE id=?";
+    private final static String GET_SCIENTIST = "SELECT * FROM Scientists WHERE id=?";
 
-    private final static String GET_SCIENTIST_BY_RESEARCH_ID = "SELECT * FROM  scientists s LEFT JOIN researchs r " +
+    private final static String GET_SCIENTIST_BY_RESEARCH_ID = "SELECT * FROM  Scientists s LEFT JOIN Researchs r " +
             "ON s.id=r.Scientists_id " +
             "WHERE r.id=?";
 
-    private final static String GET_ALL_SCIENTIST = "SELECT * FROM scientists";
-    private final static String CREATE_SCIENTIST = "INSERT INTO scientists (name, lastname, nationality, age) VALUES (?, ?, ?, ?)";
-    private final static String UPDATE_SCIENTIST = "UPDATE scientists SET (name=?, lastname=?, nationality=?, age=?) WHERE id=?";
-    private final static String DELETE_SCIENTIST = "DELETE FROM scientists WHERE id=?";
+    private final static String GET_ALL_SCIENTIST = "SELECT * FROM Scientists";
+    private final static String CREATE_SCIENTIST = "INSERT INTO Scientists (name, lastname, nationality, age) " +
+            "VALUES (?, ?, ?, ?)";
+    private final static String UPDATE_SCIENTIST = "UPDATE Scientists SET (name=?, lastname=?, nationality=?, age=?) " +
+            "WHERE id=?";
+    private final static String DELETE_SCIENTIST = "DELETE FROM Scientists WHERE id=?";
 
     @Override
     public Scientist getEntityById(int id) {

@@ -15,16 +15,16 @@ import java.util.ArrayList;
 public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
     private final static Logger LOGGER = LogManager.getLogger(AssistantDAO.class);
 
-    private final static String GET_ASSISTANT = "SELECT * FROM assistants WHERE id=?";
-    private final static String GET_ALL_ASSISTANT = "SELECT * FROM assistants";
-    private final static String GET_ALL_ASSISTANT_BY_SCIENTIST_ID = "SELECT * FROM assistants WHERE Scientists_id=?";
-    private final static String CREATE_ASSISTANT = "INSERT INTO assistants " +
+    private final static String GET_ASSISTANT = "SELECT * FROM Assistants WHERE id=?";
+    private final static String GET_ALL_ASSISTANT = "SELECT * FROM Assistants";
+    private final static String GET_ALL_ASSISTANT_BY_SCIENTIST_ID = "SELECT * FROM Assistants WHERE Scientists_id=?";
+    private final static String CREATE_ASSISTANT = "INSERT INTO Assistants " +
             "(name, lastname, nationality, age, Scientists_id) " + "VALUES (?, ?, ?, ?, ?, ?)";
 
-    private final static String UPDATE_ASSISTANT = "UPDATE assistants SET " +
+    private final static String UPDATE_ASSISTANT = "UPDATE Assistants SET " +
             "(name=?, lastname=?, nationality=?, age=?, Scientists_id=?) " + "WHERE id=?";
 
-    private final static String DELETE_ASSISTANT = "DELETE FROM assistants WHERE id=?";
+    private final static String DELETE_ASSISTANT = "DELETE FROM Assistants WHERE id=?";
 
     @Override
     public Assistant getEntityById(int id) {
