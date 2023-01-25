@@ -15,6 +15,11 @@ public class ScientistDAO extends MySQLDAO implements IScientistDAO {
     private final static Logger LOGGER = LogManager.getLogger(ScientistDAO.class);
 
     private final static String GET_SCIENTIST = "SELECT * FROM scientists WHERE id=?";
+
+    private final static String GET_SCIENTIST_BY_RESEARCH_ID = "SELECT * FROM  scientists s LEFT JOIN researchs r " +
+            "ON s.id=r.Scientists_id " +
+            "WHERE r.id=?";
+
     private final static String GET_ALL_SCIENTIST = "SELECT * FROM scientists";
     private final static String CREATE_SCIENTIST = "INSERT INTO scientists (name, lastname, nationality, age) VALUES (?, ?, ?, ?)";
     private final static String UPDATE_SCIENTIST = "UPDATE scientists SET (name=?, lastname=?, nationality=?, age=?) WHERE id=?";
@@ -40,14 +45,10 @@ public class ScientistDAO extends MySQLDAO implements IScientistDAO {
     @Override
     public ArrayList<Scientist> getAllEntities() {
         try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_ALL_SCIENTIST)) {
-            //LOGGER.info("GET ALL SCIENTISTS");
             ResultSet resultSet = null;
             resultSet = ps.executeQuery();
             ArrayList<Scientist> result = new ArrayList<Scientist>();
-            //LOGGER.info(resultSet);
-            //LOGGER.info(resultSet.next());
             while (resultSet.next()) {
-                // LOGGER.info("add SCIENTIST one by one");
                 result.add(new Scientist(resultSet.getString("name")
                         , resultSet.getString("lastname")
                         , resultSet.getString("nationality")
@@ -93,6 +94,26 @@ public class ScientistDAO extends MySQLDAO implements IScientistDAO {
         try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(DELETE_SCIENTIST)) {
             ps.setInt(1, id);
             ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Scientist getEntityByResearchId(int id) {
+        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_SCIENTIST_BY_RESEARCH_ID)) {
+            ResultSet resultSet = null;
+            ps.setInt(1, id);
+            resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                return new Scientist(resultSet.getString("name")
+                        , resultSet.getString("lastname")
+                        , resultSet.getString("nationality")
+                        , resultSet.getInt("age")
+                        , resultSet.getInt("id"));
+            }
+            return null;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

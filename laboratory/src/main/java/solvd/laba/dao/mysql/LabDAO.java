@@ -16,6 +16,9 @@ public class LabDAO extends MySQLDAO implements ILabDAO {
     private final static Logger LOGGER = LogManager.getLogger(LabDAO.class);
 
     private final static String GET_LAB = "SELECT * FROM labs WHERE id=?";
+    private final static String GET_LAB_BY_RESEARCH_ID = "SELECT * FROM  labs l LEFT JOIN researchs r " +
+            "ON l.id=r.Labs_id " +
+            "WHERE r.id=?";
     private final static String GET_ALL_LAB = "SELECT * FROM labs";
     private final static String CREATE_LAB = "INSERT INTO labs (capacity, complexity) VALUES (?, ?)";
     private final static String UPDATE_LAB = "UPDATE labs SET (capacity=?, complexity=?) WHERE id=?";
@@ -84,6 +87,24 @@ public class LabDAO extends MySQLDAO implements ILabDAO {
         try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(DELETE_LAB)) {
             ps.setInt(1, id);
             ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Lab getEntityByResearchId(int id) {
+        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_LAB_BY_RESEARCH_ID)) {
+            ResultSet resultSet = null;
+            ps.setInt(1, id);
+            resultSet = ps.executeQuery();
+
+            if (resultSet.next()) {
+                return new Lab(resultSet.getInt("id"), resultSet.getInt("capacity"),
+                        resultSet.getInt("complexity"));
+            }
+            return null;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

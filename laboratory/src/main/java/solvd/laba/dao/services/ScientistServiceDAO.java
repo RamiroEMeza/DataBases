@@ -18,7 +18,7 @@ public class ScientistServiceDAO implements IScientistDAO {
     public Scientist getEntityById(int id) {
         Scientist result;
         result = scientistDAO.getEntityById(id);
-        result.setAssistants(assistantDAO.getEntityByIdScientistId(result.getId()));
+        result.setAssistants(assistantDAO.getEntityByScientistId(result.getId()));
         return result;
     }
 
@@ -26,7 +26,7 @@ public class ScientistServiceDAO implements IScientistDAO {
     public ArrayList<Scientist> getAllEntities() {
         ArrayList<Scientist> result = scientistDAO.getAllEntities();
         result.forEach(e -> {
-            e.setAssistants(assistantDAO.getEntityByIdScientistId(e.getId()));
+            e.setAssistants(assistantDAO.getEntityByScientistId(e.getId()));
         });
         return result;
     }
@@ -44,5 +44,13 @@ public class ScientistServiceDAO implements IScientistDAO {
     @Override
     public void removeEntity(int id) {
         scientistDAO.removeEntity(id);
+    }
+
+    @Override
+    public Scientist getEntityByResearchId(int id) {
+        Scientist result;
+        result = scientistDAO.getEntityByResearchId(id);
+        result.setAssistants(assistantDAO.getEntityByScientistId(result.getId()));
+        return result;
     }
 }

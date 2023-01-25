@@ -18,6 +18,10 @@ public class ResearchDAO extends MySQLDAO implements IResearchDAO {
     private final static Logger LOGGER = LogManager.getLogger(ResearchDAO.class);
 
     private final static String GET_RESEARCH = "SELECT * FROM researchs WHERE id=?";
+    private final static String GET_RESEARCH_COMPLETE = "SELECT * FROM researchs r LEFT JOIN scientists s " +
+            "ON r.Scientists_id=s.id " +
+            "LEFT JOIN labs l" +
+            "ON r.Labs_id=l.id";
     private final static String GET_ALL_RESEARCH = "SELECT * FROM researchs";
     private final static String CREATE_RESEARCH = "INSERT INTO researchs " +
             "(name, start, budget, complete, lab, scientist) " + "VALUES (?, ?, ?, ?, ?, ?)";
@@ -35,12 +39,11 @@ public class ResearchDAO extends MySQLDAO implements IResearchDAO {
             resultSet = ps.executeQuery();
             if (resultSet.next()) {
                 Research response = new Research();
+                response.setId(resultSet.getInt("id"));
                 response.setName(resultSet.getString("name"));
                 response.setStart(LocalDate.parse(resultSet.getString("start")));
                 response.setBudget(resultSet.getInt("budget"));
                 response.setComplete((resultSet.getInt("complete") == 1));
-                response.setLab(new Lab(resultSet.getInt("Labs_id")));
-                response.setScientist(new Scientist(resultSet.getInt("Scientists_id")));
                 return response;
             }
             return null;
@@ -115,4 +118,5 @@ public class ResearchDAO extends MySQLDAO implements IResearchDAO {
             throw new RuntimeException(e);
         }
     }
+
 }

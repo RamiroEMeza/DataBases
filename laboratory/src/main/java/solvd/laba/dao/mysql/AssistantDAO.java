@@ -109,7 +109,8 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
         }
     }
 
-    public ArrayList<Assistant> getEntityByIdScientistId(int id) {
+    @Override
+    public ArrayList<Assistant> getEntityByScientistId(int id) {
         try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_ALL_ASSISTANT_BY_SCIENTIST_ID)) {
             ResultSet resultSet = null;
             ps.setInt(1, id);

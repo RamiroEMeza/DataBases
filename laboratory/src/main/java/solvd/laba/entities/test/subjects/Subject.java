@@ -87,4 +87,8 @@ public class Subject {
                 ", weight=" + weight +
                 '}';
     }
+
+    public void setSex(int sex) {
+        this.sex = (sex == 1);
+    }
 }

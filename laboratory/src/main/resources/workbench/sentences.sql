@@ -23,3 +23,7 @@ SELECT e.id, e.name FROM equipment e WHERE NOT EXISTS (SELECT 1 FROM equipment_s
 WHERE e.id=h.Equipment_id);
 
 SELECT * FROM equipment WHERE id=3;
+
+SELECT * FROM researchs r  LEFT JOIN scientists s  ON s.id=r.Scientists_id LEFT JOIN labs l ON l.id=r.Labs_id LEFT JOIN assistants a ON a.Scientists_id=s.id;
+
+SELECT * FROM assistants a LEFT JOIN scientists s ON a.Scientists_id=s.id LEFT JOIN researchs r ON s.id=r.Scientists_id LEFT JOIN labs l ON l.id=r.Labs_id;

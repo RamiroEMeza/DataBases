@@ -130,18 +130,23 @@ public class Research {
         }
     }
 
+    public void setTestSubjects(ArrayList<Subject> testSubjects) {
+        this.testSubjects = testSubjects;
+    }
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder("Research{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", start=" + start +
-                ", budget=" + budget +
-                ", complete=" + complete +
-                ", lab=" + lab +
-                ", scientist=" + scientist +
-                ", testSubjects=[");
+                "\nid=" + id +
+                "\nname='" + name + '\'' +
+                "\nstart=" + start +
+                "\nbudget=" + budget +
+                "\ncomplete=" + complete +
+                "\nlab=" + lab +
+                "\nscientist=" + scientist +
+                "\ntestSubjects=[");
         for (Subject s : this.testSubjects) {
+            result.append("\n");
             result.append(s.toString()).append(", ");
         }
 
