@@ -1,0 +1,67 @@
+{
+  "Research": {
+    "id": 1,
+    "name": "Heavy Water",
+    "start": "2022-12-01",
+    "budget": "7000",
+    "complete": "false",
+    "lab": {
+      "id": 4,
+      "capacity": 6,
+      "complexity": 2
+    },
+    "scientist": {
+      "id": 1,
+      "name": "Steve",
+      "lastName": "Moore",
+      "nationality": "canadian",
+      "age": 31,
+      "Assistants": {
+        "Assistant": [
+          {
+            "id": 0,
+            "name": "Brok",
+            "lastName": "Lee",
+            "nationality": "canadian",
+            "age": 24
+          },
+          {
+            "id": 0,
+            "name": "Chi",
+            "lastName": "Lee",
+            "nationality": "korean",
+            "age": 24
+          }
+        ]
+      }
+    },
+    "testSubjects": {
+      "Subject": [
+        {
+          "species": "Monkey",
+          "age": 3,
+          "sex": true,
+          "weight": 28.0
+        },
+        {
+          "species": "Monkey",
+          "age": 2,
+          "sex": false,
+          "weight": 24.0
+        },
+        {
+          "species": "Monkey",
+          "age": 2,
+          "sex": false,
+          "weight": 22.0
+        },
+        {
+          "species": "Monkey",
+          "age": 4,
+          "sex": false,
+          "weight": 26.0
+        }
+      ]
+    }
+  }
+}
