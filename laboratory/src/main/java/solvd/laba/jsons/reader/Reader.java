@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import solvd.laba.Main;
-import solvd.laba.entities.facilities.Lab;
 import solvd.laba.entities.research.Research;
 
 import java.io.File;
