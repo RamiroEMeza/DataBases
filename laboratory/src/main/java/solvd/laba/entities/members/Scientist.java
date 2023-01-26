@@ -1,13 +1,18 @@
 package solvd.laba.entities.members;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 
 @XmlRootElement(name = "scientist")
 public class Scientist extends Person {
+    @JsonProperty("nationality")
     private String nationality;
+    @JsonProperty("age")
     private int age;
+    @JsonProperty("assistants")
     private ArrayList<Assistant> assistants = new ArrayList<Assistant>();
 
     public Scientist(String name, String lastName, String nationality, int age) {

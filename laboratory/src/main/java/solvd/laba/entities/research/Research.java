@@ -1,5 +1,9 @@
 package solvd.laba.entities.research;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import solvd.laba.entities.members.Scientist;
 import solvd.laba.entities.facilities.Lab;
 import solvd.laba.entities.test.subjects.Subject;
@@ -12,20 +16,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReference;
 
 @XmlRootElement(name = "research")
 public class Research {
+    @JsonProperty("id")
     private int id;
+    @JsonProperty("name")
     private String name;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate start;
+    @JsonProperty("budget")
     private int budget;
+    @JsonProperty("complete")
     private boolean complete;
+    @JsonProperty("lab")
     private Lab lab;
+    @JsonProperty("scientist")
     private Scientist scientist;
 
     @XmlElementWrapper(name = "subjects")
     @XmlElement(name = "subject")
+    @JsonProperty("testSubjects")
     private ArrayList<Subject> testSubjects = new ArrayList<Subject>();
 
     public Research(String name, LocalDate start, int budget, boolean complete) {

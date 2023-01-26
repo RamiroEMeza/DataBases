@@ -1,13 +1,19 @@
 package solvd.laba.entities.facilities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "lab")
 public class Lab {
+
+    @JsonProperty("id")
     private int id;
+    @JsonProperty("capacity")
     private int capacity;
+    @JsonProperty("complexity")
     private int complexity;
 
     public Lab() {

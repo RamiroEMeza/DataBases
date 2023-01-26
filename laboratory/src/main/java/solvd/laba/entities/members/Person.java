@@ -1,11 +1,16 @@
 package solvd.laba.entities.members;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
 public class Person {
+    @JsonProperty("id")
     protected int id;
+    @JsonProperty("name")
     protected String name;
+    @JsonProperty("lastName")
     protected String lastName;
 
     Person(String name, String lastName) {

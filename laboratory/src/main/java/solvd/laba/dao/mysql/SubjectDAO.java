@@ -52,7 +52,7 @@ public class SubjectDAO extends MySQLDAO implements ISubjectDAO {
                 Subject entity = new Subject();
                 entity.setSpecies(resultSet.getString("species"));
                 entity.setAge(resultSet.getInt("age"));
-                entity.setSex(resultSet.getInt("sex"));
+                entity.setSex((resultSet.getInt("sex")) == 1);
                 entity.setWeight(resultSet.getInt("weight"));
                 result.add(entity);
             }

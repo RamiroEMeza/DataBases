@@ -1,11 +1,15 @@
 package solvd.laba.entities.members;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "assistant")
 public class Assistant extends Person {
+    @JsonProperty("nationality")
     private String nationality;
+    @JsonProperty("age")
     private int age;
     private int scientistId;
 

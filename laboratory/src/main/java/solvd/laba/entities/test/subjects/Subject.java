@@ -1,16 +1,25 @@
 package solvd.laba.entities.test.subjects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import solvd.laba.entities.research.Research;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "subject")
+@JsonIgnoreProperties
 public class Subject {
+    @JsonProperty("species")
     private String species;
+    @JsonProperty("age")
     private int age;
+    @JsonProperty("sex")
     private boolean sex;
+    @JsonProperty("weight")
     private double weight;
+    @JsonIgnore
     private Research research;
 
     public Subject(String species, int age, boolean sex, double weight) {
@@ -58,6 +67,10 @@ public class Subject {
         this.sex = sex;
     }
 
+//    public void setSex(int sex) {
+//        this.sex = (sex == 1);
+//    }
+
     public double getWeight() {
         return weight;
     }
@@ -86,9 +99,5 @@ public class Subject {
                 ", sex=" + sex +
                 ", weight=" + weight +
                 '}';
-    }
-
-    public void setSex(int sex) {
-        this.sex = (sex == 1);
     }
 }
