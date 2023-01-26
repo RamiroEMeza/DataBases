@@ -23,9 +23,9 @@ public abstract class MySQLDAO {
         }
         dataSource = new BasicDataSource();
         dataSource.setDriverClassName(properties.getProperty("driver"));
-        dataSource.setUrl(properties.getProperty("url2"));
-        dataSource.setUsername(properties.getProperty("username2"));
-        dataSource.setPassword(properties.getProperty("password2"));
+        dataSource.setUrl(properties.getProperty("url"));
+        dataSource.setUsername(properties.getProperty("username"));
+        dataSource.setPassword(properties.getProperty("password"));
 
         dataSource.setMinIdle(5);
         dataSource.setMaxIdle(10);

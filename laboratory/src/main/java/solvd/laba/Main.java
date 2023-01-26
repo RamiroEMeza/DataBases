@@ -23,11 +23,6 @@ public class Main {
         ResearchServiceDAO researchServiceDAO = new ResearchServiceDAO();
         ScientistServiceDAO scientistServiceDAO = new ScientistServiceDAO();
         researchServiceDAO.getAllEntities().forEach(LOGGER::info);
-//        LOGGER.info(researchServiceDAO.getEntityById(1));
-//        scientistServiceDAO.getAllEntities().forEach(s -> {
-//            LOGGER.info("\n");
-//            LOGGER.info(s);
-//        });
 
     }
 }
