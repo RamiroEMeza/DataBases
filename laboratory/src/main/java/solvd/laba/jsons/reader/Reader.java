@@ -35,6 +35,7 @@ public class Reader {
                 , LocalDate.of(2023, 1, 26)
                 , 9000
                 , false);
+        researchFromJava.setId(9);
         Scientist scientistFromJava = new Scientist("CreatedIn", "Java", "mexican", 44, 9);
         ArrayList<Assistant> assistants = new ArrayList<Assistant>();
         assistants.add(new Assistant("George", "Wales", "british", 23));
