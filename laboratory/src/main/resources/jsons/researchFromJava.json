@@ -1,0 +1,33 @@
+{
+  "start" : "2023-01-26",
+  "id" : 0,
+  "name" : "Atomic fusion",
+  "budget" : 9000,
+  "complete" : false,
+  "lab" : {
+    "id" : 9,
+    "capacity" : 6,
+    "complexity" : 3
+  },
+  "scientist" : {
+    "id" : 9,
+    "name" : "CreatedIn",
+    "lastName" : "Java",
+    "nationality" : "mexican",
+    "age" : 44,
+    "assistants" : [ {
+      "scientistId" : 0,
+      "id" : 0,
+      "name" : "George",
+      "lastName" : "Wales",
+      "nationality" : "british",
+      "age" : 23
+    } ]
+  },
+  "testSubjects" : [ {
+    "species" : "donkey",
+    "age" : 4,
+    "sex" : false,
+    "weight" : 200.0
+  } ]
+}
