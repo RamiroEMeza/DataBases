@@ -13,7 +13,7 @@ public class Assistant extends Person {
     @JsonProperty("age")
     private int age;
     @JsonIgnore
-    private int scientistId;
+    private int scientistId;//MUST refactor this field, AssistantDAO Should receive an Assistant and a Scientist
 
     public Assistant(String name, String lastName, String nationality, int age) {
         super(name, lastName);

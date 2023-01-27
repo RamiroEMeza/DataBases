@@ -1,8 +1,8 @@
 {
+  "start": "2022-12-01",
   "id": 1,
   "name": "Heavy Water",
-  "start": "2022-12-01",
-  "budget": "7000",
+  "budget": 7000,
   "complete": false,
   "lab": {
     "id": 4,
@@ -59,4 +59,3 @@
     }
   ]
 }
-

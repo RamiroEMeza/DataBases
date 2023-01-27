@@ -25,26 +25,13 @@ public class Reader {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         mapper.registerModule(new JavaTimeModule());
 
-
-        Research researchFromFile = mapper.readValue(new File("./src/main/resources/jsons/research.json"), Research.class);
+        //Read json:
+        Research researchFromFile = mapper
+                .readValue(new File("./src/main/resources/jsons/research.json"), Research.class);
         LOGGER.info(researchFromFile);
 
-        LocalDate lD = LocalDate.of(2023, 1, 26);
-
-        Research researchFromJava = new Research("Atomic fusion"
-                , LocalDate.of(2023, 1, 26)
-                , 9000
-                , false);
-        researchFromJava.setId(9);
-        Scientist scientistFromJava = new Scientist("CreatedIn", "Java", "mexican", 44, 9);
-        ArrayList<Assistant> assistants = new ArrayList<Assistant>();
-        assistants.add(new Assistant("George", "Wales", "british", 23));
-        assistants.get(0).setId(9);
-        scientistFromJava.setAssistants(assistants);
-        researchFromJava.setScientist(scientistFromJava);
-        researchFromJava.addTestSubjects(new Subject("donkey", 4, false, 200));
-        researchFromJava.setLab(new Lab(9, 6, 3));
-
-        mapper.writerWithDefaultPrettyPrinter().writeValue(new File("./src/main/resources/jsons/researchFromJava.json"), researchFromJava);
+        //Write json:
+        mapper.writerWithDefaultPrettyPrinter()
+                .writeValue(new File("./src/main/resources/jsons/researchFileCopy.json"), researchFromFile);
     }
 }

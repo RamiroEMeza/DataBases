@@ -20,7 +20,7 @@ public class Subject {
     @JsonProperty("weight")
     private double weight;
     @JsonIgnore
-    private Research research;
+    private Research research; //MUST refactor this field, same as AssistantDAO
 
     public Subject(String species, int age, boolean sex, double weight) {
         this.species = species;
