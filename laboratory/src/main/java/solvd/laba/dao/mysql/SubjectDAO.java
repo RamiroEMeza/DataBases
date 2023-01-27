@@ -1,6 +1,7 @@
 package solvd.laba.dao.mysql;
 
 import solvd.laba.dao.ISubjectDAO;
+import solvd.laba.entities.research.Research;
 import solvd.laba.entities.test.subjects.Subject;
 
 import java.sql.Connection;
@@ -35,6 +36,11 @@ public class SubjectDAO extends MySQLDAO implements ISubjectDAO {
     }
 
     @Override
+    public void createEntitySetingResearch(Subject entity, Research assignedResearch) {
+
+    }
+
+    @Override
     public void removeEntity(int id) {
 
     }
@@ -61,5 +67,11 @@ public class SubjectDAO extends MySQLDAO implements ISubjectDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+    @Override
+    public void updateEntitySetingResearch(Subject entity, Research assignedResearch) {
+
     }
 }

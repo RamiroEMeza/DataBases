@@ -76,7 +76,24 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
                 ps.setString(2, entity.getLastName());
                 ps.setString(3, entity.getNationality());
                 ps.setInt(4, entity.getAge());
-                ps.setInt(5, entity.getScientistId());
+                ps.setInt(5, 0);//This removes any relation of the assistant
+                ps.setInt(6, entity.getId());
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    @Override
+    public void updateEntitySetingScientist(Assistant entity, Scientist assignedScientist) {
+        if (entity.getId() > 0) {
+            try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_ASSISTANT)) {
+                ps.setString(1, entity.getName());
+                ps.setString(2, entity.getLastName());
+                ps.setString(3, entity.getNationality());
+                ps.setInt(4, entity.getAge());
+                ps.setInt(5, assignedScientist.getId());
                 ps.setInt(6, entity.getId());
                 ps.executeUpdate();
             } catch (SQLException e) {
@@ -92,7 +109,21 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
             ps.setString(2, entity.getLastName());
             ps.setString(3, entity.getNationality());
             ps.setInt(4, entity.getAge());
-            ps.setInt(5, entity.getScientistId());
+            ps.setInt(5, 0);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void createEntitySetingScientist(Assistant entity, Scientist assignedScientist) {
+        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_ASSISTANT)) {
+            ps.setString(1, entity.getName());
+            ps.setString(2, entity.getLastName());
+            ps.setString(3, entity.getNationality());
+            ps.setInt(4, entity.getAge());
+            ps.setInt(5, assignedScientist.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -130,4 +161,6 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
             throw new RuntimeException(e);
         }
     }
+
+
 }

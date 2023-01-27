@@ -19,8 +19,6 @@ public class Subject {
     private boolean sex;
     @JsonProperty("weight")
     private double weight;
-    @JsonIgnore
-    private Research research; //MUST refactor this field, same as AssistantDAO
 
     public Subject(String species, int age, boolean sex, double weight) {
         this.species = species;
@@ -34,7 +32,6 @@ public class Subject {
         this.age = 0;
         this.sex = false;
         this.weight = 0;
-        this.research = null;
     }
 
     public String getSpecies() {
@@ -81,14 +78,6 @@ public class Subject {
             weight = 1;
         }
         this.weight = weight;
-    }
-
-    public Research getResearch() {
-        return research;
-    }
-
-    public void setResearch(Research research) {
-        this.research = research;
     }
 
     @Override

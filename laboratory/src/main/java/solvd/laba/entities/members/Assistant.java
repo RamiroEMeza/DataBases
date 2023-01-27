@@ -12,8 +12,6 @@ public class Assistant extends Person {
     private String nationality;
     @JsonProperty("age")
     private int age;
-    @JsonIgnore
-    private int scientistId;//MUST refactor this field, AssistantDAO Should receive an Assistant and a Scientist
 
     public Assistant(String name, String lastName, String nationality, int age) {
         super(name, lastName);
@@ -43,14 +41,6 @@ public class Assistant extends Person {
     @XmlElement(name = "age")
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public int getScientistId() {
-        return scientistId;
-    }
-
-    public void setScientistId(int scientistId) {
-        this.scientistId = scientistId;
     }
 
     @Override
