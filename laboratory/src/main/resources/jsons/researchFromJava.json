@@ -16,8 +16,7 @@
     "nationality" : "mexican",
     "age" : 44,
     "assistants" : [ {
-      "scientistId" : 0,
-      "id" : 0,
+      "id" : 9,
       "name" : "George",
       "lastName" : "Wales",
       "nationality" : "british",

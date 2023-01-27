@@ -1,5 +1,6 @@
 package solvd.laba.entities.members;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -11,6 +12,7 @@ public class Assistant extends Person {
     private String nationality;
     @JsonProperty("age")
     private int age;
+    @JsonIgnore
     private int scientistId;
 
     public Assistant(String name, String lastName, String nationality, int age) {

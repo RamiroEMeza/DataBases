@@ -38,6 +38,7 @@ public class Reader {
         Scientist scientistFromJava = new Scientist("CreatedIn", "Java", "mexican", 44, 9);
         ArrayList<Assistant> assistants = new ArrayList<Assistant>();
         assistants.add(new Assistant("George", "Wales", "british", 23));
+        assistants.get(0).setId(9);
         scientistFromJava.setAssistants(assistants);
         researchFromJava.setScientist(scientistFromJava);
         researchFromJava.addTestSubjects(new Subject("donkey", 4, false, 200));
