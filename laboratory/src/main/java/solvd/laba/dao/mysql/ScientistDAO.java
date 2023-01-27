@@ -34,8 +34,10 @@ public class ScientistDAO extends MySQLDAO implements IScientistDAO {
             ps.setInt(1, id);
             resultSet = ps.executeQuery();
             if (resultSet.next()) {
-                return new Scientist(resultSet.getString("name"), resultSet.getString("lastname")
+                Scientist response = new Scientist(resultSet.getString("name"), resultSet.getString("lastname")
                         , resultSet.getString("nationality"), resultSet.getInt("age"));
+                response.setId(resultSet.getInt("id"));
+                return response;
             }
             return null;
 

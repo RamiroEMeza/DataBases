@@ -19,7 +19,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
     private final static String GET_ALL_ASSISTANT = "SELECT * FROM Assistants";
     private final static String GET_ALL_ASSISTANT_BY_SCIENTIST_ID = "SELECT * FROM Assistants WHERE Scientists_id=?";
     private final static String CREATE_ASSISTANT = "INSERT INTO Assistants " +
-            "(name, lastname, nationality, age, Scientists_id) " + "VALUES (?, ?, ?, ?, ?, ?)";
+            "(name, lastname, nationality, age, Scientists_id) " + "VALUES (?, ?, ?, ?, ?)";
 
     private final static String UPDATE_ASSISTANT = "UPDATE Assistants SET " +
             "(name=?, lastname=?, nationality=?, age=?, Scientists_id=?) " + "WHERE id=?";
@@ -34,6 +34,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
             resultSet = ps.executeQuery();
             if (resultSet.next()) {
                 Assistant response = new Assistant();
+                response.setId(resultSet.getInt("id"));
                 response.setName(resultSet.getString("name"));
                 response.setLastName(resultSet.getString("lastname"));
                 response.setNationality(resultSet.getString("nationality"));
@@ -55,6 +56,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
             ArrayList<Assistant> result = new ArrayList<Assistant>();
             while (resultSet.next()) {
                 Assistant entity = new Assistant();
+                entity.setId(resultSet.getInt("id"));
                 entity.setName(resultSet.getString("name"));
                 entity.setLastName(resultSet.getString("lastname"));
                 entity.setNationality(resultSet.getString("nationality"));
@@ -149,6 +151,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
             ArrayList<Assistant> result = new ArrayList<Assistant>();
             while (resultSet.next()) {
                 Assistant entity = new Assistant();
+                entity.setId(resultSet.getInt("id"));
                 entity.setName(resultSet.getString("name"));
                 entity.setLastName(resultSet.getString("lastname"));
                 entity.setNationality(resultSet.getString("nationality"));
