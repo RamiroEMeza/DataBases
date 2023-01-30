@@ -3,8 +3,8 @@ package solvd.laba.dao.services;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import solvd.laba.dao.IScientistDAO;
-import solvd.laba.dao.mysql.AssistantDAO;
-import solvd.laba.dao.mysql.ScientistDAO;
+import solvd.laba.dao.jdbc.impl.AssistantDAO;
+import solvd.laba.dao.jdbc.impl.ScientistDAO;
 import solvd.laba.entities.members.Scientist;
 
 import java.util.ArrayList;

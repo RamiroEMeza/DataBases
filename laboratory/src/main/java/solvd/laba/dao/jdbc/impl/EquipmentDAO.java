@@ -1,4 +1,4 @@
-package solvd.laba.dao.mysql;
+package solvd.laba.dao.jdbc.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +19,7 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
 
     @Override
     public Equipment getEntityById(int idS) {
-        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_EQUIPMENT)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(GET_EQUIPMENT)) {
             ResultSet resultSet = null;
             ps.setInt(1, idS);
             resultSet = ps.executeQuery();
@@ -37,7 +37,7 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
 
     @Override
     public ArrayList<Equipment> getAllEntities() {
-        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_ALL_EQUIPMENT)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(GET_ALL_EQUIPMENT)) {
             ResultSet resultSet = null;
             resultSet = ps.executeQuery();
             ArrayList<Equipment> result = new ArrayList<Equipment>();
@@ -54,7 +54,7 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
 
     @Override
     public void updateEntity(Equipment entity) {
-        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_EQUIPMENT)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_EQUIPMENT)) {
             ps.setString(1, entity.getName());
             ps.setInt(2, entity.getIsWorking());
             ps.setInt(3, entity.getId());
@@ -67,7 +67,7 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
 
     @Override
     public void createEntity(Equipment entity) {
-        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_EQUIPMENT)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_EQUIPMENT)) {
             ps.setString(1, entity.getName());
             ps.setInt(2, entity.getIsWorking());
             ps.executeUpdate();
@@ -79,7 +79,7 @@ public class EquipmentDAO extends MySQLDAO implements IEquipmentDAO {
 
     @Override
     public void removeEntity(int id) {
-        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(DELETE_EQUIPMENT)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(DELETE_EQUIPMENT)) {
             ps.setInt(1, 4);
             ps.executeUpdate();
         } catch (SQLException e) {

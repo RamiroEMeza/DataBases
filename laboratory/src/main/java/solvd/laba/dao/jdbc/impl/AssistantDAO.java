@@ -1,4 +1,4 @@
-package solvd.laba.dao.mysql;
+package solvd.laba.dao.jdbc.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,7 +28,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
 
     @Override
     public Assistant getEntityById(int id) {
-        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_ASSISTANT)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(GET_ASSISTANT)) {
             ResultSet resultSet = null;
             ps.setInt(1, id);
             resultSet = ps.executeQuery();
@@ -50,7 +50,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
 
     @Override
     public ArrayList<Assistant> getAllEntities() {
-        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_ALL_ASSISTANT)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(GET_ALL_ASSISTANT)) {
             ResultSet resultSet = null;
             resultSet = ps.executeQuery();
             ArrayList<Assistant> result = new ArrayList<Assistant>();
@@ -73,7 +73,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
     @Override
     public void updateEntity(Assistant entity) {
         if (entity.getId() > 0) {
-            try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_ASSISTANT)) {
+            try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_ASSISTANT)) {
                 ps.setString(1, entity.getName());
                 ps.setString(2, entity.getLastName());
                 ps.setString(3, entity.getNationality());
@@ -90,7 +90,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
     @Override
     public void updateEntitySetingScientist(Assistant entity, Scientist assignedScientist) {
         if (entity.getId() > 0) {
-            try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_ASSISTANT)) {
+            try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_ASSISTANT)) {
                 ps.setString(1, entity.getName());
                 ps.setString(2, entity.getLastName());
                 ps.setString(3, entity.getNationality());
@@ -106,7 +106,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
 
     @Override//name, lastname, nationality, age, Scientists_id
     public void createEntity(Assistant entity) {
-        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_ASSISTANT)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_ASSISTANT)) {
             ps.setString(1, entity.getName());
             ps.setString(2, entity.getLastName());
             ps.setString(3, entity.getNationality());
@@ -120,7 +120,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
 
     @Override
     public void createEntitySetingScientist(Assistant entity, Scientist assignedScientist) {
-        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_ASSISTANT)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_ASSISTANT)) {
             ps.setString(1, entity.getName());
             ps.setString(2, entity.getLastName());
             ps.setString(3, entity.getNationality());
@@ -134,7 +134,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
 
     @Override
     public void removeEntity(int id) {
-        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(DELETE_ASSISTANT)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(DELETE_ASSISTANT)) {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -144,7 +144,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
 
     @Override
     public ArrayList<Assistant> getEntityByScientistId(int id) {
-        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_ALL_ASSISTANT_BY_SCIENTIST_ID)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(GET_ALL_ASSISTANT_BY_SCIENTIST_ID)) {
             ResultSet resultSet = null;
             ps.setInt(1, id);
             resultSet = ps.executeQuery();

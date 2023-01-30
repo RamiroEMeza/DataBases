@@ -1,4 +1,4 @@
-package solvd.laba.dao.mysql;
+package solvd.laba.dao.jdbc.impl;
 
 import solvd.laba.dao.ISubjectDAO;
 import solvd.laba.entities.research.Research;
@@ -48,7 +48,7 @@ public class SubjectDAO extends MySQLDAO implements ISubjectDAO {
 
     @Override
     public ArrayList<Subject> getEntitiesByResearchId(int id) {
-        try (Connection c = MySQLDAO.getConnection();
+        try (Connection c = getConnection();
              PreparedStatement ps = c.prepareStatement(GET_SUBJECT_BY_RESEARCH_ID)) {
             ResultSet resultSet = null;
             ps.setInt(1, id);

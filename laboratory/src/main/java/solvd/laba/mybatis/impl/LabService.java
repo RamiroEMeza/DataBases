@@ -14,7 +14,7 @@ import java.io.Reader;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class LabService {
+public class LabService implements ILabDAO {
     private final static Logger LOGGER = LogManager.getLogger(LabService.class);
     private static SqlSessionFactory sqlSessionFactory;
 
@@ -27,7 +27,8 @@ public class LabService {
         }
     }
 
-    public static void deleteLab(int id) {
+    @Override
+    public void removeEntity(int id) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             if (id > 0) {
                 ILabDAO labDAO = session.getMapper(ILabDAO.class);
@@ -40,8 +41,8 @@ public class LabService {
         }
     }
 
-    public static void updateLab(Lab lab) {
-        //UPDATE ENTITY EXAMPLE--------------------
+    @Override
+    public void updateEntity(Lab lab) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             ILabDAO labDAO = session.getMapper(ILabDAO.class);
             try {
@@ -54,21 +55,18 @@ public class LabService {
                 LOGGER.info("Session rollback");
             }
         }
-        //UPDATE ENTITY EXAMPLE--------------------
     }
 
-    public static void printAllLabs() throws SQLException {
-        //SELECT ALL ENTITY EXAMPLE--------------------
+    public void printAllLabs() throws SQLException {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             ILabDAO labDAO = session.getMapper(ILabDAO.class);
             ArrayList<Lab> allLabs = labDAO.getAllEntities();
             allLabs.forEach(LOGGER::info);
         }
-        //SELECT ALL ENTITY EXAMPLE--------------------
     }
 
-    public static void insertLab(Lab lab) {
-        //INSERT ENTITY EXAMPLE--------------------
+    @Override
+    public void createEntity(Lab lab) {
         LOGGER.info("Create and insert lab");
         try (SqlSession session = sqlSessionFactory.openSession()) {
             ILabDAO labDAO = session.getMapper(ILabDAO.class);
@@ -82,10 +80,10 @@ public class LabService {
                 LOGGER.info("Session rollback");
             }
         }
-        //INSERT ENTITY EXAMPLE--------------------
     }
 
-    public static Lab getLab(int id) {
+    @Override
+    public Lab getEntityById(int id) {
         Lab response = new Lab();
         try (SqlSession session = sqlSessionFactory.openSession()) {
             ILabDAO labDAO = session.getMapper(ILabDAO.class);
@@ -99,7 +97,8 @@ public class LabService {
         return response;
     }
 
-    public static ArrayList<Lab> getAllLabs() {
+    @Override
+    public ArrayList<Lab> getAllEntities() {
         ArrayList<Lab> list = new ArrayList<Lab>();
         try (SqlSession session = sqlSessionFactory.openSession()) {
             ILabDAO labDAO = session.getMapper(ILabDAO.class);
@@ -109,5 +108,10 @@ public class LabService {
             LOGGER.info("SQLException trying to get all labs");
         }
         return list;
+    }
+
+    @Override
+    public Lab getEntityByResearchId(int id) {
+        return null;
     }
 }

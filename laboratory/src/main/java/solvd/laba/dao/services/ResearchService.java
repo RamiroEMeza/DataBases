@@ -3,9 +3,9 @@ package solvd.laba.dao.services;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import solvd.laba.dao.IResearchDAO;
-import solvd.laba.dao.mysql.LabDAO;
-import solvd.laba.dao.mysql.ResearchDAO;
-import solvd.laba.dao.mysql.SubjectDAO;
+import solvd.laba.dao.jdbc.impl.LabDAO;
+import solvd.laba.dao.jdbc.impl.ResearchDAO;
+import solvd.laba.dao.jdbc.impl.SubjectDAO;
 import solvd.laba.entities.research.Research;
 
 import java.sql.SQLException;

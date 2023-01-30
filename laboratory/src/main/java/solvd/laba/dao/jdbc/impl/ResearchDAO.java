@@ -1,4 +1,4 @@
-package solvd.laba.dao.mysql;
+package solvd.laba.dao.jdbc.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,7 +31,7 @@ public class ResearchDAO extends MySQLDAO implements IResearchDAO {
 
     @Override
     public Research getEntityById(int id) {
-        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_RESEARCH)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(GET_RESEARCH)) {
             ResultSet resultSet = null;
             ps.setInt(1, id);
             resultSet = ps.executeQuery();
@@ -53,7 +53,7 @@ public class ResearchDAO extends MySQLDAO implements IResearchDAO {
 
     @Override
     public ArrayList<Research> getAllEntities() {
-        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_ALL_RESEARCH)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(GET_ALL_RESEARCH)) {
             ResultSet resultSet = null;
             resultSet = ps.executeQuery();
             ArrayList<Research> result = new ArrayList<Research>();
@@ -78,7 +78,7 @@ public class ResearchDAO extends MySQLDAO implements IResearchDAO {
     @Override
     public void updateEntity(Research entity) {
         if (entity.getId() > 0) {
-            try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_RESEARCH)) {
+            try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_RESEARCH)) {
                 ps.setString(1, entity.getName());
                 ps.setString(2, String.valueOf(entity.getStart()));
                 ps.setInt(3, entity.getBudget());
@@ -95,7 +95,7 @@ public class ResearchDAO extends MySQLDAO implements IResearchDAO {
 
     @Override
     public void createEntity(Research entity) {
-        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_RESEARCH)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_RESEARCH)) {
             ps.setString(1, entity.getName());
             ps.setString(2, String.valueOf(entity.getStart()));
             ps.setInt(3, entity.getBudget());
@@ -110,7 +110,7 @@ public class ResearchDAO extends MySQLDAO implements IResearchDAO {
 
     @Override
     public void removeEntity(int id) {
-        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(DELETE_RESEARCH)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(DELETE_RESEARCH)) {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {

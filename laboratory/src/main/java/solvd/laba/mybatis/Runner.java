@@ -1,17 +1,11 @@
 package solvd.laba.mybatis;
 
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import solvd.laba.dao.ILabDAO;
 import solvd.laba.entities.facilities.Lab;
 import solvd.laba.mybatis.impl.LabService;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -19,15 +13,20 @@ public class Runner {
     private final static Logger LOGGER = LogManager.getLogger(Runner.class);
 
     public static void main(String[] args) throws IOException, SQLException, InterruptedException {
-        Lab labToUpdate = LabService.getLab(6);
+        //ILabDAO is the interface that is implemented by MyBatis
+        //LabService is a class that allows me to use the MyBatis implementation and have a clean Runner main
+
+        LabService labService = new LabService();
+        Lab labToUpdate = labService.getEntityById(6);
         LOGGER.info(labToUpdate);
         labToUpdate.setCapacity(9);
         labToUpdate.setComplexity(9);
-        LabService.updateLab(labToUpdate);
-        //LabService.deleteLab(7);
-        LabService.printAllLabs();
-        LabService.insertLab(new Lab(1, 1));
-        ArrayList<Lab> labsList = LabService.getAllLabs();
+        labService.updateEntity(labToUpdate);
+        //LabService.deleteLab(8);
+        ArrayList<Lab> labsList = labService.getAllEntities();
+        labsList.forEach(LOGGER::info);
+        labService.createEntity(new Lab(1, 1));
+        labsList = labService.getAllEntities();
         labsList.forEach(LOGGER::info);
     }
 

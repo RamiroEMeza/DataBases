@@ -1,4 +1,4 @@
-package solvd.laba.dao.mysql;
+package solvd.laba.dao.jdbc.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

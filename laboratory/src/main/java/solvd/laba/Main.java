@@ -2,10 +2,10 @@ package solvd.laba;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import solvd.laba.dao.mysql.AssistantDAO;
-import solvd.laba.dao.mysql.EquipmentDAO;
-import solvd.laba.dao.mysql.LabDAO;
-import solvd.laba.dao.mysql.ScientistDAO;
+import solvd.laba.dao.jdbc.impl.AssistantDAO;
+import solvd.laba.dao.jdbc.impl.EquipmentDAO;
+import solvd.laba.dao.jdbc.impl.LabDAO;
+import solvd.laba.dao.jdbc.impl.ScientistDAO;
 import solvd.laba.dao.services.ScientistService;
 import solvd.laba.dao.services.ResearchService;
 import solvd.laba.entities.members.Assistant;
