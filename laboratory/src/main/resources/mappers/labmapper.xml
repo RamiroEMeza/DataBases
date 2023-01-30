@@ -20,6 +20,12 @@
         WHERE id = #{id}
     </update>
 
+    <delete id="removeEntity">
+        DELETE
+        FROM Labs
+        WHERE id = #{id}
+    </delete>
+
     <select id="getEntityById" resultMap="labResultMap">
         SELECT
         <include refid="body"/>

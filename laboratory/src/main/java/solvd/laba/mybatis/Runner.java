@@ -55,17 +55,32 @@ public class Runner {
 
         try (SqlSession session = sqlSessionFactory.openSession()) {
             ILabDAO labDAO = session.getMapper(ILabDAO.class);
+            insertLab(session, labDAO);
             Lab labToUpdate = labDAO.getEntityById(6);
             labToUpdate.setComplexity(4);
             labToUpdate.setCapacity(4);
 
             updateLab(labToUpdate, session, labDAO);
-            printAllLabs(session, labDAO);
 
-            //insertLab(9, 9, session, labDAO);
+            printAllLabs(labDAO);
+
+            deleteLab(labDAO, 7);
+
+            printAllLabs(labDAO);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static void deleteLab(ILabDAO labDAO, int id) {
+        if (id > 0) {
+            try {
+                labDAO.removeEntity(id);
+                LOGGER.info("Lab Deleting finish successfully");
+            } catch (Exception e) {
+                LOGGER.info("Error Deleting Lab");
+            }
         }
     }
 
@@ -83,14 +98,14 @@ public class Runner {
         //UPDATE ENTITY EXAMPLE--------------------
     }
 
-    private static void printAllLabs(SqlSession session, ILabDAO labDAO) throws SQLException {
+    private static void printAllLabs(ILabDAO labDAO) throws SQLException {
         //SELECT ALL ENTITY EXAMPLE--------------------
         ArrayList<Lab> allLabs = labDAO.getAllEntities();
         allLabs.forEach(LOGGER::info);
         //SELECT ALL ENTITY EXAMPLE--------------------
     }
 
-    private static void insertLab(int capacity, int complexity, SqlSession session, ILabDAO labDAO) {
+    private static void insertLab(SqlSession session, ILabDAO labDAO) {
         //INSERT ENTITY EXAMPLE--------------------
         LOGGER.info("Create and insert lab");
         try {
