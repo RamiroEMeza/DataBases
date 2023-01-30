@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="solvd.laba.dao.IScientistDAO">
+    <sql id="body">
+            (s.id)
+            as scientist_id
+            ,
+        s.name as scientist_name,
+        s.lastname as scientist_lastname,
+        s.nationality as scientist_nationality,
+        s.age as scientist_age
+    </sql>
+
+    <select id="getEntityById" resultMap="scientistResultMap">
+        SELECT
+        <include refid="body"/>
+        FROM Scientists s
+        WHERE id=#{id}
+    </select>
+
+    <select id="getAllEntities" resultMap="scientistResultMap">
+        SELECT
+        <include refid="body"/>
+        FROM Scientists s
+    </select>
+
+    <resultMap id="scientistResultMap" type="solvd.laba.entities.members.Scientist" autoMapping="false">
+        <id column="scientist_id" property="id"/>
+        <result column="scientist_name" property="name"/>
+        <result column="scientist_lastname" property="lastname"/>
+        <result column="scientist_nationality" property="nationality"/>
+        <result column="scientist_age" property="age"/>
+        <collection property="assistants" resultMap="solvd.laba.dao.IAssistantDAO.assistantResultMap"/>
+    </resultMap>
+</mapper>

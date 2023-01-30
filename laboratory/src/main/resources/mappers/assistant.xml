@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="solvd.laba.dao.IAssistantDAO">
+    <sql id="body">
+            (a.id)
+            as assistant_id
+            ,
+        a.name as assistant_name,
+        a.lastname as assistant_lastname,
+        a.nationality as assistant_nationality,
+        a.age as assistant_age
+    </sql>
+
+    <select id="getEntityById" resultMap="assistantResultMap">
+        SELECT
+        <include refid="body"/>
+        FROM assistants a
+        WHERE id=#{id}
+    </select>
+
+    <select id="getEntityByScientistId" resultMap="assistantResultMap">
+        SELECT
+        <include refid="body"/>
+        FROM assistants a
+        WHERE Scientist_id=#{id}
+    </select>
+
+
+    <resultMap id="assistantResultMap" type="solvd.laba.entities.members.Assistant" autoMapping="false">
+        <id column="assistant_id" property="id"/>
+        <result column="assistant_name" property="name"/>
+        <result column="assistant_lastname" property="lastname"/>
+        <result column="assistant_nationality" property="nationality"/>
+        <result column="assistant_age" property="age"/>
+    </resultMap>
+</mapper>

@@ -11,11 +11,11 @@ public class Person {
     @JsonProperty("name")
     protected String name;
     @JsonProperty("lastName")
-    protected String lastName;
+    protected String lastname;
 
     Person(String name, String lastName) {
         this.name = name;
-        this.lastName = lastName;
+        this.lastname = lastName;
     }
 
     public String getName() {
@@ -28,12 +28,12 @@ public class Person {
     }
 
     public String getLastName() {
-        return lastName;
+        return lastname;
     }
 
     @XmlElement(name = "lastname")
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastname = lastName;
     }
 
     public int getId() {

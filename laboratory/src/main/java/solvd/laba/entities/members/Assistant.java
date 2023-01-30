@@ -48,7 +48,7 @@ public class Assistant extends Person {
         return "Assistant{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", lastName='" + lastname + '\'' +
                 ", nationality='" + nationality + '\'' +
                 ", age=" + age +
                 '}';

@@ -19,8 +19,9 @@
     </environments>
 
     <mappers>
-        <mapper resource="mappers/labmapper.xml"/>
-
+        <mapper resource="mappers/lab.xml"/>
+        <mapper resource="mappers/assistant.xml"/>
+        <mapper resource="mappers/scientist.xml"/>
     </mappers>
 
 </configuration>

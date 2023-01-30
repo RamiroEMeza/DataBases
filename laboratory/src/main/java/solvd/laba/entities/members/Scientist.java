@@ -86,7 +86,7 @@ public class Scientist extends Person {
         StringBuilder result = new StringBuilder("Scientist{" +
                 "\nid=" + id +
                 "\nname='" + name + '\'' +
-                "\nlastName='" + lastName + '\'' +
+                "\nlastName='" + lastname + '\'' +
                 "\nnationality='" + nationality + '\'' +
                 "\nage=" + age +
                 "\nAssistants=[");
