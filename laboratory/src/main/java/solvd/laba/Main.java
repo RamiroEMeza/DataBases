@@ -6,11 +6,10 @@ import solvd.laba.dao.mysql.AssistantDAO;
 import solvd.laba.dao.mysql.EquipmentDAO;
 import solvd.laba.dao.mysql.LabDAO;
 import solvd.laba.dao.mysql.ScientistDAO;
-import solvd.laba.dao.services.ScientistServiceDAO;
-import solvd.laba.dao.services.ResearchServiceDAO;
+import solvd.laba.dao.services.ScientistService;
+import solvd.laba.dao.services.ResearchService;
 import solvd.laba.entities.members.Assistant;
 import solvd.laba.entities.members.Scientist;
-import solvd.laba.entities.research.Research;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,10 +23,10 @@ public class Main {
         LabDAO labDAO = new LabDAO();
         ScientistDAO scientistDAO = new ScientistDAO();
         AssistantDAO assistantDAO = new AssistantDAO();
-        ResearchServiceDAO researchServiceDAO = new ResearchServiceDAO();
-        ScientistServiceDAO scientistServiceDAO = new ScientistServiceDAO();
+        ResearchService researchService = new ResearchService();
+        ScientistService ScientistService = new ScientistService();
 
-        ArrayList<Scientist> allScientist = scientistServiceDAO.getAllEntities();
+        ArrayList<Scientist> allScientist = ScientistService.getAllEntities();
         allScientist.forEach(LOGGER::info);
         LOGGER.info("\n");
         ArrayList<Assistant> allAssistant = assistantDAO.getAllEntities();

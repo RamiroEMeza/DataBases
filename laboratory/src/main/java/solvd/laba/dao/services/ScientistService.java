@@ -9,8 +9,8 @@ import solvd.laba.entities.members.Scientist;
 
 import java.util.ArrayList;
 
-public class ScientistServiceDAO implements IScientistDAO {
-    private final static Logger LOGGER = LogManager.getLogger(ScientistServiceDAO.class);
+public class ScientistService implements IScientistDAO {
+    private final static Logger LOGGER = LogManager.getLogger(ScientistService.class);
     private AssistantDAO assistantDAO = new AssistantDAO();
     private ScientistDAO scientistDAO = new ScientistDAO();
 

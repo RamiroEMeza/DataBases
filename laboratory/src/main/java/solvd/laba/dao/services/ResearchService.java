@@ -11,10 +11,10 @@ import solvd.laba.entities.research.Research;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ResearchServiceDAO implements IResearchDAO {
-    private final static Logger LOGGER = LogManager.getLogger(ResearchServiceDAO.class);
+public class ResearchService implements IResearchDAO {
+    private final static Logger LOGGER = LogManager.getLogger(ResearchService.class);
     private LabDAO labDAO = new LabDAO();
-    private ScientistServiceDAO scientistServiceDAO = new ScientistServiceDAO();
+    private ScientistService scientistServiceDAO = new ScientistService();
     private ResearchDAO researchDAO = new ResearchDAO();
     private SubjectDAO subjectDAO = new SubjectDAO();
 

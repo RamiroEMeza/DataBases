@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="solvd.laba.dao.ILabDAO">
+    <sql id="body">
+            (l.id)
+            as lab_id,
+        l.capacity as lab_capacity,
+        l.complexity as lab_complexity
+    </sql>
+
+    <insert id="createEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO Labs (capacity, complexity)
+        VALUES (#{capacity}, #{complexity})
+    </insert>
+
+    <update id="updateEntity">
+        UPDATE Labs
+        SET capacity=#{capacity},
+            complexity=#{complexity}
+        WHERE id = #{id}
+    </update>
+
+    <select id="getEntityById" resultMap="labResultMap">
+        SELECT
+        <include refid="body"/>
+        FROM Labs l
+        WHERE id=#{id}
+    </select>
+
+    <select id="getAllEntities" resultMap="labResultMap">
+        SELECT
+        <include refid="body"/>
+        FROM Labs l
+    </select>
+
+    <resultMap id="labResultMap" type="solvd.laba.entities.facilities.Lab" autoMapping="false">
+        <id column="lab_id" property="id"/>
+        <result column="lab_capacity" property="capacity"/>
+        <result column="lab_complexity" property="complexity"/>
+    </resultMap>
+</mapper>
