@@ -43,9 +43,19 @@
         <!--                    ofType="solvd.laba.entities.members.Assistant">-->
         <!--            <id column="assistant_id" property="id"/>-->
         <!--            <result column="assistant_name" property="name"/>-->
-        <!--            <result column="assistant_lastname" property="name"/>-->
-        <!--            <result column="assistant_nationality" property="name"/>-->
-        <!--            <result column="assistant_age" property="name"/>-->
+        <!--            <result column="assistant_lastname" property="lastname"/>-->
+        <!--            <result column="assistant_nationality" property="nationality"/>-->
+        <!--            <result column="assistant_age" property="age"/>-->
         <!--        </collection>-->
+        <!--        <collection property="assistants" javaType="ArrayList"-->
+        <!--                    resultMap="assistantResultMap"/>-->
     </resultMap>
+
+    <!--    <resultMap id="assistantResultMap" type="solvd.laba.entities.members.Assistant" autoMapping="false">-->
+    <!--        <id column="assistant_id" property="id"/>-->
+    <!--        <result column="assistant_name" property="name"/>-->
+    <!--        <result column="assistant_lastname" property="lastname"/>-->
+    <!--        <result column="assistant_nationality" property="nationality"/>-->
+    <!--        <result column="assistant_age" property="age"/>-->
+    <!--    </resultMap>-->
 </mapper>

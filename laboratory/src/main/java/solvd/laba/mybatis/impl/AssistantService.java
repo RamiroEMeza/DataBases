@@ -31,18 +31,6 @@ public class AssistantService {
         }
     }
 
-
-    public void printAllScientists() throws SQLException {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            IAssistantDAO assistantDAO = session.getMapper(IAssistantDAO.class);
-            ArrayList<Assistant> allAssistant = assistantDAO.getAllEntities();
-            allAssistant.forEach(LOGGER::info);
-            LOGGER.info("All Assistants printed successfully");
-        } catch (Exception e) {
-            LOGGER.info("Something went wrong wile printing all Assistants");
-        }
-    }
-
     public ArrayList<Assistant> getAllEntities() {
         ArrayList<Assistant> list = new ArrayList<Assistant>();
         try (SqlSession session = sqlSessionFactory.openSession()) {
@@ -51,6 +39,16 @@ public class AssistantService {
             LOGGER.info("Get all Assistants finish successfully");
         } catch (SQLException e) {
             LOGGER.info("SQLException trying to get all Assistants");
+        }
+        return list;
+    }
+
+    public ArrayList<Assistant> getEntityByScientistId(int id) {
+        ArrayList<Assistant> list = new ArrayList<Assistant>();
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            IAssistantDAO assistantDAO = session.getMapper(IAssistantDAO.class);
+            list = assistantDAO.getEntityByScientistId(id);
+            LOGGER.info("Get all Assistants finish successfully");
         }
         return list;
     }

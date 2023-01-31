@@ -44,10 +44,15 @@ public class Runner {
         //CREATING AN Entity--------------------
 
         ScientistService scientistService = new ScientistService();
-        scientistService.printAllScientists();
+        ArrayList<Scientist> scientistArrayList = scientistService.getAllEntities();
+        scientistArrayList.forEach(LOGGER::info);
         AssistantService assistantService = new AssistantService();
         ArrayList<Assistant> assistantList = assistantService.getAllEntities();
-        //assistantList.forEach(LOGGER::info);
+        LOGGER.info("All Assistants:");
+        assistantList.forEach(LOGGER::info);
+        assistantList = assistantService.getEntityByScientistId(1);
+        LOGGER.info("Assistants of Scientist with id=1:");
+        assistantList.forEach(LOGGER::info);
 
     }
 

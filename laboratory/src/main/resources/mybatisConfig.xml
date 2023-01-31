@@ -22,6 +22,7 @@
         <mapper resource="mappers/lab.xml"/>
         <mapper resource="mappers/assistant.xml"/>
         <mapper resource="mappers/scientist.xml"/>
+        <mapper resource="mappers/subject.xml"/>
     </mappers>
 
 </configuration>

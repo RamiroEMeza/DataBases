@@ -6,9 +6,11 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import solvd.laba.dao.IAssistantDAO;
 import solvd.laba.dao.ILabDAO;
 import solvd.laba.dao.IScientistDAO;
 import solvd.laba.entities.facilities.Lab;
+import solvd.laba.entities.members.Assistant;
 import solvd.laba.entities.members.Scientist;
 
 import java.io.IOException;
@@ -30,16 +32,18 @@ public class ScientistService {
         }
     }
 
-
-    public void printAllScientists() throws SQLException {
+    public ArrayList<Scientist> getAllEntities() {
+        ArrayList<Scientist> list = new ArrayList<Scientist>();
         try (SqlSession session = sqlSessionFactory.openSession()) {
             IScientistDAO scientistDAO = session.getMapper(IScientistDAO.class);
-            ArrayList<Scientist> allScientists = scientistDAO.getAllEntities();
-            allScientists.forEach(LOGGER::info);
-            LOGGER.info("All Scientists printed successfully");
-        } catch (Exception e) {
-            LOGGER.info("Something went wrong wile printing all Scientists");
+            list = scientistDAO.getAllEntities();
+            IAssistantDAO assistantDao = session.getMapper(IAssistantDAO.class);
+            list.forEach(s -> s.setAssistants(assistantDao.getEntityByScientistId(s.getId())));
+            LOGGER.info("Get all Scientist finish successfully");
+        } catch (SQLException e) {
+            LOGGER.info("SQLException trying to get all Scientist");
         }
+        return list;
     }
 
 

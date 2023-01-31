@@ -19,9 +19,10 @@
 
     <select id="getEntityByScientistId" resultMap="assistantResultMap">
         SELECT
-        <include refid="body"/>
+        <include refid="body"/>,
+        a.Scientists_id as assistant_Scientist_id
         FROM Assistants a
-        WHERE Scientist_id=#{id}
+        WHERE a.Scientists_id=#{id}
     </select>
 
     <select id="getAllEntities" resultMap="assistantResultMap">
