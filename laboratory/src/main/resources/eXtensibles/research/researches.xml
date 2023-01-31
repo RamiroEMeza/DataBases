@@ -14,6 +14,20 @@
         <lastname>Moore</lastname>
         <nationality>canadian</nationality>
         <age>41</age>
+        <assistants>
+            <assistant>
+                <name>Broki</name>
+                <lastname>Lee</lastname>
+                <nationality>korean</nationality>
+                <age>20</age>
+            </assistant>
+            <assistant>
+                <name>Auuuu</name>
+                <lastname>UUUU</lastname>
+                <nationality>aAaA</nationality>
+                <age>20</age>
+            </assistant>
+        </assistants>
     </scientist>
     <subjects>
         <subject>

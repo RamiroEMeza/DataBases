@@ -5,17 +5,16 @@
     <lastname>Lee</lastname>
     <nationality>korean</nationality>
     <age>20</age>
-    <scientist id="100">
-        <name>Steve</name>
-        <lastname>Johnson</lastname>
-        <nationality>canadian</nationality>
-        <age>40</age>
-    </scientist>
 </assistant>
-        <!--    <assistant id="101" name="Auuuu" lastname="UUUU" nationality="aAaA" age="20">-->
-        <!--        <scientist id="100" name="Saaaa" lastname="AAAA" nationality="aAaA" age="40"/>-->
-        <!--    </assistant>-->
-        <!--    <assistant id="102" name="Avvv" lastname="VVVV" nationality="aAaA" age="20">-->
-        <!--        <scientist id="101" name="Sbbbb" lastname="BBBB" nationality="bBbB" age="41"/>-->
-        <!--    </assistant>-->
-        <!--</assistants>-->
+        <!--<assistant>-->
+        <!--    <name>Auuuu</name>-->
+        <!--    <lastname>UUUU</lastname>-->
+        <!--    <nationality>aAaA</nationality>-->
+        <!--    <age>20</age>-->
+        <!--</assistant>-->
+        <!--<assistant>-->
+        <!--    <name>Avvv</name>-->
+        <!--    <lastname>VVVV</lastname>-->
+        <!--    <nationality>aAaA</nationality>-->
+        <!--    <age>20</age>-->
+        <!--</assistant>-->
