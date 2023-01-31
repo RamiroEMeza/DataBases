@@ -21,11 +21,11 @@ public class Runner {
         //LabService is a class that allows me to use the MyBatis implementation and have a clean Runner main
         LabService labService = new LabService();
         //UPDATE AN Entity--------------------
-//        Lab labToUpdate = labService.getEntityById(6);
-//        LOGGER.info(labToUpdate);
-//        labToUpdate.setCapacity(9);
-//        labToUpdate.setComplexity(9);
-//        labService.updateEntity(labToUpdate);
+        Lab labToUpdate = labService.getEntityById(6);
+        LOGGER.info(labToUpdate);
+        labToUpdate.setCapacity(9);
+        labToUpdate.setComplexity(9);
+        labService.updateEntity(labToUpdate);
         //UPDATE AN Entity--------------------
 
         //DELETE AN Entity-------------------
@@ -33,14 +33,14 @@ public class Runner {
         //DELETE AN Entity-------------------
 
         //Show all labs--------------------
-//        ArrayList<Lab> labsList = labService.getAllEntities();
-//        labsList.forEach(LOGGER::info);
+        ArrayList<Lab> labsList = labService.getAllEntities();
+        labsList.forEach(LOGGER::info);
         //Show all labs--------------------
 
         //CREATING AN Entity--------------------
-//        labService.createEntity(new Lab(1, 1));
-//        labsList = labService.getAllEntities();
-//        labsList.forEach(LOGGER::info);
+        labService.createEntity(new Lab(1, 1));
+        labsList = labService.getAllEntities();
+        labsList.forEach(LOGGER::info);
         //CREATING AN Entity--------------------
 
         ScientistService scientistService = new ScientistService();
