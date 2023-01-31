@@ -3,7 +3,9 @@ package solvd.laba.mybatis;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import solvd.laba.entities.facilities.Lab;
+import solvd.laba.entities.members.Assistant;
 import solvd.laba.entities.members.Scientist;
+import solvd.laba.mybatis.impl.AssistantService;
 import solvd.laba.mybatis.impl.LabService;
 import solvd.laba.mybatis.impl.ScientistService;
 
@@ -17,16 +19,24 @@ public class Runner {
     public static void main(String[] args) throws IOException, SQLException, InterruptedException {
         //ILabDAO is the interface that is implemented by MyBatis
         //LabService is a class that allows me to use the MyBatis implementation and have a clean Runner main
-        
-//        LabService labService = new LabService();
+        LabService labService = new LabService();
+        //UPDATE AN Entity--------------------
 //        Lab labToUpdate = labService.getEntityById(6);
 //        LOGGER.info(labToUpdate);
 //        labToUpdate.setCapacity(9);
 //        labToUpdate.setComplexity(9);
 //        labService.updateEntity(labToUpdate);
+        //UPDATE AN Entity--------------------
+
+        //DELETE AN Entity-------------------
 //        //LabService.deleteLab(8);
+        //DELETE AN Entity-------------------
+
+        //Show all labs--------------------
 //        ArrayList<Lab> labsList = labService.getAllEntities();
 //        labsList.forEach(LOGGER::info);
+        //Show all labs--------------------
+
         //CREATING AN Entity--------------------
 //        labService.createEntity(new Lab(1, 1));
 //        labsList = labService.getAllEntities();
@@ -35,7 +45,9 @@ public class Runner {
 
         ScientistService scientistService = new ScientistService();
         scientistService.printAllScientists();
-
+        AssistantService assistantService = new AssistantService();
+        ArrayList<Assistant> assistantList = assistantService.getAllEntities();
+        //assistantList.forEach(LOGGER::info);
 
     }
 

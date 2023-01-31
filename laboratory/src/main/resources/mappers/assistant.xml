@@ -3,8 +3,7 @@
 <mapper namespace="solvd.laba.dao.IAssistantDAO">
     <sql id="body">
             (a.id)
-            as assistant_id
-            ,
+            as assistant_id,
         a.name as assistant_name,
         a.lastname as assistant_lastname,
         a.nationality as assistant_nationality,
@@ -14,15 +13,21 @@
     <select id="getEntityById" resultMap="assistantResultMap">
         SELECT
         <include refid="body"/>
-        FROM assistants a
+        FROM Assistants a
         WHERE id=#{id}
     </select>
 
     <select id="getEntityByScientistId" resultMap="assistantResultMap">
         SELECT
         <include refid="body"/>
-        FROM assistants a
+        FROM Assistants a
         WHERE Scientist_id=#{id}
+    </select>
+
+    <select id="getAllEntities" resultMap="assistantResultMap">
+        SELECT
+        <include refid="body"/>
+        FROM Assistants a
     </select>
 
 

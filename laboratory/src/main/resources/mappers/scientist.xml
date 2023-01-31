@@ -2,8 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="solvd.laba.dao.IScientistDAO">
     <sql id="body">
-            (s.id)
-            as scientist_id
+        s
+        .
+        id
+        as scientist_id
             ,
         s.name as scientist_name,
         s.lastname as scientist_lastname,
@@ -15,13 +17,18 @@
         SELECT
         <include refid="body"/>
         FROM Scientists s
+        LEFT JOIN Assistants a
+        ON s.id=a.Scientists_id
         WHERE id=#{id}
     </select>
 
     <select id="getAllEntities" resultMap="scientistResultMap">
         SELECT
-        <include refid="body"/>
+        <include refid="body"/>,
+        <include refid="solvd.laba.dao.IAssistantDAO.body"/>
         FROM Scientists s
+        LEFT JOIN Assistants a
+        ON s.id = a.Scientists_id
     </select>
 
     <resultMap id="scientistResultMap" type="solvd.laba.entities.members.Scientist" autoMapping="false">
@@ -30,6 +37,15 @@
         <result column="scientist_lastname" property="lastname"/>
         <result column="scientist_nationality" property="nationality"/>
         <result column="scientist_age" property="age"/>
-        <collection property="assistants" resultMap="solvd.laba.dao.IAssistantDAO.assistantResultMap"/>
+        <collection property="assistants" javaType="ArrayList"
+                    resultMap="solvd.laba.dao.IAssistantDAO.assistantResultMap"/>
+        <!--        <collection property="assistants" javaType="ArrayList"-->
+        <!--                    ofType="solvd.laba.entities.members.Assistant">-->
+        <!--            <id column="assistant_id" property="id"/>-->
+        <!--            <result column="assistant_name" property="name"/>-->
+        <!--            <result column="assistant_lastname" property="name"/>-->
+        <!--            <result column="assistant_nationality" property="name"/>-->
+        <!--            <result column="assistant_age" property="name"/>-->
+        <!--        </collection>-->
     </resultMap>
 </mapper>
