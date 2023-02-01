@@ -19,6 +19,7 @@ public class Assistant extends Person {
         this.age = age;
     }
 
+
     public Assistant() {
         super(null, null);
         this.age = 0;
