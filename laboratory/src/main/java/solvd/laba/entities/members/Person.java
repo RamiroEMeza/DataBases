@@ -18,6 +18,12 @@ public class Person {
         this.lastname = lastName;
     }
 
+    public Person(int id, String name, String lastname) {
+        this.id = id;
+        this.name = name;
+        this.lastname = lastname;
+    }
+
     public String getName() {
         return name;
     }
