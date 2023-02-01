@@ -14,13 +14,17 @@ import java.util.ArrayList;
 public class ScientistDAO extends MySQLDAO implements IScientistDAO {
     private final static Logger LOGGER = LogManager.getLogger(ScientistDAO.class);
 
-    private final static String GET_SCIENTIST = "SELECT * FROM Scientists WHERE id=?";
+    private final static String GET_SCIENTIST = "SELECT s.id, s.name, s.lastname, s.nationality, s.age " +
+            "FROM Scientists s WHERE id=?";
 
-    private final static String GET_SCIENTIST_BY_RESEARCH_ID = "SELECT * FROM  Scientists s LEFT JOIN Researchs r " +
+    private final static String GET_SCIENTIST_BY_RESEARCH_ID = "SELECT s.id, s.name, s.lastname, s.nationality, s.age " +
+            "FROM  Scientists s LEFT JOIN Researchs r " +
             "ON s.id=r.Scientists_id " +
             "WHERE r.id=?";
 
-    private final static String GET_ALL_SCIENTIST = "SELECT * FROM Scientists";
+    private final static String GET_ALL_SCIENTIST = "SELECT s.id, s.name, s.lastname, s.nationality, s.age " +
+            "FROM Scientists";
+
     private final static String CREATE_SCIENTIST = "INSERT INTO Scientists (name, lastname, nationality, age) " +
             "VALUES (?, ?, ?, ?)";
     private final static String UPDATE_SCIENTIST = "UPDATE Scientists SET (name=?, lastname=?, nationality=?, age=?) " +
@@ -34,10 +38,11 @@ public class ScientistDAO extends MySQLDAO implements IScientistDAO {
             ps.setInt(1, id);
             resultSet = ps.executeQuery();
             if (resultSet.next()) {
-                Scientist response = new Scientist(resultSet.getString("name"), resultSet.getString("lastname")
-                        , resultSet.getString("nationality"), resultSet.getInt("age"));
-                response.setId(resultSet.getInt("id"));
-                return response;
+                return new Scientist(resultSet.getString("name")
+                        , resultSet.getString("lastname")
+                        , resultSet.getString("nationality")
+                        , resultSet.getInt("age")
+                        , resultSet.getInt("id"));
             }
             return null;
 
@@ -60,6 +65,26 @@ public class ScientistDAO extends MySQLDAO implements IScientistDAO {
                         , resultSet.getInt("id")));
             }
             return result;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Scientist getEntityByResearchId(int id) {
+        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_SCIENTIST_BY_RESEARCH_ID)) {
+            ResultSet resultSet = null;
+            ps.setInt(1, id);
+            resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                return new Scientist(resultSet.getString("name")
+                        , resultSet.getString("lastname")
+                        , resultSet.getString("nationality")
+                        , resultSet.getInt("age")
+                        , resultSet.getInt("id"));
+            }
+            return null;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -98,26 +123,6 @@ public class ScientistDAO extends MySQLDAO implements IScientistDAO {
         try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(DELETE_SCIENTIST)) {
             ps.setInt(1, id);
             ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public Scientist getEntityByResearchId(int id) {
-        try (Connection c = MySQLDAO.getConnection(); PreparedStatement ps = c.prepareStatement(GET_SCIENTIST_BY_RESEARCH_ID)) {
-            ResultSet resultSet = null;
-            ps.setInt(1, id);
-            resultSet = ps.executeQuery();
-            if (resultSet.next()) {
-                return new Scientist(resultSet.getString("name")
-                        , resultSet.getString("lastname")
-                        , resultSet.getString("nationality")
-                        , resultSet.getInt("age")
-                        , resultSet.getInt("id"));
-            }
-            return null;
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

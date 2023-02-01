@@ -182,6 +182,11 @@ public class Research {
             result.append(s.toString()).append(", ");
         }
 
+        for (Equipment e : this.equipments) {
+            result.append("\n");
+            result.append(e.toString()).append(", ");
+        }
+
         result.append("]}");
 
         return result.toString();
