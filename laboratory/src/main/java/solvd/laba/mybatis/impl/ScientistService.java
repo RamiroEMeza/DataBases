@@ -38,10 +38,10 @@ public class ScientistService {
             IScientistDAO scientistDAO = session.getMapper(IScientistDAO.class);
             list = scientistDAO.getAllEntities();//this doesn't get the scientist with its Assistants collections
 
-            /////////MUST DELETE THIS   ↓
-            IAssistantDAO assistantDao = session.getMapper(IAssistantDAO.class);
-            list.forEach(s -> s.setAssistants(assistantDao.getEntityByScientistId(s.getId())));
-            /////////MUST DELETE THIS   ↑
+//            /////////MUST DELETE THIS   ↓
+//            IAssistantDAO assistantDao = session.getMapper(IAssistantDAO.class);
+//            list.forEach(s -> s.setAssistants(assistantDao.getEntityByScientistId(s.getId())));
+//            /////////MUST DELETE THIS   ↑
 
             LOGGER.info("Get all Scientist finish successfully");
         } catch (SQLException e) {

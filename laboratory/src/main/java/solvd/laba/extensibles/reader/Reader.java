@@ -33,20 +33,6 @@ public class Reader {
             XMLEvent e = r.nextEvent();
             if (e.isStartElement()) {
                 StartElement element = e.asStartElement();
-//                if (e.asStartElement().getName().toString().equals("lab")) {
-//                    Lab lab = new Lab();
-//                    Attribute id = element.getAttributeByName(new QName("id"));
-//                    Attribute capacity = element.getAttributeByName(new QName("capacity"));
-//                    Attribute complexity = element.getAttributeByName(new QName("complexity"));
-//                    lab.setId(Integer.parseInt(id.getValue()));
-//                    lab.setCapacity(Integer.parseInt(capacity.getValue()));
-//                    lab.setComplexity(Integer.parseInt(complexity.getValue()));
-//                    LOGGER.info(lab);
-//                } else {
-//                    LOGGER.warn("\nElement isn't a Lab");
-//                }
-
-
                 switch (element.getName().getLocalPart()) {
                     case "lab":
                         Attribute id = element.getAttributeByName(new QName("id"));

@@ -33,7 +33,7 @@
         <result column="scientist_lastname" property="lastname"/>
         <result column="scientist_nationality" property="nationality"/>
         <result column="scientist_age" property="age"/>
-        <collection property="assistants" javaType="ArrayList"
+        <collection property="assistants" ofType="Assistant"
                     resultMap="solvd.laba.dao.IAssistantDAO.assistantResultMap"/>
     </resultMap>
 

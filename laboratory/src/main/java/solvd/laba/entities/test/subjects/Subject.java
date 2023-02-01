@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "subject")
 @JsonIgnoreProperties
 public class Subject {
+    private int id;
     @JsonProperty("species")
     private String species;
     @JsonProperty("age")
@@ -21,6 +22,14 @@ public class Subject {
     private double weight;
 
     public Subject(String species, int age, boolean sex, double weight) {
+        this.species = species;
+        this.age = age;
+        this.sex = sex;
+        this.weight = weight;
+    }
+
+    public Subject(int id, String species, int age, boolean sex, double weight) {
+        this.id = id;
         this.species = species;
         this.age = age;
         this.sex = sex;
@@ -59,6 +68,10 @@ public class Subject {
         return sex;
     }
 
+    public int getSex() {
+        return sex ? 1 : 0;
+    }
+
     @XmlElement(name = "sex")
     public void setSex(boolean sex) {
         this.sex = sex;
@@ -78,6 +91,14 @@ public class Subject {
             weight = 1;
         }
         this.weight = weight;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
