@@ -23,19 +23,11 @@ public class SubjectDAO extends MySQLDAO implements ISubjectDAO {
     private final static String GET_ALL_SUBJECTS = "SELECT t.id, t.species, t.age, t.sex, t.weight, t.Researchs_id" +
             " FROM Test_Subjects";
 
-    private final static String CREATE_SUBJECT_WITHOUT_RESEARCH = "INSERT INTO Test_Subjects " +
-            "(species, age, sex, weight)" +
-            " VALUES (?, ?, ?, ?)";
-
-    private final static String CREATE_SUBJECT_WITH_RESEARCH = "INSERT INTO Test_Subjects " +
-            "(species, age, sex, weight, Research_id)" +
+    private final static String CREATE_SUBJECT = "INSERT INTO Test_Subjects " +
+            "(species, age, sex, weight, Researchs_id)" +
             " VALUES (?, ?, ?, ?, ?)";
 
-    private final static String UPDATE_SUBJECT_WITHOUT_RESEARCH = "UPDATE Test_Subjects SET " +
-            "(species=?, age=?, sex=?, weight=?) " +
-            "WHERE id=?";
-
-    private final static String UPDATE_SUBJECT_WITH_RESEARCH = "UPDATE Test_Subjects SET " +
+    private final static String UPDATE_SUBJECT = "UPDATE Test_Subjects SET " +
             "(species=?, age=?, sex=?, weight=?, Rersearchs_id=?) " +
             "WHERE id=?";
 
@@ -49,7 +41,8 @@ public class SubjectDAO extends MySQLDAO implements ISubjectDAO {
             resultSet = ps.executeQuery();
 
             if (resultSet.next()) {
-                return new Subject(resultSet.getString("species"),
+                return new Subject(resultSet.getInt("id"),
+                        resultSet.getString("species"),
                         resultSet.getInt("age"),
                         (resultSet.getInt("sex") == 1),
                         resultSet.getInt("weight"));
@@ -69,12 +62,11 @@ public class SubjectDAO extends MySQLDAO implements ISubjectDAO {
             resultSet = ps.executeQuery();
             ArrayList<Subject> result = new ArrayList<Subject>();
             while (resultSet.next()) {
-                Subject entity = new Subject();
-                entity.setSpecies(resultSet.getString("species"));
-                entity.setAge(resultSet.getInt("age"));
-                entity.setSex((resultSet.getInt("sex")) == 1);
-                entity.setWeight(resultSet.getInt("weight"));
-                result.add(entity);
+                result.add(new Subject(resultSet.getInt("id"),
+                        resultSet.getString("species"),
+                        resultSet.getInt("age"),
+                        (resultSet.getInt("sex") == 1),
+                        resultSet.getInt("weight")));
             }
             return result;
 
@@ -90,7 +82,8 @@ public class SubjectDAO extends MySQLDAO implements ISubjectDAO {
             resultSet = ps.executeQuery();
             ArrayList<Subject> result = new ArrayList<Subject>();
             while (resultSet.next()) {
-                result.add(new Subject(resultSet.getString("species"),
+                result.add(new Subject(resultSet.getInt("id"),
+                        resultSet.getString("species"),
                         resultSet.getInt("age"),
                         (resultSet.getInt("sex") == 1),
                         resultSet.getInt("weight")));
@@ -103,34 +96,15 @@ public class SubjectDAO extends MySQLDAO implements ISubjectDAO {
 
     @Override
     public void updateEntity(Subject entity) {
-        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_SUBJECT_WITHOUT_RESEARCH)) {
-            ps.setString(1, entity.getSpecies());
-            ps.setInt(2, entity.getAge());
-            ps.setInt(3, entity.getSex());
-            ps.setInt(4, (int) entity.getWeight());
-            ps.setInt(5, entity.getId());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Override
     public void createEntity(Subject entity) {
-        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_SUBJECT_WITHOUT_RESEARCH)) {
-            ps.setString(1, entity.getSpecies());
-            ps.setInt(2, entity.getAge());
-            ps.setInt(3, entity.getSex());
-            ps.setInt(4, (int) entity.getWeight());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Override
     public void createEntitySetingResearch(Subject entity, Research assignedResearch) {
-        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_SUBJECT_WITH_RESEARCH)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_SUBJECT)) {
             ps.setString(1, entity.getSpecies());
             ps.setInt(2, entity.getAge());
             ps.setInt(3, entity.getSex());
@@ -144,7 +118,7 @@ public class SubjectDAO extends MySQLDAO implements ISubjectDAO {
 
     @Override
     public void updateEntitySetingResearch(Subject entity, Research assignedResearch) {
-        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_SUBJECT_WITH_RESEARCH)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_SUBJECT)) {
             ps.setString(1, entity.getSpecies());
             ps.setInt(2, entity.getAge());
             ps.setInt(3, entity.getSex());

@@ -31,7 +31,8 @@ public class LabDAO extends MySQLDAO implements ILabDAO {
             resultSet = ps.executeQuery();
 
             if (resultSet.next()) {
-                return new Lab(resultSet.getInt("id"), resultSet.getInt("capacity"),
+                return new Lab(resultSet.getInt("id"),
+                        resultSet.getInt("capacity"),
                         resultSet.getInt("complexity"));
             }
             return null;
@@ -48,7 +49,8 @@ public class LabDAO extends MySQLDAO implements ILabDAO {
             resultSet = ps.executeQuery();
             ArrayList<Lab> result = new ArrayList<Lab>();
             while (resultSet.next()) {
-                result.add(new Lab(resultSet.getInt("id"), resultSet.getInt("capacity"),
+                result.add(new Lab(resultSet.getInt("id"),
+                        resultSet.getInt("capacity"),
                         resultSet.getInt("complexity")));
             }
             return result;
@@ -99,7 +101,8 @@ public class LabDAO extends MySQLDAO implements ILabDAO {
             resultSet = ps.executeQuery();
 
             if (resultSet.next()) {
-                return new Lab(resultSet.getInt("id"), resultSet.getInt("capacity"),
+                return new Lab(resultSet.getInt("id"),
+                        resultSet.getInt("capacity"),
                         resultSet.getInt("complexity"));
             }
             return null;
