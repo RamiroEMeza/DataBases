@@ -19,10 +19,10 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
             "FROM Assistants a WHERE id=?";
 
     private final static String GET_ALL_ASSISTANT = "SELECT a.id, a.name, a.lastname, a.nationality, a.age" +
-            " FROM Assistants";
+            " FROM Assistants a";
 
     private final static String GET_ALL_ASSISTANT_BY_SCIENTIST_ID = "SELECT a.id, a.name, a.lastname, a.nationality, a.age" +
-            " FROM Assistants WHERE Scientists_id=?";
+            " FROM Assistants a WHERE Scientists_id=?";
 
 
     private final static String CREATE_ASSISTANT = "INSERT INTO Assistants " +

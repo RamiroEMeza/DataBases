@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import solvd.laba.entities.equipment.Equipment;
 import solvd.laba.entities.members.Scientist;
 import solvd.laba.entities.facilities.Lab;
 import solvd.laba.entities.test.subjects.Subject;
@@ -37,7 +38,9 @@ public class Research {
     @XmlElementWrapper(name = "subjects")
     @XmlElement(name = "subject")
     @JsonProperty("testSubjects")
-    private ArrayList<Subject> testSubjects = new ArrayList<Subject>();
+    private ArrayList<Subject> testSubjects = new ArrayList<>();
+
+    private ArrayList<Equipment> equipments = new ArrayList<>();
 
     public Research(String name, LocalDate start, int budget, boolean complete) {
         this.name = name;
@@ -143,6 +146,24 @@ public class Research {
 
     public void setTestSubjects(ArrayList<Subject> testSubjects) {
         this.testSubjects = testSubjects;
+    }
+
+    public ArrayList<Equipment> getEquipments() {
+        return new ArrayList<Equipment>(this.equipments);
+    }
+
+    public void setEquipments(ArrayList<Equipment> equipments) {
+        this.equipments = equipments;
+    }
+
+    public void addEquipment(Equipment equipment) {
+        if (equipment != null && !this.equipments.contains(equipment)) {
+            this.equipments.add(equipment);
+        }
+    }
+
+    public void removeEquipment(Equipment equipment) {
+        this.equipments.remove(equipment);
     }
 
     @Override

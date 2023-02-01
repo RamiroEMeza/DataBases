@@ -13,15 +13,15 @@ import java.util.ArrayList;
 
 public class SubjectDAO extends MySQLDAO implements ISubjectDAO {
     private final static String GET_SUBJECT_BY_RESEARCH_ID = "SELECT t.id, t.species, t.age, t.sex, t.weight, t.Researchs_id" +
-            " FROM  Test_Subjects ts LEFT JOIN Researchs r " +
-            "ON r.id=ts.Researchs_id " +
+            " FROM  Test_Subjects t LEFT JOIN Researchs r " +
+            "ON r.id=t.Researchs_id " +
             "WHERE r.id=?";
 
     private final static String GET_SUBJECT = "SELECT t.id, t.species, t.age, t.sex, t.weight, t.Researchs_id " +
             "FROM Test_Subjects t WHERE id=?";
 
     private final static String GET_ALL_SUBJECTS = "SELECT t.id, t.species, t.age, t.sex, t.weight, t.Researchs_id" +
-            " FROM Test_Subjects";
+            " FROM Test_Subjects t";
 
     private final static String CREATE_SUBJECT = "INSERT INTO Test_Subjects " +
             "(species, age, sex, weight, Researchs_id)" +

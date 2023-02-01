@@ -17,8 +17,12 @@ import java.util.ArrayList;
 public class ResearchDAO extends MySQLDAO implements IResearchDAO {
     private final static Logger LOGGER = LogManager.getLogger(ResearchDAO.class);
 
-    private final static String GET_RESEARCH = "SELECT * FROM Researchs WHERE id=?";
-    private final static String GET_ALL_RESEARCH = "SELECT * FROM Researchs";
+    private final static String GET_RESEARCH = "SELECT r.id, r.name, r.start, r.budget, r.complete" +
+            " FROM Researchs r WHERE id=?";
+
+    private final static String GET_ALL_RESEARCH = "SELECT r.id, r.name, r.start, r.budget, r.complete" +
+            " FROM Researchs r";
+
     private final static String CREATE_RESEARCH = "INSERT INTO Researchs "
             + "(name, start, budget, complete, lab, scientist) "
             + "VALUES (?, ?, ?, ?, ?, ?)";

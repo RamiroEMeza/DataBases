@@ -3,6 +3,7 @@ package solvd.laba.dao.services;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import solvd.laba.dao.IResearchDAO;
+import solvd.laba.dao.jdbc.impl.EquipmentDAO;
 import solvd.laba.dao.jdbc.impl.LabDAO;
 import solvd.laba.dao.jdbc.impl.ResearchDAO;
 import solvd.laba.dao.jdbc.impl.SubjectDAO;
@@ -17,6 +18,7 @@ public class ResearchService implements IResearchDAO {
     private ScientistService scientistServiceDAO = new ScientistService();
     private ResearchDAO researchDAO = new ResearchDAO();
     private SubjectDAO subjectDAO = new SubjectDAO();
+    private EquipmentDAO equipmentDAO = new EquipmentDAO();
 
     @Override
     public Research getEntityById(int id) {
@@ -25,6 +27,7 @@ public class ResearchService implements IResearchDAO {
         result.setLab(labDAO.getEntityByResearchId(id));
         result.setScientist(scientistServiceDAO.getEntityByResearchId(id));
         result.setTestSubjects(subjectDAO.getEntitiesByResearchId(id));
+        result.setEquipments(equipmentDAO.getAssignedEquipmentByResearchId(id));
         return result;
     }
 
@@ -35,6 +38,7 @@ public class ResearchService implements IResearchDAO {
             e.setLab(labDAO.getEntityByResearchId(e.getId()));
             e.setScientist(scientistServiceDAO.getEntityByResearchId(e.getId()));
             e.setTestSubjects(subjectDAO.getEntitiesByResearchId(e.getId()));
+            e.setEquipments(equipmentDAO.getAssignedEquipmentByResearchId(e.getId()));
         });
         return result;
     }

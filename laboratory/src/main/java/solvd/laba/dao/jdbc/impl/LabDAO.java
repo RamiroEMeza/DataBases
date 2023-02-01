@@ -14,11 +14,12 @@ import java.util.ArrayList;
 public class LabDAO extends MySQLDAO implements ILabDAO {
     private final static Logger LOGGER = LogManager.getLogger(LabDAO.class);
 
-    private final static String GET_LAB = "SELECT * FROM Labs WHERE id=?";
-    private final static String GET_LAB_BY_RESEARCH_ID = "SELECT * FROM  Labs l LEFT JOIN Researchs r " +
+    private final static String GET_LAB = "SELECT l.id, l.capacity, l.complexity " +
+            "FROM Labs l WHERE id=?";
+    private final static String GET_LAB_BY_RESEARCH_ID = "SELECT l.id, l.capacity, l.complexity FROM  Labs l LEFT JOIN Researchs r " +
             "ON l.id=r.Labs_id " +
             "WHERE r.id=?";
-    private final static String GET_ALL_LAB = "SELECT * FROM Labs";
+    private final static String GET_ALL_LAB = "SELECT l.id, l.capacity, l.complexity FROM Labs l";
     private final static String CREATE_LAB = "INSERT INTO Labs (capacity, complexity) VALUES (?, ?)";
     private final static String UPDATE_LAB = "UPDATE Labs SET (capacity=?, complexity=?) WHERE id=?";
     private final static String DELETE_LAB = "DELETE FROM Labs WHERE id=?";
