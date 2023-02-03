@@ -22,7 +22,6 @@
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
-                        <xs:attribute name="id" type="xs:positiveInteger"/>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>

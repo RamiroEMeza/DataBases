@@ -34,6 +34,9 @@ public class Validate {
     private static final String SCIENTIST_XSD = "./src/main/resources/eXtensibles/scientist/scientists.xsd";
     private static final String SCIENTIST_XML = "./src/main/resources/eXtensibles/scientist/scientists.xml";
 
+    private static final String SUBJECTS_XSD = "./src/main/resources/eXtensibles/research/subjects.xsd";
+    private static final String SUBJECTS_XML = "./src/main/resources/eXtensibles/research/subjects.xml";
+
     private static Validator initValidator(String xsdPath) throws SAXException {
         SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         Source schemaFile = new StreamSource(getFile(xsdPath));

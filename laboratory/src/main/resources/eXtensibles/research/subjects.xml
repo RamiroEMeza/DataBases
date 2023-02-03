@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<subjects>
+    <subject id="100">
+        <species>Monkey</species>
+        <age>3</age>
+        <sex>1</sex>
+        <weight>28</weight>
+    </subject>
+    <subject id="101">
+        <species>Monkey</species>
+        <age>4</age>
+        <sex>0</sex>
+        <weight>32</weight>
+    </subject>
+    <subject id="102">
+        <species>Monkey</species>
+        <age>3</age>
+        <sex>1</sex>
+        <weight>27</weight>
+    </subject>
+</subjects>
