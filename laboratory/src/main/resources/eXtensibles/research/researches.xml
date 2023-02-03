@@ -15,13 +15,13 @@
         <nationality>canadian</nationality>
         <age>41</age>
         <assistants>
-            <assistant>
+            <assistant id="100">
                 <name>Broki</name>
                 <lastname>Lee</lastname>
                 <nationality>korean</nationality>
                 <age>20</age>
             </assistant>
-            <assistant>
+            <assistant id="101">
                 <name>Auuuu</name>
                 <lastname>UUUU</lastname>
                 <nationality>aAaA</nationality>
@@ -30,19 +30,19 @@
         </assistants>
     </scientist>
     <subjects>
-        <subject>
+        <subject id="100">
             <species>Monkey</species>
             <age>3</age>
             <sex>1</sex>
             <weight>28</weight>
         </subject>
-        <subject>
+        <subject id="101">
             <species>Monkey</species>
             <age>4</age>
             <sex>0</sex>
             <weight>32</weight>
         </subject>
-        <subject>
+        <subject id="102">
             <species>Monkey</species>
             <age>3</age>
             <sex>1</sex>
