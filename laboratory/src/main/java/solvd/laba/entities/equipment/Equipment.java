@@ -1,15 +1,19 @@
 package solvd.laba.entities.equipment;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "equipment")
 @XmlType(propOrder = {"id", "name", "working"})
 public class Equipment {
-    
+    @JsonProperty("id")
     private int id;
-
+    @JsonProperty("name")
     private String name;
-
+    @JsonProperty("working")
     private boolean working;
 
     public Equipment(int id, String name, boolean working) {
@@ -42,11 +46,13 @@ public class Equipment {
         return working;
     }
 
+    @JsonIgnore
     public int getIsWorking() {
         return working ? 1 : 0;
     }
 
     @XmlElement(name = "working")
+    @JsonSetter
     public void setWorking(boolean working) {
         this.working = working;
     }

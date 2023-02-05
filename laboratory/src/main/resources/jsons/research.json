@@ -57,6 +57,23 @@
       "sex": false,
       "weight": 26.0
     }
+  ],
+  "equipments": [
+    {
+      "id": 1,
+      "name": "scale",
+      "working": true
+    },
+    {
+      "id": 2,
+      "name": "scale",
+      "working": true
+    },
+    {
+      "id": 3,
+      "name": "pippet",
+      "working": true
+    }
   ]
 }
 

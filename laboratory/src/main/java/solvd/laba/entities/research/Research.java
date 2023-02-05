@@ -40,6 +40,7 @@ public class Research {
     @JsonProperty("testSubjects")
     private ArrayList<Subject> testSubjects = new ArrayList<>();
 
+    @JsonProperty("equipments")
     private ArrayList<Equipment> equipments = new ArrayList<>();
 
     public Research(String name, LocalDate start, int budget, boolean complete) {
@@ -181,7 +182,7 @@ public class Research {
             result.append("\n");
             result.append(s.toString()).append(", ");
         }
-
+        result.append("\nequipments=[");
         for (Equipment e : this.equipments) {
             result.append("\n");
             result.append(e.toString()).append(", ");
