@@ -29,26 +29,26 @@
             </assistant>
         </assistants>
     </scientist>
-    <subjects>
-        <subject id="100">
-            <species>Monkey</species>
-            <age>3</age>
-            <sex>1</sex>
-            <weight>28</weight>
-        </subject>
-        <subject id="101">
-            <species>Monkey</species>
-            <age>4</age>
-            <sex>0</sex>
-            <weight>32</weight>
-        </subject>
-        <subject id="102">
-            <species>Monkey</species>
-            <age>3</age>
-            <sex>1</sex>
-            <weight>27</weight>
-        </subject>
-    </subjects>
+    <!--    <subjects>-->
+    <!--        <subject id="100">-->
+    <!--            <species>Monkey</species>-->
+    <!--            <age>3</age>-->
+    <!--            <sex>1</sex>-->
+    <!--            <weight>28</weight>-->
+    <!--        </subject>-->
+    <!--        <subject id="101">-->
+    <!--            <species>Monkey</species>-->
+    <!--            <age>4</age>-->
+    <!--            <sex>0</sex>-->
+    <!--            <weight>32</weight>-->
+    <!--        </subject>-->
+    <!--        <subject id="102">-->
+    <!--            <species>Monkey</species>-->
+    <!--            <age>3</age>-->
+    <!--            <sex>1</sex>-->
+    <!--            <weight>27</weight>-->
+    <!--        </subject>-->
+    <!--    </subjects>-->
 </research>
         <!--    <research id="101" name="Rbbb" start="2022-12-01" budget="9000" complete="0">-->
         <!--        <lab id="101" capacity="10" complexity="2"/>-->

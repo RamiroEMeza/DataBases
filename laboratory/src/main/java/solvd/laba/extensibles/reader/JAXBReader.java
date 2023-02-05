@@ -65,21 +65,5 @@ public class JAXBReader {
             e.printStackTrace();
         }
 
-        try {
-            File fileResearch = new File(RESEARCHES_PATH);
-
-            JAXBContext jaxbContextAssistant = JAXBContext.newInstance(Research.class);
-
-            Unmarshaller jaxbUnmarshaller = jaxbContextAssistant.createUnmarshaller();
-            Research r = (Research) jaxbUnmarshaller.unmarshal(fileResearch);
-            LOGGER.info("\n");
-            LOGGER.info(r);
-
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-
-
-        // LOGGER.info(unmarshall());
     }
 }

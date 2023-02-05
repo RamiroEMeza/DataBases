@@ -1,19 +1,14 @@
 package solvd.laba.entities.research;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
 import solvd.laba.entities.equipment.Equipment;
 import solvd.laba.entities.members.Scientist;
 import solvd.laba.entities.facilities.Lab;
 import solvd.laba.entities.test.subjects.Subject;
 import solvd.laba.extensibles.reader.DateAdapter;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -135,6 +130,12 @@ public class Research {
         this.scientist = scientist;
     }
 
+    @XmlElement(name = "subject")
+    public void setTestSubjects(ArrayList<Subject> testSubjects) {
+        this.testSubjects = testSubjects;
+    }
+
+
     public ArrayList<Subject> getTestSubjects() {
         return new ArrayList<Subject>(this.testSubjects);
     }
@@ -143,10 +144,6 @@ public class Research {
         if (testSubjects != null) {
             this.testSubjects.add(testSubjects);
         }
-    }
-
-    public void setTestSubjects(ArrayList<Subject> testSubjects) {
-        this.testSubjects = testSubjects;
     }
 
     public ArrayList<Equipment> getEquipments() {

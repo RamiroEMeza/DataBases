@@ -61,6 +61,17 @@ public class Reader {
         }
     }
 
+
+    public static void main(String[] args) throws IOException, XMLStreamException {
+        LOGGER.info("--------START--------");
+        XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
+        XMLEventReader r = xmlInputFactory.createXMLEventReader(
+                new FileInputStream(LABS_PATH));
+        printAllLabs(r);
+
+        LOGGER.info("--------END MAIN--------");
+    }
+
 //        public static void printAllEquipments(XMLEventReader r) throws XMLStreamException {
 //        while (r.hasNext()) {
 //            XMLEvent e = r.nextEvent();
@@ -196,32 +207,4 @@ public class Reader {
 //    }
 
 
-    public static void main(String[] args) throws IOException, XMLStreamException {
-        LOGGER.info("--------START--------");
-        XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
-        XMLEventReader r = xmlInputFactory.createXMLEventReader(
-                new FileInputStream(LABS_PATH));
-        printAllLabs(r);
-
-//        r = xmlInputFactory.createXMLEventReader(
-//                new FileInputStream(SCIENTISTS_PATH));
-//        printAllScientists(r);
-//
-//
-//        r = xmlInputFactory.createXMLEventReader(
-//                new FileInputStream(EQUIPMENTS_PATH));
-//        printAllEquipments(r);
-
-
-//        r = xmlInputFactory.createXMLEventReader(
-//                new FileInputStream(RESEARCHES_PATH));
-//        printAllResearches(r);
-//
-//
-//        r = xmlInputFactory.createXMLEventReader(
-//                new FileInputStream(ASSISTANTS_PATH));
-//        printAllAssistants(r);
-
-        LOGGER.info("--------END MAIN--------");
-    }
 }
