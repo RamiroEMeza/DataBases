@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public interface IAssistantDAO extends IBaseDAO<Assistant> {
     public ArrayList<Assistant> getEntityByScientistId(int id);
 
-    public void createEntitySetingScientist(Assistant entity, Scientist assignedScientist);
+    public void createEntity(Assistant entity, Scientist assignedScientist);
 
-    public void updateEntitySetingScientist(Assistant entity, Scientist assignedScientist);
+    public void updateEntity(Assistant entity, Scientist assignedScientist);
 }

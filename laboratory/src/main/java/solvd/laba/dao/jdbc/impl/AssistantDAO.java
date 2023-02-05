@@ -43,13 +43,11 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
             ps.setInt(1, id);
             resultSet = ps.executeQuery();
             if (resultSet.next()) {
-                Assistant response = new Assistant();
-                response.setId(resultSet.getInt("id"));
-                response.setName(resultSet.getString("name"));
-                response.setLastName(resultSet.getString("lastname"));
-                response.setNationality(resultSet.getString("nationality"));
-                response.setAge(resultSet.getInt("age"));
-                return response;
+                return new Assistant(resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("lastname"),
+                        resultSet.getString("nationality"),
+                        resultSet.getInt("age"));
             }
             return null;
 
@@ -65,12 +63,11 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
             resultSet = ps.executeQuery();
             ArrayList<Assistant> result = new ArrayList<Assistant>();
             while (resultSet.next()) {
-                Assistant entity = new Assistant();
-                entity.setId(resultSet.getInt("id"));
-                entity.setName(resultSet.getString("name"));
-                entity.setLastName(resultSet.getString("lastname"));
-                entity.setNationality(resultSet.getString("nationality"));
-                entity.setAge(resultSet.getInt("age"));
+                Assistant entity = new Assistant(resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("lastname"),
+                        resultSet.getString("nationality"),
+                        resultSet.getInt("age"));
                 result.add(entity);
             }
             return result;
@@ -88,12 +85,11 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
             resultSet = ps.executeQuery();
             ArrayList<Assistant> result = new ArrayList<Assistant>();
             while (resultSet.next()) {
-                Assistant entity = new Assistant();
-                entity.setId(resultSet.getInt("id"));
-                entity.setName(resultSet.getString("name"));
-                entity.setLastName(resultSet.getString("lastname"));
-                entity.setNationality(resultSet.getString("nationality"));
-                entity.setAge(resultSet.getInt("age"));
+                Assistant entity = new Assistant(resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("lastname"),
+                        resultSet.getString("nationality"),
+                        resultSet.getInt("age"));
                 result.add(entity);
             }
             return result;
@@ -120,7 +116,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
     }
 
     @Override
-    public void updateEntitySetingScientist(Assistant entity, Scientist assignedScientist) {
+    public void updateEntity(Assistant entity, Scientist assignedScientist) {
         if (entity.getId() > 0) {
             try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_ASSISTANT_WITH_SCIENTIST)) {
                 ps.setString(1, entity.getName());
@@ -136,12 +132,22 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
         }
     }
 
-    @Override//name, lastname, nationality, age, Scientists_id
+    @Override
     public void createEntity(Assistant entity) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_ASSISTANT)) {
+            ps.setString(1, entity.getName());
+            ps.setString(2, entity.getLastName());
+            ps.setString(3, entity.getNationality());
+            ps.setInt(4, entity.getAge());
+            ps.setInt(5, 0);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public void createEntitySetingScientist(Assistant entity, Scientist assignedScientist) {
+    public void createEntity(Assistant entity, Scientist assignedScientist) {
         try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_ASSISTANT)) {
             ps.setString(1, entity.getName());
             ps.setString(2, entity.getLastName());

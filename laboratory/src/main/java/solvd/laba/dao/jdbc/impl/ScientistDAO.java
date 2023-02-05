@@ -14,15 +14,15 @@ import java.util.ArrayList;
 public class ScientistDAO extends MySQLDAO implements IScientistDAO {
     private final static Logger LOGGER = LogManager.getLogger(ScientistDAO.class);
 
-    private final static String GET_SCIENTIST = "SELECT s.id, s.name, s.lastname, s.nationality, s.age " +
-            "FROM Scientists s WHERE id=?";
+    private final static String GET_SCIENTIST = "SELECT id, name, lastname, nationality, age " +
+            "FROM Scientists WHERE id=?";
 
     private final static String GET_SCIENTIST_BY_RESEARCH_ID = "SELECT s.id, s.name, s.lastname, s.nationality, s.age " +
             "FROM  Scientists s LEFT JOIN Researchs r " +
             "ON s.id=r.Scientists_id " +
             "WHERE r.id=?";
 
-    private final static String GET_ALL_SCIENTIST = "SELECT s.id, s.name, s.lastname, s.nationality, s.age " +
+    private final static String GET_ALL_SCIENTIST = "SELECT id, name, lastname, nationality, age " +
             "FROM Scientists";
 
     private final static String CREATE_SCIENTIST = "INSERT INTO Scientists (name, lastname, nationality, age) " +

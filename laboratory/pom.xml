@@ -133,6 +133,36 @@
                                 <mainClass>com.solvd.laba.Main</mainClass>
                             </configuration>
                         </execution>
+                        <execution>
+                            <id>xml-reader</id>
+                            <configuration>
+                                <mainClass>com.solvd.laba.extensibles.reader.Reader</mainClass>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>xml-jaxb-reader</id>
+                            <configuration>
+                                <mainClass>com.solvd.laba.extensibles.reader.JAXBReader</mainClass>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>xml-validate</id>
+                            <configuration>
+                                <mainClass>com.solvd.laba.extensibles.reader.Validate</mainClass>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>json-reader</id>
+                            <configuration>
+                                <mainClass>com.solvd.laba.jsons.reader.Reader</mainClass>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>mybatis-dao</id>
+                            <configuration>
+                                <mainClass>com.solvd.laba.mybatis.Runner</mainClass>
+                            </configuration>
+                        </execution>
                     </executions>
                 </plugin>
             </plugins>

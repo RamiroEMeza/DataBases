@@ -1,12 +1,24 @@
 package solvd.laba.entities.members;
 
-public class Administrative extends Person {
+import solvd.laba.entities.resource.Resource;
 
-    Administrative(String name, String lastName) {
-        super(name, lastName);
+public class Administrative extends Person {
+    private Resource resource;
+
+    public Administrative(int id, String name, String lastname, Resource resource) {
+        super(id, name, lastname);
+        this.resource = resource;
     }
 
     public Administrative(int id, String name, String lastname) {
         super(id, name, lastname);
+    }
+
+    public Resource getResource() {
+        return resource;
+    }
+
+    public void setResource(Resource resource) {
+        this.resource = resource;
     }
 }

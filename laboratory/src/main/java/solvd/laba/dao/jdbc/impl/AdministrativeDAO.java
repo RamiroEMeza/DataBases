@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import solvd.laba.dao.IAdministrativeDAO;
 import solvd.laba.entities.members.Administrative;
 import solvd.laba.entities.resource.Resource;
-import solvd.laba.entities.test.subjects.Subject;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -68,14 +67,6 @@ public class AdministrativeDAO extends MySQLDAO implements IAdministrativeDAO {
     }
 
     @Override
-    public void updateEntity(Administrative entity) {
-    }
-
-    @Override
-    public void createEntity(Administrative entity) {
-    }
-
-    @Override
     public void removeEntity(int id) {
         try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(DELETE_ADMINISTRATIVE)) {
             ps.setInt(1, id);
@@ -86,11 +77,11 @@ public class AdministrativeDAO extends MySQLDAO implements IAdministrativeDAO {
     }
 
     @Override
-    public void createEntitySetingResource(Administrative entity, Resource resource) {
+    public void createEntity(Administrative entity) {
         try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_ADMINISTRATIVE)) {
             ps.setString(1, entity.getName());
             ps.setString(2, entity.getLastName());
-            ps.setInt(3, resource.getId());
+            ps.setInt(3, entity.getResource().getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -98,15 +89,16 @@ public class AdministrativeDAO extends MySQLDAO implements IAdministrativeDAO {
     }
 
     @Override
-    public void updateEntitySetingResource(Administrative entity, Resource resource) {
+    public void updateEntity(Administrative entity) {
         try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_ADMINISTRATIVE)) {
             ps.setString(1, entity.getName());
             ps.setString(2, entity.getLastName());
-            ps.setInt(3, resource.getId());
+            ps.setInt(3, entity.getResource().getId());
             ps.setInt(4, entity.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 }
