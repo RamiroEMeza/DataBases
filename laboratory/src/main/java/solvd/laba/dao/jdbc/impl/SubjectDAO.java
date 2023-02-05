@@ -31,6 +31,10 @@ public class SubjectDAO extends MySQLDAO implements ISubjectDAO {
             "(species=?, age=?, sex=?, weight=?, Rersearchs_id=?) " +
             "WHERE id=?";
 
+    private final static String UPDATE_SUBJECT_WITHOUT_RESEARCH = "UPDATE Test_Subjects SET " +
+            "(species=?, age=?, sex=?, weight=?) " +
+            "WHERE id=?";
+
     private final static String DELETE_SUBJECT = "DELETE FROM Test_Subjects WHERE id=?";
 
     @Override
@@ -96,20 +100,12 @@ public class SubjectDAO extends MySQLDAO implements ISubjectDAO {
 
     @Override
     public void updateEntity(Subject entity) {
-    }
-
-    @Override
-    public void createEntity(Subject entity) {
-    }
-
-    @Override
-    public void createEntitySetingResearch(Subject entity, Research assignedResearch) {
-        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_SUBJECT)) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_SUBJECT_WITHOUT_RESEARCH)) {
             ps.setString(1, entity.getSpecies());
             ps.setInt(2, entity.getAge());
             ps.setInt(3, entity.getSex());
             ps.setInt(4, (int) entity.getWeight());
-            ps.setInt(3, assignedResearch.getId());
+            ps.setInt(5, entity.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -117,13 +113,41 @@ public class SubjectDAO extends MySQLDAO implements ISubjectDAO {
     }
 
     @Override
-    public void updateEntitySetingResearch(Subject entity, Research assignedResearch) {
+    public void createEntity(Subject entity) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_SUBJECT)) {
+            ps.setString(1, entity.getSpecies());
+            ps.setInt(2, entity.getAge());
+            ps.setInt(3, entity.getSex());
+            ps.setInt(4, (int) entity.getWeight());
+            ps.setInt(5, 0);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void createEntity(Subject entity, Research assignedResearch) {
+        try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(CREATE_SUBJECT)) {
+            ps.setString(1, entity.getSpecies());
+            ps.setInt(2, entity.getAge());
+            ps.setInt(3, entity.getSex());
+            ps.setInt(4, (int) entity.getWeight());
+            ps.setInt(5, assignedResearch.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void updateEntity(Subject entity, Research assignedResearch) {
         try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_SUBJECT)) {
             ps.setString(1, entity.getSpecies());
             ps.setInt(2, entity.getAge());
             ps.setInt(3, entity.getSex());
             ps.setInt(4, (int) entity.getWeight());
-            ps.setInt(6, assignedResearch.getId());
+            ps.setInt(5, assignedResearch.getId());
             ps.setInt(6, entity.getId());
             ps.executeUpdate();
         } catch (SQLException e) {

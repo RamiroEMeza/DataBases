@@ -28,11 +28,11 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
     private final static String CREATE_ASSISTANT = "INSERT INTO Assistants " +
             "(name, lastname, nationality, age, Scientists_id) " + "VALUES (?, ?, ?, ?, ?)";
 
+    private final static String UPDATE_ASSISTANT = "UPDATE Assistants SET " +
+            "(name=?, lastname=?, nationality=?, age=?, Scientists_id=?) " + "WHERE id=?";
+
     private final static String UPDATE_ASSISTANT_WITHOUT_SCIENTIST = "UPDATE Assistants SET " +
             "(name=?, lastname=?, nationality=?, age=?) " + "WHERE id=?";
-
-    private final static String UPDATE_ASSISTANT_WITH_SCIENTIST = "UPDATE Assistants SET " +
-            "(name=?, lastname=?, nationality=?, age=?, Scientists_id=?) " + "WHERE id=?";
 
     private final static String DELETE_ASSISTANT = "DELETE FROM Assistants WHERE id=?";
 
@@ -107,7 +107,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
                 ps.setString(2, entity.getLastName());
                 ps.setString(3, entity.getNationality());
                 ps.setInt(4, entity.getAge());
-                ps.setInt(6, entity.getId());
+                ps.setInt(5, entity.getId());
                 ps.executeUpdate();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -118,7 +118,7 @@ public class AssistantDAO extends MySQLDAO implements IAssistantDAO {
     @Override
     public void updateEntity(Assistant entity, Scientist assignedScientist) {
         if (entity.getId() > 0) {
-            try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_ASSISTANT_WITH_SCIENTIST)) {
+            try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(UPDATE_ASSISTANT)) {
                 ps.setString(1, entity.getName());
                 ps.setString(2, entity.getLastName());
                 ps.setString(3, entity.getNationality());

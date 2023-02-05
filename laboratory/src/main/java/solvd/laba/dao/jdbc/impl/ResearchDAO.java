@@ -87,8 +87,8 @@ public class ResearchDAO extends MySQLDAO implements IResearchDAO {
                 ps.setString(2, String.valueOf(entity.getStart()));
                 ps.setInt(3, entity.getBudget());
                 ps.setInt(4, entity.isComplete() ? 1 : 0);
-                ps.setInt(5, Math.max(entity.getLab().getId(), 0));
-                ps.setInt(6, Math.max(entity.getScientist().getId(), 0));
+                ps.setInt(5, entity.getLab().getId());
+                ps.setInt(6, entity.getScientist().getId());
                 ps.setInt(7, entity.getId());
                 ps.executeUpdate();
             } catch (SQLException e) {
@@ -104,8 +104,8 @@ public class ResearchDAO extends MySQLDAO implements IResearchDAO {
             ps.setString(2, String.valueOf(entity.getStart()));
             ps.setInt(3, entity.getBudget());
             ps.setInt(4, entity.isComplete() ? 1 : 0);
-            ps.setInt(5, Math.max(entity.getLab().getId(), 0));
-            ps.setInt(6, Math.max(entity.getScientist().getId(), 0));
+            ps.setInt(5, entity.getLab().getId());
+            ps.setInt(6, entity.getScientist().getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

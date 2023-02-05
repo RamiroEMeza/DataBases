@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public interface ISubjectDAO extends IBaseDAO<Subject> {
     public ArrayList<Subject> getEntitiesByResearchId(int id);
 
-    public void createEntitySetingResearch(Subject entity, Research assignedResearch);
+    public void createEntity(Subject entity, Research assignedResearch);
 
-    public void updateEntitySetingResearch(Subject entity, Research assignedResearch);
+    public void updateEntity(Subject entity, Research assignedResearch);
 }
