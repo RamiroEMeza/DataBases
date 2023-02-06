@@ -21,4 +21,13 @@ public class Administrative extends Person {
     public void setResource(Resource resource) {
         this.resource = resource;
     }
+
+    @Override
+    public String toString() {
+        return "Administrative{" +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                '}';
+    }
 }

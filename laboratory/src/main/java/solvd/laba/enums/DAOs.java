@@ -1,0 +1,5 @@
+package solvd.laba.enums;
+
+public enum DAOs {
+    ADMINISTRATIVE, ASSISTANT, EQUIPMENT, LAB, RESEARCH, SCIENTIST, SUBJECT, TECHNICAL_SUPPORT
+}

@@ -2,6 +2,7 @@ package solvd.laba.dao.services;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import solvd.laba.dao.IBaseDAO;
 import solvd.laba.dao.IResearchDAO;
 import solvd.laba.dao.jdbc.impl.EquipmentDAO;
 import solvd.laba.dao.jdbc.impl.LabDAO;
@@ -12,7 +13,7 @@ import solvd.laba.entities.research.Research;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ResearchService implements IResearchDAO {
+public class ResearchService implements IBaseDAO<Research> {
     private final static Logger LOGGER = LogManager.getLogger(ResearchService.class);
     private LabDAO labDAO = new LabDAO();
     private ScientistService scientistServiceDAO = new ScientistService();

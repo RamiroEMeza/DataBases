@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import solvd.laba.dao.IAdministrativeDAO;
 import solvd.laba.entities.members.Administrative;
-import solvd.laba.entities.resource.Resource;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
