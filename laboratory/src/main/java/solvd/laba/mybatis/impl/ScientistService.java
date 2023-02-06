@@ -50,5 +50,26 @@ public class ScientistService {
         return list;
     }
 
+    public Scientist getEntityById(int id) {
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            Scientist scientist = null;
+            IScientistDAO scientistDAO = session.getMapper(IScientistDAO.class);
+            scientist = scientistDAO.getEntityById(id);//this doesn't get the scientist with its Assistants collections
+
+//            /////////MUST DELETE THIS   ↓
+//            IAssistantDAO assistantDao = session.getMapper(IAssistantDAO.class);
+//            scientist.setAssistants(assistantDao.getEntityByScientistId(s.getId())));
+//            /////////MUST DELETE THIS   ↑
+
+            LOGGER.info("Get all Scientist finish successfully");
+            return scientist;
+        } catch (SQLException e) {
+            LOGGER.info("SQLException trying to get all Scientist");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
 
 }

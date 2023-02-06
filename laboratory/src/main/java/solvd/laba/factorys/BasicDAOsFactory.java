@@ -33,13 +33,4 @@ public class BasicDAOsFactory {
         }
         return null;
     }
-
-    public static void main(String[] args) throws SQLException {
-        IBaseDAO assistantDAO = getDAO(DAOs.ASSISTANT);
-        IBaseDAO subjectDAO = getDAO(DAOs.SUBJECT);
-
-        assistantDAO.getAllEntities().forEach(LOGGER::info);
-        subjectDAO.getAllEntities().forEach(LOGGER::info);
-
-    }
 }

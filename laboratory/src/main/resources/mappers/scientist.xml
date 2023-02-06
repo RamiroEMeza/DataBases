@@ -11,11 +11,16 @@
 
     <select id="getEntityById" resultMap="scientistResultMap">
         SELECT
-        <include refid="body"/>
+        <include refid="body"/>,
+        (a.id) as assistant_id,
+        a.name as assistant_name,
+        a.lastname as assistant_lastname,
+        a.nationality as assistant_nationality,
+        a.age as assistant_age
         FROM Scientists s
         LEFT JOIN Assistants a
         ON s.id=a.Scientists_id
-        WHERE id=#{id}
+        WHERE s.id=#{id}
     </select>
 
     <select id="getAllEntities" resultMap="scientistResultMap">
@@ -33,7 +38,7 @@
         <result column="scientist_lastname" property="lastname"/>
         <result column="scientist_nationality" property="nationality"/>
         <result column="scientist_age" property="age"/>
-        <collection property="assistants" ofType="Assistant"
+        <collection property="assistants" ofType="Assistant" javaType="ArrayList"
                     resultMap="solvd.laba.dao.IAssistantDAO.assistantResultMap"/>
     </resultMap>
 
