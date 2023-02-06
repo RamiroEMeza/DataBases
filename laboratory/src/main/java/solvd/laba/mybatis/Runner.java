@@ -50,10 +50,10 @@ public class Runner {
         Scientist scientist = scientistService.getEntityById(1);
         LOGGER.info(scientist);
 
-        AssistantService assistantService = new AssistantService();
-        ArrayList<Assistant> assistantList = assistantService.getAllEntities();
-        LOGGER.info("All Assistants:");
-        assistantList.forEach(LOGGER::info);
+//        AssistantService assistantService = new AssistantService();
+//        ArrayList<Assistant> assistantList = assistantService.getAllEntities();
+//        LOGGER.info("All Assistants:");
+//        assistantList.forEach(LOGGER::info);
 //        assistantList = assistantService.getEntityByScientistId(1);
 //        LOGGER.info("Assistants of Scientist with id=1:");
 //        assistantList.forEach(LOGGER::info);
