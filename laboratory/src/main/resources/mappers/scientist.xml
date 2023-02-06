@@ -17,8 +17,8 @@
     <select id="getEntityById" resultMap="scientistResultMap">
         SELECT
         <include refid="body"/>
-        FROM Scientists s
-        LEFT JOIN Assistants a
+        FROM Scientists as s
+        LEFT JOIN Assistants as a
         ON s.id=a.Scientists_id
         WHERE s.id=#{id}
     </select>
@@ -26,8 +26,8 @@
     <select id="getAllEntities" resultMap="scientistResultMap">
         SELECT
         <include refid="body"/>
-        FROM Scientists s
-        LEFT JOIN Assistants a
+        FROM Scientists as s
+        LEFT JOIN Assistants as a
         ON s.id = a.Scientists_id
     </select>
 

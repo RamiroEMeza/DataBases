@@ -61,7 +61,7 @@ public class Scientist extends Person {
     }
 
     public ArrayList<Assistant> getAssistants() {
-        return new ArrayList<Assistant>(this.assistants);
+        return this.assistants;
     }
 
     public void addAssistants(Assistant assistant) {

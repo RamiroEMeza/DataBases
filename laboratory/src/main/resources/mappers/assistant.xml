@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="solvd.laba.dao.IAssistantDAO">
     <sql id="body">
-            (a.id)
-            as assistant_id,
+        a.id as assistant_id,
         a.name as assistant_name,
         a.lastname as assistant_lastname,
         a.nationality as assistant_nationality,
@@ -13,15 +12,14 @@
     <select id="getEntityById" resultMap="assistantResultMap">
         SELECT
         <include refid="body"/>
-        FROM Assistants a
+        FROM Assistants as a
         WHERE id=#{id}
     </select>
 
     <select id="getEntityByScientistId" resultMap="assistantResultMap">
         SELECT
-        <include refid="body"/>,
-        a.Scientists_id as assistant_Scientist_id
-        FROM Assistants a
+        <include refid="body"/>
+        FROM Assistants as a
         WHERE a.Scientists_id=#{id}
     </select>
 
