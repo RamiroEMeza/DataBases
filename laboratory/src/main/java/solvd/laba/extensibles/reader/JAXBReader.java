@@ -16,9 +16,9 @@ import java.io.IOException;
 
 public class JAXBReader {
     private final static Logger LOGGER = LogManager.getLogger(JAXBReader.class);
-    public static final String EQUIPMENTS_PATH = "../laboratory/src/main/resources/eXtensibles/equipment/equipments.xml";
-    public static final String EQUIPMENTS_MARSHAL_PATH = "../laboratory/src/main/resources/eXtensibles/equipment/equipmentsM.xml";
-    public static final String ASSISTANTS_PATH = "../laboratory/src/main/resources/eXtensibles/assistant/assistants.xml";
+    public static final String EQUIPMENTS_PATH = "laboratory/src/main/resources/eXtensibles/equipment/equipments.xml";
+    public static final String EQUIPMENTS_MARSHAL_PATH = "laboratory/src/main/resources/eXtensibles/equipment/equipmentsM.xml";
+    public static final String ASSISTANTS_PATH = "laboratory/src/main/resources/eXtensibles/assistant/assistants.xml";
     public static final String RESEARCHES_PATH = "../laboratory/src/main/resources/eXtensibles/research/researches.xml";
 
     public static Equipment unmarshall() throws JAXBException, IOException {
@@ -29,22 +29,22 @@ public class JAXBReader {
 
     public static void main(String[] args) throws JAXBException, IOException {
         Equipment equipment = new Equipment(200, "Scale", true);
-
+        File equipments = new File(EQUIPMENTS_PATH);
+        File fileAssistant = new File(ASSISTANTS_PATH);
         try {
-            File file = new File(EQUIPMENTS_PATH);
-            File file2 = new File(EQUIPMENTS_MARSHAL_PATH);
-
             JAXBContext jaxbContext = JAXBContext.newInstance(Equipment.class);
 
-            Marshaller m = jaxbContext.createMarshaller();
-            m.marshal(equipment, file2);
+            Marshaller marshaller = jaxbContext.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            File writeEquipment = new File(EQUIPMENTS_MARSHAL_PATH);
+            marshaller.marshal(equipment, writeEquipment);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            Equipment e = (Equipment) jaxbUnmarshaller.unmarshal(file);
+            Equipment e = (Equipment) jaxbUnmarshaller.unmarshal(equipments);
             LOGGER.info("\n");
             LOGGER.info(e);
 
-            e = (Equipment) jaxbUnmarshaller.unmarshal(file2);
+            e = (Equipment) jaxbUnmarshaller.unmarshal(writeEquipment);
             LOGGER.info(e);
 
         } catch (JAXBException e) {
@@ -52,10 +52,7 @@ public class JAXBReader {
         }
 
         try {
-            File fileAssistant = new File(ASSISTANTS_PATH);
-
             JAXBContext jaxbContextAssistant = JAXBContext.newInstance(Assistant.class);
-
             Unmarshaller jaxbUnmarshaller = jaxbContextAssistant.createUnmarshaller();
             Assistant a = (Assistant) jaxbUnmarshaller.unmarshal(fileAssistant);
             LOGGER.info("\n");
