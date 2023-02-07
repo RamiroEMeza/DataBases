@@ -27,11 +27,11 @@ public class Reader {
 
         //Read json:
         Research researchFromFile = mapper
-                .readValue(new File("./src/main/resources/jsons/research.json"), Research.class);
+                .readValue(new File("laboratory/src/main/resources/jsons/research.json"), Research.class);
         LOGGER.info(researchFromFile);
 
         //Write json:
         mapper.writerWithDefaultPrettyPrinter()
-                .writeValue(new File("./src/main/resources/jsons/researchFileCopy.json"), researchFromFile);
+                .writeValue(new File("laboratory/src/main/resources/jsons/researchFileCopy.json"), researchFromFile);
     }
 }

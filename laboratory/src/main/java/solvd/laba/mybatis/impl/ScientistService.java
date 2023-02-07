@@ -36,13 +36,7 @@ public class ScientistService {
         ArrayList<Scientist> list = new ArrayList<Scientist>();
         try (SqlSession session = sqlSessionFactory.openSession()) {
             IScientistDAO scientistDAO = session.getMapper(IScientistDAO.class);
-            list = scientistDAO.getAllEntities();//this doesn't get the scientist with its Assistants collections
-
-//            /////////MUST DELETE THIS   ↓
-//            IAssistantDAO assistantDao = session.getMapper(IAssistantDAO.class);
-//            list.forEach(s -> s.setAssistants(assistantDao.getEntityByScientistId(s.getId())));
-//            /////////MUST DELETE THIS   ↑
-
+            list = scientistDAO.getAllEntities();
             LOGGER.info("Get all Scientist finish successfully");
         } catch (SQLException e) {
             LOGGER.info("SQLException trying to get all Scientist");
@@ -54,13 +48,7 @@ public class ScientistService {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             Scientist scientist = null;
             IScientistDAO scientistDAO = session.getMapper(IScientistDAO.class);
-            scientist = scientistDAO.getEntityById(id);//this doesn't get the scientist with its Assistants collections
-
-//            /////////MUST DELETE THIS   ↓
-//            IAssistantDAO assistantDao = session.getMapper(IAssistantDAO.class);
-//            scientist.setAssistants(assistantDao.getEntityByScientistId(s.getId())));
-//            /////////MUST DELETE THIS   ↑
-
+            scientist = scientistDAO.getEntityById(id);
             LOGGER.info("Get all Scientist finish successfully");
             return scientist;
         } catch (SQLException e) {
