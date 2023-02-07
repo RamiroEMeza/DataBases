@@ -2,16 +2,21 @@ package solvd.laba.entities.members;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 
 @XmlRootElement(name = "scientist")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Scientist extends Person {
+    @XmlElement(name = "nationality")
     @JsonProperty("nationality")
     private String nationality;
+    @XmlElement(name = "age")
     @JsonProperty("age")
     private int age;
+
+    @XmlElementWrapper(name = "assistants")
+    @XmlElement(name = "assistant")
     @JsonProperty("assistants")
     private ArrayList<Assistant> assistants = new ArrayList<Assistant>();
 
@@ -43,7 +48,7 @@ public class Scientist extends Person {
         return nationality;
     }
 
-    @XmlElement(name = "nationality")
+
     public void setNationality(String nationality) {
         this.nationality = nationality;
     }
@@ -52,7 +57,7 @@ public class Scientist extends Person {
         return age;
     }
 
-    @XmlElement(name = "age")
+
     public void setAge(int age) {
         if (age < 0) {
             age = 0;

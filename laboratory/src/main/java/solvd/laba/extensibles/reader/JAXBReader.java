@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import solvd.laba.entities.equipment.Equipment;
 import solvd.laba.entities.members.Assistant;
+import solvd.laba.entities.members.Scientist;
 import solvd.laba.entities.research.Research;
 
 import javax.xml.bind.JAXBContext;
@@ -19,7 +20,7 @@ public class JAXBReader {
     public static final String EQUIPMENTS_PATH = "laboratory/src/main/resources/eXtensibles/equipment/equipments.xml";
     public static final String EQUIPMENTS_MARSHAL_PATH = "laboratory/src/main/resources/eXtensibles/equipment/equipmentsM.xml";
     public static final String ASSISTANTS_PATH = "laboratory/src/main/resources/eXtensibles/assistant/assistants.xml";
-    public static final String RESEARCHES_PATH = "../laboratory/src/main/resources/eXtensibles/research/researches.xml";
+    public static final String SCIENTIST_PATH = "laboratory/src/main/resources/eXtensibles/scientist/scientists.xml";
 
     public static Equipment unmarshall() throws JAXBException, IOException {
         JAXBContext context = JAXBContext.newInstance(Equipment.class);
@@ -57,6 +58,20 @@ public class JAXBReader {
             Assistant a = (Assistant) jaxbUnmarshaller.unmarshal(fileAssistant);
             LOGGER.info("\n");
             LOGGER.info(a);
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            File fileResearch = new File(SCIENTIST_PATH);
+
+            JAXBContext jaxbContextAssistant = JAXBContext.newInstance(Scientist.class);
+
+            Unmarshaller jaxbUnmarshaller = jaxbContextAssistant.createUnmarshaller();
+            Scientist s = (Scientist) jaxbUnmarshaller.unmarshal(fileResearch);
+            LOGGER.info("\n");
+            LOGGER.info(s);
 
         } catch (JAXBException e) {
             e.printStackTrace();

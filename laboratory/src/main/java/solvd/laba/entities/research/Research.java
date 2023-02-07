@@ -31,7 +31,6 @@ public class Research {
     private Scientist scientist;
 
     @XmlElementWrapper(name = "subjects")
-    @XmlElement(name = "subject")
     @JsonProperty("testSubjects")
     private ArrayList<Subject> testSubjects = new ArrayList<>();
 
@@ -131,20 +130,15 @@ public class Research {
     }
 
     @XmlElement(name = "subject")
-    public void setTestSubjects(ArrayList<Subject> testSubjects) {
-        this.testSubjects = testSubjects;
+    public void setTestSubjects(ArrayList<Subject> testSubjectss) {
+        this.testSubjects = testSubjectss;
     }
 
 
-    public ArrayList<Subject> getTestSubjects() {
-        return new ArrayList<Subject>(this.testSubjects);
-    }
+//    public ArrayList<Subject> getTestSubjects() {
+//        return this.testSubjects;
+//    }
 
-    public void addTestSubjects(Subject testSubjects) {
-        if (testSubjects != null) {
-            this.testSubjects.add(testSubjects);
-        }
-    }
 
     public ArrayList<Equipment> getEquipments() {
         return new ArrayList<Equipment>(this.equipments);
