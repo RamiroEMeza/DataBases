@@ -9,8 +9,6 @@ select * from scientists;
 select * from assistants;
 select * from test_subjects;
 
-update equipment set working=0 where id=2;
-
 SELECT l.*, r.name FROM labs l LEFT JOIN researchs r ON l.id=r.Labs_id;
 SELECT l.*, r.name FROM labs l RIGHT JOIN researchs r ON l.id=r.Labs_id;
 SELECT l.*, r.name FROM researchs r RIGHT OUTER JOIN labs l ON l.id=r.Labs_id;
@@ -23,7 +21,3 @@ SELECT e.id, e.name FROM equipment e WHERE NOT EXISTS (SELECT 1 FROM equipment_s
 WHERE e.id=h.Equipment_id);
 
 SELECT * FROM equipment WHERE id=3;
-
-SELECT * FROM researchs r  LEFT JOIN scientists s  ON s.id=r.Scientists_id LEFT JOIN labs l ON l.id=r.Labs_id LEFT JOIN assistants a ON a.Scientists_id=s.id;
-
-SELECT * FROM assistants a LEFT JOIN scientists s ON a.Scientists_id=s.id LEFT JOIN researchs r ON s.id=r.Scientists_id LEFT JOIN labs l ON l.id=r.Labs_id;

@@ -6,8 +6,6 @@ import solvd.laba.dao.IBaseDAO;
 import solvd.laba.dao.jdbc.impl.*;
 import solvd.laba.enums.DAOs;
 
-import java.sql.SQLException;
-
 public class BasicDAOsFactory {
 
     private final static Logger LOGGER = LogManager.getLogger(BasicDAOsFactory.class);

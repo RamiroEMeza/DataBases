@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import solvd.laba.entities.equipment.Equipment;
 import solvd.laba.entities.members.Assistant;
 import solvd.laba.entities.members.Scientist;
-import solvd.laba.entities.research.Research;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
